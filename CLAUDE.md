@@ -252,7 +252,7 @@ Wayfinder generates TypeScript functions and types for Laravel controllers and r
 - Always use the `search-docs` tool to check Wayfinder correct usage before implementing any features.
 - Always prefer named imports for tree-shaking (e.g., `import { show } from '@/actions/...'`).
 - Avoid default controller imports (prevents tree-shaking).
-- Run `vendor/bin/sail artisan wayfinder:generate --with-form` after route changes if Vite plugin isn't installed.
+- Run `vendor/bin/sail artisan wayfinder:generate` after route changes if Vite plugin isn't installed.
 
 ### Feature Overview
 - Form Support: Use `.form()` with `--with-form` flag for HTML form attributes — `<form {...store.form()}>` → `action="/posts" method="post"`.
@@ -414,13 +414,13 @@ import { Link } from '@inertiajs/react'
 
 ## Inertia v2 + React Forms
 
-    <code-snippet name="`<Form>` Component Example" lang="react">
+<code-snippet name="`<Form>` Component Example" lang="react">
 
-        import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/react'
 
-        export default () => (
-        <Form action="/users" method="post">
-            {({
+export default () => (
+    <Form action="/users" method="post">
+        {({
             errors,
             hasErrors,
             processing,
@@ -429,133 +429,23 @@ import { Link } from '@inertiajs/react'
             clearErrors,
             resetAndClearErrors,
             defaults
-            }) => (
-            <>
-            <input type="text" name="name" />
+        }) => (
+        <>
+        <input type="text" name="name" />
 
-            {errors.name && <div>{errors.name}</div>}
+        {errors.name && <div>{errors.name}</div>}
 
-            <button type="submit" disabled={processing}>
-                {processing ? 'Creating...' : 'Create User'}
-            </button>
+        <button type="submit" disabled={processing}>
+            {processing ? 'Creating...' : 'Create User'}
+        </button>
 
-            {wasSuccessful && <div>User created successfully!</div>}
+        {wasSuccessful && <div>User created successfully!</div>}
         </>
-        )}
+    )}
     </Form>
-    )
-    
+)
+
 </code-snippet>
-
-### Form with shadcn Field Components
-- Use Inertia's `<Form>` for state management and shadcn's `Field` components for styling.
-- Use Wayfinder's `.form()` method for type-safe action and method attributes.
-- Apply `data-invalid` to `Field` and `aria-invalid` to inputs when errors exist.
-- Use `FieldError` to display validation messages from Inertia's `errors` object.
-
-    <code-snippet name="`<Form>` with Field Components" lang="react">
-
-        import { Form } from '@inertiajs/react'
-        import { store } from '@/actions/App/Http/Controllers/UserController'
-        import { Input } from '@/components/ui/input'
-        import { Button } from '@/components/ui/button'
-        import { Spinner } from '@/components/ui/spinner'
-        import {
-            Field,
-            FieldGroup,
-            FieldLabel,
-            FieldDescription,
-            FieldError,
-        } from '@/components/ui/field'
-
-        export default () => (
-            <Form {...store.form()} disableWhileProcessing>
-                {({ errors, processing }) => (
-                    <FieldGroup>
-                        <Field data-invalid={!!errors.name}>
-                            <FieldLabel htmlFor="name">Full name</FieldLabel>
-                            <Input
-                                id="name"
-                                name="name"
-                                placeholder="John Doe"
-                                aria-invalid={!!errors.name}
-                            />
-                            {errors.name && <FieldError>{errors.name}</FieldError>}
-                        </Field>
-
-                        <Field data-invalid={!!errors.email}>
-                            <FieldLabel htmlFor="email">Email</FieldLabel>
-                            <Input
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder="john@example.com"
-                                aria-invalid={!!errors.email}
-                            />
-                            <FieldDescription>We'll never share your email.</FieldDescription>
-                            {errors.email && <FieldError>{errors.email}</FieldError>}
-                        </Field>
-
-                        <Button type="submit" disabled={processing}>
-                            {processing && <Spinner />}
-                            Create User
-                        </Button>
-                    </FieldGroup>
-                )}
-            </Form>
-        )
-    
-</code-snippet>
-
-## shadcn/ui Button Component
-
-### Icon Styling
-- Do NOT add margin classes (`mr-*`, `ml-*`, `mx-*`) to icons inside buttons. The button uses `gap-2` for spacing.
-- Do NOT add size classes (`w-*`, `h-*`, `size-*`) to icons unless a custom size is explicitly needed. The button sets `[&_svg:not([class*='size-'])]:size-4` as the default.
-- Icons inside buttons automatically inherit these styles from the button component:
-  - `pointer-events-none`
-  - `size-4` (default, ~16px)
-  - `shrink-0`
-
-### Examples
-
-<code-snippet name="Correct Button with Icon" lang="tsx">
-// Correct - no extra classes needed
-<Button>
-    <Mail />
-    Send Email
-</Button>
-
-// Correct - custom size when explicitly needed
-<Button>
-    <Mail className="size-5" />
-    Send Email
-</Button>
-</code-snippet>
-
-<code-snippet name="Incorrect Button with Icon" lang="tsx">
-// Incorrect - unnecessary margin
-<Button>
-    <Mail className="mr-2" />
-    Send Email
-</Button>
-
-// Incorrect - unnecessary size (default is already size-4)
-<Button>
-    <Mail className="h-4 w-4" />
-    Send Email
-</Button>
-</code-snippet>
-
-## React 19 & Compiler Notes
-
-### React Compiler
-- Remove manual `useMemo`, `useCallback`, `React.memo` - compiler handles this automatically.
-- Use `"use no memo"` directive to opt-out problematic components.
-
-### React 19
-- `useRef()` requires argument: use `useRef(null)` or `useRef<T>(null)`.
-- Ref callbacks must use explicit blocks: `ref={el => { inputRef = el }}`, not `ref={el => inputRef = el}`.
 
 === tailwindcss/core rules ===
 
@@ -620,15 +510,6 @@ import { Link } from '@inertiajs/react'
 | overflow-ellipsis | text-ellipsis |
 | decoration-slice | box-decoration-slice |
 | decoration-clone | box-decoration-clone |
-
-### Size Utilities
-- When width and height are equal, use `size-*` instead of separate `w-*` and `h-*` classes.
-
-| Avoid | Prefer |
-|-------|--------|
-| `w-4 h-4` | `size-4` |
-| `w-10 h-10` | `size-10` |
-| `w-full h-full` | `size-full` |
 
 === laravel/fortify rules ===
 
