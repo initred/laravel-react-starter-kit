@@ -6,8 +6,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useAppearance } from '@/hooks/use-appearance'
-import { ComputerIcon, Moon02Icon, Sun01Icon } from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
+import { IconDeviceDesktop, IconMoon, IconSun } from '@tabler/icons-react'
 import { HTMLAttributes } from 'react'
 
 export default function AppearanceToggleDropdown({
@@ -19,11 +18,11 @@ export default function AppearanceToggleDropdown({
   const getCurrentIcon = () => {
     switch (appearance) {
       case 'dark':
-        return <HugeiconsIcon icon={Moon02Icon} strokeWidth={2} className="h-5 w-5" />
+        return <IconMoon className="h-5 w-5" />
       case 'light':
-        return <HugeiconsIcon icon={Sun01Icon} strokeWidth={2} className="h-5 w-5" />
+        return <IconSun className="h-5 w-5" />
       default:
-        return <HugeiconsIcon icon={ComputerIcon} strokeWidth={2} className="h-5 w-5" />
+        return <IconDeviceDesktop className="h-5 w-5" />
     }
   }
 
@@ -39,19 +38,19 @@ export default function AppearanceToggleDropdown({
         <DropdownMenuContent align="end">
           <DropdownMenuItem onClick={() => updateAppearance('light')}>
             <span className="flex items-center gap-2">
-              <HugeiconsIcon icon={Sun01Icon} strokeWidth={2} className="h-5 w-5" />
+              <IconSun className="h-5 w-5" />
               Light
             </span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => updateAppearance('dark')}>
             <span className="flex items-center gap-2">
-              <HugeiconsIcon icon={Moon02Icon} strokeWidth={2} className="h-5 w-5" />
+              <IconMoon className="h-5 w-5" />
               Dark
             </span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => updateAppearance('system')}>
             <span className="flex items-center gap-2">
-              <HugeiconsIcon icon={ComputerIcon} strokeWidth={2} className="h-5 w-5" />
+              <IconDeviceDesktop className="h-5 w-5" />
               System
             </span>
           </DropdownMenuItem>

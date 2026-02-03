@@ -1,4 +1,5 @@
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -16,19 +17,18 @@ import { privacy, terms } from '@/routes/docs'
 import { edit as profile } from '@/routes/profile'
 import { show as twoFactor } from '@/routes/two-factor'
 import { edit as password } from '@/routes/user-password'
-import {
-  CommandIcon,
-  DashboardBrowsingIcon,
-  File01Icon,
-  Key01Icon,
-  PaintBoardIcon,
-  Search01Icon,
-  SecurityCheckIcon,
-  SmartPhone01Icon,
-  UserIcon,
-} from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
 import { router } from '@inertiajs/react'
+import {
+  IconCommand,
+  IconDashboard,
+  IconDeviceMobile,
+  IconFile,
+  IconKey,
+  IconPalette,
+  IconSearch,
+  IconShieldCheck,
+  IconUser,
+} from '@tabler/icons-react'
 import { useCallback, useEffect, useState } from 'react'
 import { UAParser } from 'ua-parser-js'
 
@@ -72,74 +72,70 @@ export function AppSearch({ className }: AppSearchProps) {
           Search...
         </button>
         <InputGroupAddon>
-          <HugeiconsIcon icon={Search01Icon} strokeWidth={2} />
+          <IconSearch />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <Kbd>
-            {isMacOs ? (
-              <HugeiconsIcon icon={CommandIcon} strokeWidth={2} />
-            ) : (
-              'Ctrl'
-            )}
-          </Kbd>
+          <Kbd>{isMacOs ? <IconCommand /> : 'Ctrl'}</Kbd>
           <Kbd>K</Kbd>
         </InputGroupAddon>
       </InputGroup>
       <CommandDialog open={open} onOpenChange={setOpen} showCloseButton={false}>
-        <CommandInput placeholder="Type a command or search..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
-            <CommandItem
-              onSelect={() => runCommand(() => router.visit(dashboard()))}
-            >
-              <HugeiconsIcon icon={DashboardBrowsingIcon} strokeWidth={2} />
-              <span>Dashboard</span>
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Settings">
-            <CommandItem
-              onSelect={() => runCommand(() => router.visit(profile()))}
-            >
-              <HugeiconsIcon icon={UserIcon} strokeWidth={2} />
-              <span>Profile</span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => runCommand(() => router.visit(password()))}
-            >
-              <HugeiconsIcon icon={Key01Icon} strokeWidth={2} />
-              <span>Password</span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => runCommand(() => router.visit(appearance()))}
-            >
-              <HugeiconsIcon icon={PaintBoardIcon} strokeWidth={2} />
-              <span>Appearance</span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => runCommand(() => router.visit(twoFactor()))}
-            >
-              <HugeiconsIcon icon={SmartPhone01Icon} strokeWidth={2} />
-              <span>Two-Factor Authentication</span>
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Documentation">
-            <CommandItem
-              onSelect={() => runCommand(() => router.visit(terms()))}
-            >
-              <HugeiconsIcon icon={File01Icon} strokeWidth={2} />
-              <span>Terms</span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => runCommand(() => router.visit(privacy()))}
-            >
-              <HugeiconsIcon icon={SecurityCheckIcon} strokeWidth={2} />
-              <span>Privacy</span>
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
+        <Command>
+          <CommandInput placeholder="Type a command or search..." />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Suggestions">
+              <CommandItem
+                onSelect={() => runCommand(() => router.visit(dashboard()))}
+              >
+                <IconDashboard />
+                <span>Dashboard</span>
+              </CommandItem>
+            </CommandGroup>
+            <CommandSeparator />
+            <CommandGroup heading="Settings">
+              <CommandItem
+                onSelect={() => runCommand(() => router.visit(profile()))}
+              >
+                <IconUser />
+                <span>Profile</span>
+              </CommandItem>
+              <CommandItem
+                onSelect={() => runCommand(() => router.visit(password()))}
+              >
+                <IconKey />
+                <span>Password</span>
+              </CommandItem>
+              <CommandItem
+                onSelect={() => runCommand(() => router.visit(appearance()))}
+              >
+                <IconPalette />
+                <span>Appearance</span>
+              </CommandItem>
+              <CommandItem
+                onSelect={() => runCommand(() => router.visit(twoFactor()))}
+              >
+                <IconDeviceMobile />
+                <span>Two-Factor Authentication</span>
+              </CommandItem>
+            </CommandGroup>
+            <CommandSeparator />
+            <CommandGroup heading="Documentation">
+              <CommandItem
+                onSelect={() => runCommand(() => router.visit(terms()))}
+              >
+                <IconFile />
+                <span>Terms</span>
+              </CommandItem>
+              <CommandItem
+                onSelect={() => runCommand(() => router.visit(privacy()))}
+              >
+                <IconShieldCheck />
+                <span>Privacy</span>
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </Command>
       </CommandDialog>
     </>
   )

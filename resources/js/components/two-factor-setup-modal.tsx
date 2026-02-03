@@ -17,9 +17,8 @@ import { useClipboard } from '@/hooks/use-clipboard'
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth'
 import { confirm } from '@/routes/two-factor'
 import { Form } from '@inertiajs/react'
+import { IconCheck, IconCopy, IconQrcode } from '@tabler/icons-react'
 import { REGEXP_ONLY_DIGITS } from 'input-otp'
-import { Copy01Icon, QrCodeScanIcon, Tick02Icon } from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import AlertError from './alert-error'
 import { Spinner } from './ui/spinner'
@@ -44,7 +43,7 @@ function GridScanIcon() {
             />
           ))}
         </div>
-        <HugeiconsIcon icon={QrCodeScanIcon} strokeWidth={2} className="relative z-20 size-6 text-foreground" />
+        <IconQrcode className="relative z-20 size-6 text-foreground" />
       </div>
     </div>
   )
@@ -65,7 +64,7 @@ function TwoFactorSetupStep({
 }) {
   const { resolvedAppearance } = useAppearance()
   const [copiedText, copy] = useClipboard()
-  const copyIcon = copiedText === manualSetupKey ? Tick02Icon : Copy01Icon
+  const CopyIcon = copiedText === manualSetupKey ? IconCheck : IconCopy
 
   return (
     <>
@@ -127,7 +126,7 @@ function TwoFactorSetupStep({
                     onClick={() => copy(manualSetupKey)}
                     className="border-l border-border px-3 hover:bg-muted"
                   >
-                    <HugeiconsIcon icon={copyIcon} strokeWidth={2} className="w-4" />
+                    <CopyIcon className="w-4" />
                   </button>
                 </>
               )}

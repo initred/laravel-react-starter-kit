@@ -10,7 +10,7 @@
 | Compiler | [React Compiler](https://react.dev/learn/react-compiler) (`babel-plugin-react-compiler`) |
 | Styling | [Tailwind CSS 4](https://tailwindcss.com/) |
 | Components | [shadcn/ui](https://ui.shadcn.com) (`radix-nova` style) |
-| Icons | [Hugeicons](https://hugeicons.com) (`@hugeicons/react`) |
+| Icons | [Tabler Icons](https://tabler.io/icons) (`@tabler/icons-react`) |
 | Font | [Geist](https://vercel.com/font) (`@fontsource-variable/geist`) |
 | Routing | [Wayfinder](https://github.com/laravel/wayfinder) (type-safe routes) |
 | Auth | [Laravel Fortify](https://laravel.com/docs/fortify) |

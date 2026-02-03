@@ -17,8 +17,7 @@ import { privacy, terms } from '@/routes/docs'
 import { store } from '@/routes/login'
 import { request } from '@/routes/password'
 import { Form, Head } from '@inertiajs/react'
-import { CheckmarkCircle02Icon } from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
+import { IconCircleCheck } from '@tabler/icons-react'
 
 interface LoginProps {
   status?: string
@@ -49,7 +48,7 @@ export default function Login({
             {status && (
               <FieldGroup>
                 <Alert>
-                  <HugeiconsIcon icon={CheckmarkCircle02Icon} strokeWidth={2} />
+                  <IconCircleCheck stroke={2} />
                   <AlertDescription>{status}</AlertDescription>
                 </Alert>
               </FieldGroup>

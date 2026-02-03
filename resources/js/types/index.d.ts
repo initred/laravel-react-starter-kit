@@ -1,5 +1,5 @@
-import { type IconSvgElement } from '@hugeicons/react'
 import { InertiaLinkProps } from '@inertiajs/react'
+import { type Icon } from '@tabler/icons-react'
 
 export interface FlashType {
   type: 'success' | 'info' | 'warning' | 'error'
@@ -23,7 +23,7 @@ export interface NavGroup {
 export interface NavItem {
   title: string
   href: NonNullable<InertiaLinkProps['href']>
-  icon?: IconSvgElement | null
+  icon?: Icon | null
   isActive?: boolean
 }
 

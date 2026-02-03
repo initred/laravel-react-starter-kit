@@ -1,24 +1,17 @@
-import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 import { cn } from '@/lib/utils'
+import {
+  type Icon as TablerIcon,
+  type IconProps as TablerIconProps,
+} from '@tabler/icons-react'
 
-interface IconProps {
-  iconNode: IconSvgElement
-  className?: string
-  strokeWidth?: number
+interface IconProps extends TablerIconProps {
+  iconNode: TablerIcon
 }
 
 export function Icon({
-  iconNode,
+  iconNode: IconComponent,
   className,
-  strokeWidth = 2,
   ...props
 }: IconProps) {
-  return (
-    <HugeiconsIcon
-      icon={iconNode}
-      strokeWidth={strokeWidth}
-      className={cn('size-4', className)}
-      {...props}
-    />
-  )
+  return <IconComponent className={cn('size-4', className)} {...props} />
 }

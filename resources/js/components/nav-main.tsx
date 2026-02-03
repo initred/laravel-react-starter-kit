@@ -7,7 +7,6 @@ import {
 } from '@/components/ui/sidebar'
 import { useActiveUrl } from '@/hooks/use-active-url'
 import { type NavItem } from '@/types'
-import { HugeiconsIcon } from '@hugeicons/react'
 import { Link } from '@inertiajs/react'
 
 export function NavMain({ items = [] }: { items: NavItem[] }) {
@@ -25,7 +24,7 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
               tooltip={{ children: item.title }}
             >
               <Link href={item.href} prefetch>
-                {item.icon && <HugeiconsIcon icon={item.icon} strokeWidth={2} />}
+                {item.icon && <item.icon />}
                 <span>{item.title}</span>
               </Link>
             </SidebarMenuButton>

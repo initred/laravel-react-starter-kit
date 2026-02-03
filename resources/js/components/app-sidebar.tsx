@@ -14,18 +14,14 @@ import { dashboard } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { type NavItem } from '@/types'
 import { Link } from '@inertiajs/react'
-import {
-  DashboardBrowsingIcon,
-  File01Icon,
-  SecurityCheckIcon,
-} from '@hugeicons/core-free-icons'
+import { IconDashboard, IconFile, IconShieldCheck } from '@tabler/icons-react'
 import AppLogo from './app-logo'
 
 const mainNavItems: NavItem[] = [
   {
     title: 'Dashboard',
     href: dashboard(),
-    icon: DashboardBrowsingIcon,
+    icon: IconDashboard,
   },
 ]
 
@@ -33,12 +29,12 @@ const footerNavItems: NavItem[] = [
   {
     title: 'Terms',
     href: terms(),
-    icon: File01Icon,
+    icon: IconFile,
   },
   {
     title: 'Privacy',
     href: privacy(),
-    icon: SecurityCheckIcon,
+    icon: IconShieldCheck,
   },
 ]
 

@@ -9,12 +9,11 @@ import {
 import { regenerateRecoveryCodes } from '@/routes/two-factor'
 import { Form } from '@inertiajs/react'
 import {
-  ArrowReloadHorizontalIcon,
-  EyeIcon,
-  LockKeyIcon,
-  ViewOffIcon,
-} from '@hugeicons/core-free-icons'
-import { HugeiconsIcon } from '@hugeicons/react'
+  IconEye,
+  IconEyeOff,
+  IconLockSquare,
+  IconRefresh,
+} from '@tabler/icons-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import AlertError from './alert-error'
 
@@ -56,13 +55,13 @@ export default function TwoFactorRecoveryCodes({
     }
   }, [recoveryCodesList.length, fetchRecoveryCodes])
 
-  const recoveryCodeIcon = codesAreVisible ? ViewOffIcon : EyeIcon
+  const RecoveryCodeIcon = codesAreVisible ? IconEyeOff : IconEye
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex gap-3">
-          <HugeiconsIcon icon={LockKeyIcon} strokeWidth={2} className="size-4" aria-hidden="true" />
+          <IconLockSquare className="size-4" aria-hidden="true" />
           2FA Recovery Codes
         </CardTitle>
         <CardDescription>
@@ -78,7 +77,7 @@ export default function TwoFactorRecoveryCodes({
             aria-expanded={codesAreVisible}
             aria-controls="recovery-codes-section"
           >
-            <HugeiconsIcon icon={recoveryCodeIcon} strokeWidth={2} aria-hidden="true" />
+            <RecoveryCodeIcon aria-hidden="true" />
             {codesAreVisible ? 'Hide' : 'View'} Recovery Codes
           </Button>
 
@@ -94,7 +93,7 @@ export default function TwoFactorRecoveryCodes({
                 type="submit"
                 aria-describedby="regenerate-warning"
               >
-                <HugeiconsIcon icon={ArrowReloadHorizontalIcon} strokeWidth={2} /> Regenerate Codes
+                <IconRefresh /> Regenerate Codes
               </Button>
             </Form>
           )}
