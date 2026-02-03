@@ -7,7 +7,8 @@ import AuthLayout from '@/layouts/auth-layout'
 import { logout } from '@/routes'
 import { send } from '@/routes/verification'
 import { Form, Head } from '@inertiajs/react'
-import { MailCheck } from 'lucide-react'
+import { MailValidation01Icon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 
 export default function VerifyEmail({ status }: { status?: string }) {
   return (
@@ -19,7 +20,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
 
       {status === 'verification-link-sent' && (
         <Alert className="mb-4">
-          <MailCheck />
+          <HugeiconsIcon icon={MailValidation01Icon} strokeWidth={2} />
           <AlertDescription>
             A new verification link has been sent to the email address you
             provided during registration.

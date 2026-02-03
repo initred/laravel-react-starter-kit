@@ -10,7 +10,8 @@ import { logout } from '@/routes'
 import { edit } from '@/routes/profile'
 import { type User } from '@/types'
 import { Link, router } from '@inertiajs/react'
-import { LogOut, Settings } from 'lucide-react'
+import { Logout01Icon, Settings01Icon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 
 interface UserMenuContentProps {
   user: User
@@ -40,7 +41,7 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
             prefetch
             onClick={cleanup}
           >
-            <Settings />
+            <HugeiconsIcon icon={Settings01Icon} strokeWidth={2} />
             Settings
           </Link>
         </DropdownMenuItem>
@@ -54,7 +55,7 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
           onClick={handleLogout}
           data-test="logout-button"
         >
-          <LogOut />
+          <HugeiconsIcon icon={Logout01Icon} strokeWidth={2} />
           Log out
         </Link>
       </DropdownMenuItem>

@@ -29,7 +29,13 @@ import { dashboard } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types'
 import { Link, usePage } from '@inertiajs/react'
-import { FileText, LayoutGrid, Menu, ShieldCheck } from 'lucide-react'
+import { HugeiconsIcon } from '@hugeicons/react'
+import {
+  DashboardBrowsingIcon,
+  File01Icon,
+  Menu01Icon,
+  SecurityCheckIcon,
+} from '@hugeicons/core-free-icons'
 import AppLogo from './app-logo'
 import AppLogoIcon from './app-logo-icon'
 
@@ -37,7 +43,7 @@ const mainNavItems: NavItem[] = [
   {
     title: 'Dashboard',
     href: dashboard(),
-    icon: LayoutGrid,
+    icon: DashboardBrowsingIcon,
   },
 ]
 
@@ -45,12 +51,12 @@ const rightNavItems: NavItem[] = [
   {
     title: 'Terms',
     href: terms(),
-    icon: FileText,
+    icon: File01Icon,
   },
   {
     title: 'Privacy',
     href: privacy(),
-    icon: ShieldCheck,
+    icon: SecurityCheckIcon,
   },
 ]
 
@@ -80,7 +86,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                   size="icon"
                   className="mr-2 h-8.5 w-8.5"
                 >
-                  <Menu className="h-5 w-5" />
+                  <HugeiconsIcon icon={Menu01Icon} strokeWidth={2} className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent

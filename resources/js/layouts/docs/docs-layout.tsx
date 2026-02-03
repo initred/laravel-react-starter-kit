@@ -4,6 +4,7 @@ import { useActiveUrl } from '@/hooks/use-active-url'
 import { cn, toUrl } from '@/lib/utils'
 import { privacy, terms } from '@/routes/docs'
 import { type NavItem } from '@/types'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { Link } from '@inertiajs/react'
 import { type PropsWithChildren } from 'react'
 
@@ -55,7 +56,7 @@ export default function DocsLayout({
                 })}
               >
                 <Link href={item.href}>
-                  {item.icon && <item.icon className="h-4 w-4" />}
+                  {item.icon && <HugeiconsIcon icon={item.icon} strokeWidth={2} className="h-4 w-4" />}
                   {item.title}
                 </Link>
               </Button>

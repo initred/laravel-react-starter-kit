@@ -14,7 +14,8 @@ import { UserMenuContent } from '@/components/user-menu-content'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { type SharedData } from '@/types'
 import { usePage } from '@inertiajs/react'
-import { ChevronsUpDown } from 'lucide-react'
+import { UnfoldMoreIcon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 
 export function NavUser() {
   const { auth } = usePage<SharedData>().props
@@ -32,7 +33,7 @@ export function NavUser() {
               data-test="sidebar-menu-button"
             >
               <UserInfo user={auth.user} />
-              <ChevronsUpDown className="ml-auto size-4" />
+              <HugeiconsIcon icon={UnfoldMoreIcon} strokeWidth={2} className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent

@@ -16,18 +16,19 @@ import { privacy, terms } from '@/routes/docs'
 import { edit as profile } from '@/routes/profile'
 import { show as twoFactor } from '@/routes/two-factor'
 import { edit as password } from '@/routes/user-password'
-import { router } from '@inertiajs/react'
 import {
-  Command,
-  FileText,
-  KeyRound,
-  LayoutGrid,
-  Palette,
-  Search,
-  ShieldCheck,
-  Smartphone,
-  User,
-} from 'lucide-react'
+  CommandIcon,
+  DashboardBrowsingIcon,
+  File01Icon,
+  Key01Icon,
+  PaintBoardIcon,
+  Search01Icon,
+  SecurityCheckIcon,
+  SmartPhone01Icon,
+  UserIcon,
+} from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
+import { router } from '@inertiajs/react'
 import { useCallback, useEffect, useState } from 'react'
 import { UAParser } from 'ua-parser-js'
 
@@ -71,10 +72,10 @@ export function AppSearch({ className }: AppSearchProps) {
           Search...
         </button>
         <InputGroupAddon>
-          <Search />
+          <HugeiconsIcon icon={Search01Icon} strokeWidth={2} />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <Kbd>{isMacOs ? <Command /> : 'Ctrl'}</Kbd>
+          <Kbd>{isMacOs ? <HugeiconsIcon icon={CommandIcon} strokeWidth={2} /> : 'Ctrl'}</Kbd>
           <Kbd>K</Kbd>
         </InputGroupAddon>
       </InputGroup>
@@ -86,7 +87,7 @@ export function AppSearch({ className }: AppSearchProps) {
             <CommandItem
               onSelect={() => runCommand(() => router.visit(dashboard()))}
             >
-              <LayoutGrid />
+              <HugeiconsIcon icon={DashboardBrowsingIcon} strokeWidth={2} />
               <span>Dashboard</span>
             </CommandItem>
           </CommandGroup>
@@ -95,25 +96,25 @@ export function AppSearch({ className }: AppSearchProps) {
             <CommandItem
               onSelect={() => runCommand(() => router.visit(profile()))}
             >
-              <User />
+              <HugeiconsIcon icon={UserIcon} strokeWidth={2} />
               <span>Profile</span>
             </CommandItem>
             <CommandItem
               onSelect={() => runCommand(() => router.visit(password()))}
             >
-              <KeyRound />
+              <HugeiconsIcon icon={Key01Icon} strokeWidth={2} />
               <span>Password</span>
             </CommandItem>
             <CommandItem
               onSelect={() => runCommand(() => router.visit(appearance()))}
             >
-              <Palette />
+              <HugeiconsIcon icon={PaintBoardIcon} strokeWidth={2} />
               <span>Appearance</span>
             </CommandItem>
             <CommandItem
               onSelect={() => runCommand(() => router.visit(twoFactor()))}
             >
-              <Smartphone />
+              <HugeiconsIcon icon={SmartPhone01Icon} strokeWidth={2} />
               <span>Two-Factor Authentication</span>
             </CommandItem>
           </CommandGroup>
@@ -122,13 +123,13 @@ export function AppSearch({ className }: AppSearchProps) {
             <CommandItem
               onSelect={() => runCommand(() => router.visit(terms()))}
             >
-              <FileText />
+              <HugeiconsIcon icon={File01Icon} strokeWidth={2} />
               <span>Terms</span>
             </CommandItem>
             <CommandItem
               onSelect={() => runCommand(() => router.visit(privacy()))}
             >
-              <ShieldCheck />
+              <HugeiconsIcon icon={SecurityCheckIcon} strokeWidth={2} />
               <span>Privacy</span>
             </CommandItem>
           </CommandGroup>

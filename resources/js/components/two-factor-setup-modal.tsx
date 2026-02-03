@@ -18,7 +18,8 @@ import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth'
 import { confirm } from '@/routes/two-factor'
 import { Form } from '@inertiajs/react'
 import { REGEXP_ONLY_DIGITS } from 'input-otp'
-import { Check, Copy, ScanLine } from 'lucide-react'
+import { Copy01Icon, QrCodeScanIcon, Tick02Icon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import AlertError from './alert-error'
 import { Spinner } from './ui/spinner'
@@ -43,7 +44,7 @@ function GridScanIcon() {
             />
           ))}
         </div>
-        <ScanLine className="relative z-20 size-6 text-foreground" />
+        <HugeiconsIcon icon={QrCodeScanIcon} strokeWidth={2} className="relative z-20 size-6 text-foreground" />
       </div>
     </div>
   )
@@ -64,7 +65,7 @@ function TwoFactorSetupStep({
 }) {
   const { resolvedAppearance } = useAppearance()
   const [copiedText, copy] = useClipboard()
-  const IconComponent = copiedText === manualSetupKey ? Check : Copy
+  const copyIcon = copiedText === manualSetupKey ? Tick02Icon : Copy01Icon
 
   return (
     <>
@@ -126,7 +127,7 @@ function TwoFactorSetupStep({
                     onClick={() => copy(manualSetupKey)}
                     className="border-l border-border px-3 hover:bg-muted"
                   >
-                    <IconComponent className="w-4" />
+                    <HugeiconsIcon icon={copyIcon} strokeWidth={2} className="w-4" />
                   </button>
                 </>
               )}

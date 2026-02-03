@@ -14,7 +14,8 @@ import SettingsLayout from '@/layouts/settings/layout'
 import { disable, enable, show } from '@/routes/two-factor'
 import { type BreadcrumbItem } from '@/types'
 import { Form, Head } from '@inertiajs/react'
-import { ShieldBan, ShieldCheck } from 'lucide-react'
+import { SecurityCheckIcon, Shield01Icon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { useState } from 'react'
 
 interface TwoFactorProps {
@@ -81,7 +82,7 @@ export default function TwoFactor({
                         type="submit"
                         disabled={processing}
                       >
-                        <ShieldBan /> Disable 2FA
+                        <HugeiconsIcon icon={Shield01Icon} strokeWidth={2} /> Disable 2FA
                       </Button>
                     )}
                   </Form>
@@ -99,7 +100,7 @@ export default function TwoFactor({
                 <div>
                   {hasSetupData ? (
                     <Button onClick={() => setShowSetupModal(true)}>
-                      <ShieldCheck />
+                      <HugeiconsIcon icon={SecurityCheckIcon} strokeWidth={2} />
                       Continue Setup
                     </Button>
                   ) : (
@@ -109,7 +110,7 @@ export default function TwoFactor({
                     >
                       {({ processing }) => (
                         <Button type="submit" disabled={processing}>
-                          <ShieldCheck />
+                          <HugeiconsIcon icon={SecurityCheckIcon} strokeWidth={2} />
                           Enable 2FA
                         </Button>
                       )}

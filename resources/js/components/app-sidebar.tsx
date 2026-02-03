@@ -14,14 +14,18 @@ import { dashboard } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { type NavItem } from '@/types'
 import { Link } from '@inertiajs/react'
-import { FileText, LayoutGrid, ShieldCheck } from 'lucide-react'
+import {
+  DashboardBrowsingIcon,
+  File01Icon,
+  SecurityCheckIcon,
+} from '@hugeicons/core-free-icons'
 import AppLogo from './app-logo'
 
 const mainNavItems: NavItem[] = [
   {
     title: 'Dashboard',
     href: dashboard(),
-    icon: LayoutGrid,
+    icon: DashboardBrowsingIcon,
   },
 ]
 
@@ -29,12 +33,12 @@ const footerNavItems: NavItem[] = [
   {
     title: 'Terms',
     href: terms(),
-    icon: FileText,
+    icon: File01Icon,
   },
   {
     title: 'Privacy',
     href: privacy(),
-    icon: ShieldCheck,
+    icon: SecurityCheckIcon,
   },
 ]
 

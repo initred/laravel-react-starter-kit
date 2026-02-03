@@ -13,7 +13,8 @@ import AuthLayout from '@/layouts/auth-layout'
 import { login } from '@/routes'
 import { email } from '@/routes/password'
 import { Form, Head } from '@inertiajs/react'
-import { MailCheck } from 'lucide-react'
+import { MailValidation01Icon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 
 export default function ForgotPassword({ status }: { status?: string }) {
   return (
@@ -25,7 +26,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
       {status && (
         <Alert className="mb-4">
-          <MailCheck />
+          <HugeiconsIcon icon={MailValidation01Icon} strokeWidth={2} />
           <AlertDescription>{status}</AlertDescription>
         </Alert>
       )}

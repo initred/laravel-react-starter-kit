@@ -8,6 +8,7 @@ import { edit } from '@/routes/profile'
 import { show } from '@/routes/two-factor'
 import { edit as editPassword } from '@/routes/user-password'
 import { type NavItem } from '@/types'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { Link } from '@inertiajs/react'
 import { type PropsWithChildren } from 'react'
 
@@ -68,7 +69,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                 })}
               >
                 <Link href={item.href}>
-                  {item.icon && <item.icon className="h-4 w-4" />}
+                  {item.icon && <HugeiconsIcon icon={item.icon} strokeWidth={2} className="h-4 w-4" />}
                   {item.title}
                 </Link>
               </Button>

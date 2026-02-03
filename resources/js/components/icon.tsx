@@ -1,15 +1,24 @@
+import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/react'
 import { cn } from '@/lib/utils'
-import { type LucideProps } from 'lucide-react'
-import { type ComponentType } from 'react'
 
-interface IconProps extends Omit<LucideProps, 'ref'> {
-  iconNode: ComponentType<LucideProps>
+interface IconProps {
+  iconNode: IconSvgElement
+  className?: string
+  strokeWidth?: number
 }
 
 export function Icon({
-  iconNode: IconComponent,
+  iconNode,
   className,
+  strokeWidth = 2,
   ...props
 }: IconProps) {
-  return <IconComponent className={cn('size-4', className)} {...props} />
+  return (
+    <HugeiconsIcon
+      icon={iconNode}
+      strokeWidth={strokeWidth}
+      className={cn('size-4', className)}
+      {...props}
+    />
+  )
 }
