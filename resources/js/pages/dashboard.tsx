@@ -15,8 +15,12 @@ export default function Dashboard() {
     <AppLayout breadcrumbs={breadcrumbs}>
       <Head title="Dashboard" />
       <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-        <div className="grid auto-rows-min gap-4 md:grid-cols-3"></div>
-        <div className="relative min-h-screen flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"></div>
+        <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+          <div className="aspect-video rounded-lg border bg-muted/50 shadow" />
+          <div className="aspect-video rounded-lg border bg-muted/50 shadow" />
+          <div className="aspect-video rounded-lg border bg-muted/50 shadow" />
+        </div>
+        <div className="min-h-screen flex-1 rounded-lg border bg-muted/50 shadow lg:min-h-min" />
       </div>
     </AppLayout>
   )
