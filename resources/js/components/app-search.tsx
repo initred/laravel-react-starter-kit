@@ -75,7 +75,13 @@ export function AppSearch({ className }: AppSearchProps) {
           <HugeiconsIcon icon={Search01Icon} strokeWidth={2} />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <Kbd>{isMacOs ? <HugeiconsIcon icon={CommandIcon} strokeWidth={2} /> : 'Ctrl'}</Kbd>
+          <Kbd>
+            {isMacOs ? (
+              <HugeiconsIcon icon={CommandIcon} strokeWidth={2} />
+            ) : (
+              'Ctrl'
+            )}
+          </Kbd>
           <Kbd>K</Kbd>
         </InputGroupAddon>
       </InputGroup>
