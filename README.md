@@ -11,7 +11,7 @@
 | Styling | [Tailwind CSS 4](https://tailwindcss.com/) |
 | Components | [shadcn/ui](https://ui.shadcn.com) (`radix-nova` style) |
 | Icons | [Tabler Icons](https://tabler.io/icons) (`@tabler/icons-react`) |
-| Font | [Geist](https://vercel.com/font) (`@fontsource-variable/geist`) |
+| Font | [Pretendard Variable](https://github.com/orioncactus/pretendard) (가변 다이나믹 서브셋) |
 | Routing | [Wayfinder](https://github.com/laravel/wayfinder) (type-safe routes) |
 | Auth | [Laravel Fortify](https://laravel.com/docs/fortify) |
 | Testing | [Pest 4](https://pestphp.com/) (with browser testing), [Larastan](https://github.com/larastan/larastan), [Rector](https://getrector.com/) |
