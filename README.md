@@ -9,7 +9,7 @@
 | Frontend | [React 19](https://react.dev/), [TypeScript 5](https://www.typescriptlang.org/) |
 | Compiler | [React Compiler](https://react.dev/learn/react-compiler) (`babel-plugin-react-compiler`) |
 | Styling | [Tailwind CSS 4](https://tailwindcss.com/) |
-| Components | [shadcn/ui](https://ui.shadcn.com) (`radix-nova` style) |
+| Components | [shadcn/ui](https://ui.shadcn.com) (`radix-vega` style) |
 | Icons | [Tabler Icons](https://tabler.io/icons) (`@tabler/icons-react`) |
 | Font | [Pretendard Variable](https://github.com/orioncactus/pretendard) (가변 다이나믹 서브셋) |
 | Routing | [Wayfinder](https://github.com/laravel/wayfinder) (type-safe routes) |
