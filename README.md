@@ -4,6 +4,7 @@
 
 | Category | Technology |
 |---|---|
+| Database | [PostgreSQL 18](https://www.postgresql.org/) (default), [MySQL 8.4](https://www.mysql.com/) |
 | Runtime | [Docker](https://www.docker.com/) ([Laravel Sail](https://laravel.com/docs/sail)) |
 | Backend | [PHP 8.4](https://www.php.net/), [Laravel 12](https://laravel.com/docs/12.x), [Inertia v2](https://inertiajs.com/) |
 | Frontend | [React 19](https://react.dev/), [TypeScript 5](https://www.typescriptlang.org/) |
@@ -31,7 +32,20 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-Then, start the application using Laravel Sail and run the setup script:
+### Database Setup
+
+This starter kit supports **PostgreSQL** (default) and **MySQL**. Run the setup script to choose your database:
+
+```bash
+bash database-setup.sh
+```
+
+The script will:
+1. Prompt you to select PostgreSQL or MySQL
+2. Configure `compose.yaml` and `.env` for the selected database
+3. Clean up the setup files automatically
+
+### Start the Application
 
 ```bash
 vendor/bin/sail up -d
