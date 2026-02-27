@@ -21,17 +21,6 @@
 
 ## Getting Started
 
-After cloning this template, run the following command to install dependencies:
-
-```bash
-docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd):/var/www/html" \
-    -w /var/www/html \
-    laravelsail/php84-composer:latest \
-    composer install --ignore-platform-reqs
-```
-
 ### Database Setup
 
 This starter kit supports **PostgreSQL** (default) and **MySQL**. Run the setup script to choose your database:
@@ -44,6 +33,17 @@ The script will:
 1. Prompt you to select PostgreSQL or MySQL
 2. Configure `compose.yaml` and `.env` for the selected database
 3. Clean up the setup files automatically
+
+### Install Dependencies
+
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php84-composer:latest \
+    composer install --ignore-platform-reqs
+```
 
 ### Start the Application
 
