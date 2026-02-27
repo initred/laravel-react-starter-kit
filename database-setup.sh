@@ -42,13 +42,8 @@ else
 fi
 
 # 셋업 파일 정리
-rm -rf stubs/docker
+rm -rf stubs
 rm -f database-setup.sh
 
 echo ""
 echo "${db} 설정이 완료되었습니다."
-echo ""
-echo "다음 명령어로 시작하세요:"
-echo "  vendor/bin/sail up -d"
-echo "  vendor/bin/sail artisan migrate"
-echo ""
