@@ -1,3 +1,5 @@
+import AlertError from '@/components/alert-error'
+import InputError from '@/components/input-error'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -6,12 +8,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Field, FieldError } from '@/components/ui/field'
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from '@/components/ui/input-otp'
+import { Spinner } from '@/components/ui/spinner'
 import { useAppearance } from '@/hooks/use-appearance'
 import { useClipboard } from '@/hooks/use-clipboard'
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth'
@@ -20,8 +22,6 @@ import { Form } from '@inertiajs/react'
 import { IconCheck, IconCopy, IconQrcode } from '@tabler/icons-react'
 import { REGEXP_ONLY_DIGITS } from 'input-otp'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import AlertError from './alert-error'
-import { Spinner } from './ui/spinner'
 
 function GridScanIcon() {
   return (
@@ -64,7 +64,7 @@ function TwoFactorSetupStep({
 }) {
   const { resolvedAppearance } = useAppearance()
   const [copiedText, copy] = useClipboard()
-  const CopyIcon = copiedText === manualSetupKey ? IconCheck : IconCopy
+  const IconComponent = copiedText === manualSetupKey ? IconCheck : IconCopy
 
   return (
     <>
@@ -103,7 +103,7 @@ function TwoFactorSetupStep({
 
           <div className="relative flex w-full items-center justify-center">
             <div className="absolute inset-0 top-1/2 h-px w-full bg-border" />
-            <span className="relative px-2 py-1">
+            <span className="relative bg-card px-2 py-1">
               or, enter the code manually
             </span>
           </div>
@@ -126,7 +126,7 @@ function TwoFactorSetupStep({
                     onClick={() => copy(manualSetupKey)}
                     className="border-l border-border px-3 hover:bg-muted"
                   >
-                    <CopyIcon className="w-4" />
+                    <IconComponent className="w-4" />
                   </button>
                 </>
               )}
@@ -170,10 +170,7 @@ function TwoFactorVerificationStep({
       }) => (
         <>
           <div ref={pinInputContainerRef} className="relative w-full space-y-3">
-            <Field
-              data-invalid={!!errors?.confirmTwoFactorAuthentication?.code}
-              className="items-center py-2"
-            >
+            <div className="flex w-full flex-col items-center space-y-3 py-2">
               <InputOTP
                 id="otp"
                 name="code"
@@ -188,12 +185,10 @@ function TwoFactorVerificationStep({
                   ))}
                 </InputOTPGroup>
               </InputOTP>
-              {errors?.confirmTwoFactorAuthentication?.code && (
-                <FieldError>
-                  {errors.confirmTwoFactorAuthentication.code}
-                </FieldError>
-              )}
-            </Field>
+              <InputError
+                message={errors?.confirmTwoFactorAuthentication?.code}
+              />
+            </div>
 
             <div className="flex w-full space-x-5">
               <Button
@@ -220,7 +215,7 @@ function TwoFactorVerificationStep({
   )
 }
 
-interface TwoFactorSetupModalProps {
+type Props = {
   isOpen: boolean
   onClose: () => void
   requiresConfirmation: boolean
@@ -242,7 +237,7 @@ export default function TwoFactorSetupModal({
   clearSetupData,
   fetchSetupData,
   errors,
-}: TwoFactorSetupModalProps) {
+}: Props) {
   const [showVerificationStep, setShowVerificationStep] =
     useState<boolean>(false)
 
@@ -253,7 +248,7 @@ export default function TwoFactorSetupModal({
   }>(() => {
     if (twoFactorEnabled) {
       return {
-        title: 'Two-Factor Authentication Enabled',
+        title: 'Two-factor authentication enabled',
         description:
           'Two-factor authentication is now enabled. Scan the QR code or enter the setup key in your authenticator app.',
         buttonText: 'Close',
@@ -262,14 +257,14 @@ export default function TwoFactorSetupModal({
 
     if (showVerificationStep) {
       return {
-        title: 'Verify Authentication Code',
+        title: 'Verify authentication code',
         description: 'Enter the 6-digit code from your authenticator app',
         buttonText: 'Continue',
       }
     }
 
     return {
-      title: 'Enable Two-Factor Authentication',
+      title: 'Enable two-factor authentication',
       description:
         'To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app',
       buttonText: 'Continue',

@@ -1,3 +1,4 @@
+import AlertError from '@/components/alert-error'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -15,9 +16,8 @@ import {
   IconRefresh,
 } from '@tabler/icons-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import AlertError from './alert-error'
 
-interface TwoFactorRecoveryCodesProps {
+type Props = {
   recoveryCodesList: string[]
   fetchRecoveryCodes: () => Promise<void>
   errors: string[]
@@ -27,7 +27,7 @@ export default function TwoFactorRecoveryCodes({
   recoveryCodesList,
   fetchRecoveryCodes,
   errors,
-}: TwoFactorRecoveryCodesProps) {
+}: Props) {
   const [codesAreVisible, setCodesAreVisible] = useState<boolean>(false)
   const codesSectionRef = useRef<HTMLDivElement | null>(null)
   const canRegenerateCodes = recoveryCodesList.length > 0 && codesAreVisible
@@ -55,14 +55,14 @@ export default function TwoFactorRecoveryCodes({
     }
   }, [recoveryCodesList.length, fetchRecoveryCodes])
 
-  const RecoveryCodeIcon = codesAreVisible ? IconEyeOff : IconEye
+  const RecoveryCodeIconComponent = codesAreVisible ? IconEyeOff : IconEye
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex gap-3">
           <IconLockSquare className="size-4" aria-hidden="true" />
-          2FA Recovery Codes
+          2FA recovery codes
         </CardTitle>
         <CardDescription>
           Recovery codes let you regain access if you lose your 2FA device.
@@ -77,24 +77,26 @@ export default function TwoFactorRecoveryCodes({
             aria-expanded={codesAreVisible}
             aria-controls="recovery-codes-section"
           >
-            <RecoveryCodeIcon aria-hidden="true" />
-            {codesAreVisible ? 'Hide' : 'View'} Recovery Codes
+            <RecoveryCodeIconComponent className="size-4" aria-hidden="true" />
+            {codesAreVisible ? 'Hide' : 'View'} recovery codes
           </Button>
 
           {canRegenerateCodes && (
             <Form
               {...regenerateRecoveryCodes.form()}
               options={{ preserveScroll: true }}
-              disableWhileProcessing
               onSuccess={fetchRecoveryCodes}
             >
-              <Button
-                variant="secondary"
-                type="submit"
-                aria-describedby="regenerate-warning"
-              >
-                <IconRefresh /> Regenerate Codes
-              </Button>
+              {({ processing }) => (
+                <Button
+                  variant="secondary"
+                  type="submit"
+                  disabled={processing}
+                  aria-describedby="regenerate-warning"
+                >
+                  <IconRefresh /> Regenerate codes
+                </Button>
+              )}
             </Form>
           )}
         </div>
@@ -140,7 +142,7 @@ export default function TwoFactorRecoveryCodes({
                   <p id="regenerate-warning">
                     Each recovery code can be used once to access your account
                     and will be removed after use. If you need more, click{' '}
-                    <span className="font-bold">Regenerate Codes</span> above.
+                    <span className="font-bold">Regenerate codes</span> above.
                   </p>
                 </div>
               </>
