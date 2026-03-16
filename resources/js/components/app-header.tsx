@@ -27,7 +27,7 @@ import { useInitials } from '@/hooks/use-initials'
 import { docsNavItems, mainNavItems } from '@/lib/navigation'
 import { cn, toUrl } from '@/lib/utils'
 import { dashboard } from '@/routes'
-import { type BreadcrumbItem, type SharedData } from '@/types'
+import { BreadcrumbItem } from '@/types/navigation'
 import { Link, usePage } from '@inertiajs/react'
 import { IconMenu2 } from '@tabler/icons-react'
 import AppLogo from './app-logo'
@@ -41,7 +41,7 @@ interface AppHeaderProps {
 }
 
 export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
-  const page = usePage<SharedData>()
+  const page = usePage()
   const { auth } = page.props
   const getInitials = useInitials()
   const { isCurrentUrl, whenCurrentUrl } = useCurrentUrl()
