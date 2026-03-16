@@ -4,6 +4,15 @@ set -e
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
+# macOS/GNU sed 호환 in-place 치환
+sedi() {
+    if sed --version >/dev/null 2>&1; then
+        sed -i "$@"
+    else
+        sed -i '' "$@"
+    fi
+}
+
 echo ""
 echo "Database를 선택하세요:"
 echo "  1) PostgreSQL (기본)"
@@ -32,13 +41,13 @@ fi
 
 # DB 설정 치환
 if [ "$db" = "mysql" ]; then
-    sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=mysql/' .env .env.example
-    sed -i 's/^DB_HOST=.*/DB_HOST=mysql/' .env .env.example
-    sed -i 's/^DB_PORT=.*/DB_PORT=3306/' .env .env.example
+    sedi 's/^DB_CONNECTION=.*/DB_CONNECTION=mysql/' .env .env.example
+    sedi 's/^DB_HOST=.*/DB_HOST=mysql/' .env .env.example
+    sedi 's/^DB_PORT=.*/DB_PORT=3306/' .env .env.example
 else
-    sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=pgsql/' .env .env.example
-    sed -i 's/^DB_HOST=.*/DB_HOST=pgsql/' .env .env.example
-    sed -i 's/^DB_PORT=.*/DB_PORT=5432/' .env .env.example
+    sedi 's/^DB_CONNECTION=.*/DB_CONNECTION=pgsql/' .env .env.example
+    sedi 's/^DB_HOST=.*/DB_HOST=pgsql/' .env .env.example
+    sedi 's/^DB_PORT=.*/DB_PORT=5432/' .env .env.example
 fi
 
 # 셋업 파일 정리
