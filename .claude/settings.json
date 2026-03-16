@@ -5,5 +5,20 @@
   "teammateMode": "tmux",
   "enabledPlugins": {
     "laravel-simplifier@laravel": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(git commit:*)",
+      "Bash(vendor/bin/sail *)",
+      "Bash(ls *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(cat *)",
+      "Bash(wc *)",
+      "mcp__laravel-boost__*",
+      "mcp__plugin_context7_context7__query-docs"
+    ]
   }
 }
