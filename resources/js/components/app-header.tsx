@@ -24,40 +24,14 @@ import {
 import { UserMenuContent } from '@/components/user-menu-content'
 import { useCurrentUrl } from '@/hooks/use-current-url'
 import { useInitials } from '@/hooks/use-initials'
+import { docsNavItems, mainNavItems } from '@/lib/navigation'
 import { cn, toUrl } from '@/lib/utils'
 import { dashboard } from '@/routes'
-import { privacy, terms } from '@/routes/docs'
-import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types'
+import { type BreadcrumbItem, type SharedData } from '@/types'
 import { Link, usePage } from '@inertiajs/react'
-import {
-  IconDashboard,
-  IconFile,
-  IconMenu2,
-  IconShieldCheck,
-} from '@tabler/icons-react'
+import { IconMenu2 } from '@tabler/icons-react'
 import AppLogo from './app-logo'
 import AppLogoIcon from './app-logo-icon'
-
-const mainNavItems: NavItem[] = [
-  {
-    title: 'Dashboard',
-    href: dashboard(),
-    icon: IconDashboard,
-  },
-]
-
-const rightNavItems: NavItem[] = [
-  {
-    title: 'Terms',
-    href: terms(),
-    icon: IconFile,
-  },
-  {
-    title: 'Privacy',
-    href: privacy(),
-    icon: IconShieldCheck,
-  },
-]
 
 const activeItemStyles =
   'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100'
@@ -114,7 +88,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                     </div>
 
                     <div className="flex flex-col space-y-4">
-                      {rightNavItems.map((item) => {
+                      {docsNavItems.map((item) => {
                         const isExternal = toUrl(item.href).startsWith('http')
                         return isExternal ? (
                           <a

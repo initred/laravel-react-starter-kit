@@ -1,24 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { useCurrentUrl } from '@/hooks/use-current-url'
+import { docsNavItems } from '@/lib/navigation'
 import { cn, toUrl } from '@/lib/utils'
-import { privacy, terms } from '@/routes/docs'
-import { type NavItem } from '@/types'
 import { Link } from '@inertiajs/react'
 import { type PropsWithChildren } from 'react'
-
-const sidebarNavItems: NavItem[] = [
-  {
-    title: 'Terms of Service',
-    href: terms(),
-    icon: null,
-  },
-  {
-    title: 'Privacy Policy',
-    href: privacy(),
-    icon: null,
-  },
-]
 
 export default function DocsLayout({
   children,
@@ -44,7 +30,7 @@ export default function DocsLayout({
             className="flex flex-col space-y-1 space-x-0"
             aria-label="Documents"
           >
-            {sidebarNavItems.map((item, index) => (
+            {docsNavItems.map((item, index) => (
               <Button
                 key={`${toUrl(item.href)}-${index}`}
                 size="sm"

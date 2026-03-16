@@ -10,33 +10,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { docsNavItems, mainNavItems } from '@/lib/navigation'
 import { dashboard } from '@/routes'
-import { privacy, terms } from '@/routes/docs'
-import { type NavItem } from '@/types'
 import { Link } from '@inertiajs/react'
-import { IconDashboard, IconFile, IconShieldCheck } from '@tabler/icons-react'
 import AppLogo from './app-logo'
-
-const mainNavItems: NavItem[] = [
-  {
-    title: 'Dashboard',
-    href: dashboard(),
-    icon: IconDashboard,
-  },
-]
-
-const footerNavItems: NavItem[] = [
-  {
-    title: 'Terms',
-    href: terms(),
-    icon: IconFile,
-  },
-  {
-    title: 'Privacy',
-    href: privacy(),
-    icon: IconShieldCheck,
-  },
-]
 
 export function AppSidebar() {
   return (
@@ -58,7 +35,7 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <NavFooter items={footerNavItems} className="mt-auto" />
+        <NavFooter items={docsNavItems} className="mt-auto" />
         <NavUser />
       </SidebarFooter>
     </Sidebar>

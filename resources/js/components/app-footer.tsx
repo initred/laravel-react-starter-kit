@@ -1,19 +1,5 @@
-import { privacy, terms } from '@/routes/docs'
-import { type NavItem } from '@/types'
+import { docsNavItems } from '@/lib/navigation'
 import { Link } from '@inertiajs/react'
-
-const footerNavItems: NavItem[] = [
-  {
-    title: 'Terms',
-    href: terms(),
-    icon: null,
-  },
-  {
-    title: 'Privacy',
-    href: privacy(),
-    icon: null,
-  },
-]
 
 export function AppFooter() {
   return (
@@ -23,7 +9,7 @@ export function AppFooter() {
           &copy; {new Date().getFullYear()} Your Company. All rights reserved.
         </p>
         <nav className="flex items-center gap-4">
-          {footerNavItems.map((item) => (
+          {docsNavItems.map((item) => (
             <Link
               key={item.title}
               href={item.href}
