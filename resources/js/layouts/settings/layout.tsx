@@ -1,12 +1,11 @@
+import Heading from '@/components/heading'
 import { Button } from '@/components/ui/button'
-import { FieldDescription, FieldLegend, FieldSet } from '@/components/ui/field'
 import { Separator } from '@/components/ui/separator'
-import { useActiveUrl } from '@/hooks/use-active-url'
+import { useCurrentUrl } from '@/hooks/use-current-url'
 import { cn, toUrl } from '@/lib/utils'
 import { edit as editAppearance } from '@/routes/appearance'
 import { edit } from '@/routes/profile'
-import { show } from '@/routes/two-factor'
-import { edit as editPassword } from '@/routes/user-password'
+import { edit as editSecurity } from '@/routes/security'
 import { type NavItem } from '@/types'
 import { Link } from '@inertiajs/react'
 import { type PropsWithChildren } from 'react'
@@ -18,13 +17,8 @@ const sidebarNavItems: NavItem[] = [
     icon: null,
   },
   {
-    title: 'Password',
-    href: editPassword(),
-    icon: null,
-  },
-  {
-    title: 'Two-Factor Auth',
-    href: show(),
+    title: 'Security',
+    href: editSecurity(),
     icon: null,
   },
   {
@@ -35,7 +29,7 @@ const sidebarNavItems: NavItem[] = [
 ]
 
 export default function SettingsLayout({ children }: PropsWithChildren) {
-  const { urlIsActive } = useActiveUrl()
+  const { isCurrentOrParentUrl } = useCurrentUrl()
 
   // When server-side rendering, we only render the layout on the client...
   if (typeof window === 'undefined') {
@@ -44,12 +38,10 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
 
   return (
     <div className="space-y-8 px-4 py-6">
-      <FieldSet>
-        <FieldLegend>Settings</FieldLegend>
-        <FieldDescription>
-          Manage your profile and account settings
-        </FieldDescription>
-      </FieldSet>
+      <Heading
+        title="Settings"
+        description="Manage your profile and account settings"
+      />
 
       <div className="flex flex-col lg:flex-row lg:space-x-12">
         <aside className="w-full max-w-xl lg:w-48">
@@ -64,7 +56,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                 variant="ghost"
                 asChild
                 className={cn('w-full justify-start', {
-                  'bg-muted': urlIsActive(item.href),
+                  'bg-muted': isCurrentOrParentUrl(item.href),
                 })}
               >
                 <Link href={item.href}>

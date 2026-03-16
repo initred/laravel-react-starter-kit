@@ -12,20 +12,18 @@ import { InputGroup, InputGroupAddon } from '@/components/ui/input-group'
 import { Kbd } from '@/components/ui/kbd'
 import { cn } from '@/lib/utils'
 import { dashboard } from '@/routes'
-import { edit as appearance } from '@/routes/appearance'
+import { edit as editAppearance } from '@/routes/appearance'
 import { privacy, terms } from '@/routes/docs'
-import { edit as profile } from '@/routes/profile'
-import { show as twoFactor } from '@/routes/two-factor'
-import { edit as password } from '@/routes/user-password'
+import { edit as editProfile } from '@/routes/profile'
+import { edit as editSecurity } from '@/routes/security'
 import { router } from '@inertiajs/react'
 import {
   IconCommand,
   IconDashboard,
-  IconDeviceMobile,
   IconFile,
-  IconKey,
   IconPalette,
   IconSearch,
+  IconShield,
   IconShieldCheck,
   IconUser,
 } from '@tabler/icons-react'
@@ -95,28 +93,24 @@ export function AppSearch({ className }: AppSearchProps) {
             <CommandSeparator />
             <CommandGroup heading="Settings">
               <CommandItem
-                onSelect={() => runCommand(() => router.visit(profile()))}
+                onSelect={() => runCommand(() => router.visit(editProfile()))}
               >
                 <IconUser />
                 <span>Profile</span>
               </CommandItem>
               <CommandItem
-                onSelect={() => runCommand(() => router.visit(password()))}
+                onSelect={() => runCommand(() => router.visit(editSecurity()))}
               >
-                <IconKey />
-                <span>Password</span>
+                <IconShield />
+                <span>Security</span>
               </CommandItem>
               <CommandItem
-                onSelect={() => runCommand(() => router.visit(appearance()))}
+                onSelect={() =>
+                  runCommand(() => router.visit(editAppearance()))
+                }
               >
                 <IconPalette />
                 <span>Appearance</span>
-              </CommandItem>
-              <CommandItem
-                onSelect={() => runCommand(() => router.visit(twoFactor()))}
-              >
-                <IconDeviceMobile />
-                <span>Two-Factor Authentication</span>
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />

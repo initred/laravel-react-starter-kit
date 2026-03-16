@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Settings;
 
+use App\Http\Requests\Settings\ProfileDeleteRequest;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -27,7 +28,7 @@ final class ProfileController
     }
 
     /**
-     * Update the user's profile settings.
+     * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
@@ -46,14 +47,10 @@ final class ProfileController
     }
 
     /**
-     * Delete the user's account.
+     * Delete the user's profile.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(ProfileDeleteRequest $request): RedirectResponse
     {
-        $request->validate([
-            'password' => ['required', 'current_password'],
-        ]);
-
         /** @var User $user */
         $user = $request->user();
 

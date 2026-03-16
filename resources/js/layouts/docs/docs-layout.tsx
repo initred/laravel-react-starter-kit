@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { useActiveUrl } from '@/hooks/use-active-url'
+import { useCurrentUrl } from '@/hooks/use-current-url'
 import { cn, toUrl } from '@/lib/utils'
 import { privacy, terms } from '@/routes/docs'
 import { type NavItem } from '@/types'
@@ -25,7 +25,7 @@ export default function DocsLayout({
   title,
   description,
 }: PropsWithChildren<{ title: string; description: string }>) {
-  const { urlIsActive } = useActiveUrl()
+  const { isCurrentOrParentUrl } = useCurrentUrl()
 
   if (typeof window === 'undefined') {
     return null
@@ -51,7 +51,7 @@ export default function DocsLayout({
                 variant="ghost"
                 asChild
                 className={cn('w-full justify-start', {
-                  'bg-muted': urlIsActive(item.href),
+                  'bg-muted': isCurrentOrParentUrl(item.href),
                 })}
               >
                 <Link href={item.href}>
