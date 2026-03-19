@@ -1,8 +1,8 @@
-import { Input } from '@/components/ui/input'
-import { cn } from '@/lib/utils'
 import { IconEye, IconEyeOff } from '@tabler/icons-react'
 import type { ComponentProps, Ref } from 'react'
 import { useState } from 'react'
+import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 export default function PasswordInput({
   className,

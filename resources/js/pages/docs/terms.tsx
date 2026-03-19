@@ -1,6 +1,6 @@
-import DocsLayout from '@/layouts/docs/docs-layout'
 import { Head } from '@inertiajs/react'
 import Markdown from 'react-markdown'
+import DocsLayout from '@/layouts/docs/docs-layout'
 
 export default function Terms({ content }: { content: string }) {
   return (

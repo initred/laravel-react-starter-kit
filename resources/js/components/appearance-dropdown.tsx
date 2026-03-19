@@ -1,3 +1,5 @@
+import { IconDeviceDesktop, IconMoon, IconSun } from '@tabler/icons-react'
+import type { HTMLAttributes } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -6,8 +8,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useAppearance } from '@/hooks/use-appearance'
-import { IconDeviceDesktop, IconMoon, IconSun } from '@tabler/icons-react'
-import { HTMLAttributes } from 'react'
 
 export default function AppearanceToggleDropdown({
   className = '',

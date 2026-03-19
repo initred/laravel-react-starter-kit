@@ -1,3 +1,4 @@
+import { Form, Head } from '@inertiajs/react'
 import { Button } from '@/components/ui/button'
 import {
   Field,
@@ -9,7 +10,6 @@ import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import AuthLayout from '@/layouts/auth-layout'
 import { update } from '@/routes/password'
-import { Form, Head } from '@inertiajs/react'
 
 interface ResetPasswordProps {
   token: string

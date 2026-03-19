@@ -1,3 +1,11 @@
+import { Form } from '@inertiajs/react'
+import {
+  IconEye,
+  IconEyeOff,
+  IconLockSquare,
+  IconRefresh,
+} from '@tabler/icons-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import AlertError from '@/components/alert-error'
 import { Button } from '@/components/ui/button'
 import {
@@ -8,14 +16,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { regenerateRecoveryCodes } from '@/routes/two-factor'
-import { Form } from '@inertiajs/react'
-import {
-  IconEye,
-  IconEyeOff,
-  IconLockSquare,
-  IconRefresh,
-} from '@tabler/icons-react'
-import { useCallback, useEffect, useRef, useState } from 'react'
 
 type Props = {
   recoveryCodesList: string[]

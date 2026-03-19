@@ -1,3 +1,7 @@
+import { router } from '@inertiajs/react'
+import { IconCommand, IconSearch } from '@tabler/icons-react'
+import { useCallback, useEffect, useState } from 'react'
+import { UAParser } from 'ua-parser-js'
 import {
   Command,
   CommandDialog,
@@ -12,10 +16,6 @@ import { InputGroup, InputGroupAddon } from '@/components/ui/input-group'
 import { Kbd } from '@/components/ui/kbd'
 import { docsNavItems, mainNavItems, settingsNavItems } from '@/lib/navigation'
 import { cn } from '@/lib/utils'
-import { router } from '@inertiajs/react'
-import { IconCommand, IconSearch } from '@tabler/icons-react'
-import { useCallback, useEffect, useState } from 'react'
-import { UAParser } from 'ua-parser-js'
 
 const parser = UAParser()
 const isMacOs = parser.os.name === 'macOS'
@@ -36,6 +36,7 @@ export function AppSearch({ className }: AppSearchProps) {
     }
 
     document.addEventListener('keydown', down)
+
     return () => document.removeEventListener('keydown', down)
   }, [])
 

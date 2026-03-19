@@ -1,8 +1,8 @@
-import { cn } from '@/lib/utils'
-import {
-  type Icon as TablerIcon,
-  type IconProps as TablerIconProps,
+import type {
+  Icon as TablerIcon,
+  IconProps as TablerIconProps,
 } from '@tabler/icons-react'
+import { cn } from '@/lib/utils'
 
 interface IconProps extends TablerIconProps {
   iconNode: TablerIcon

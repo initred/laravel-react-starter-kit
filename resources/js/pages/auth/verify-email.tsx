@@ -1,4 +1,6 @@
 // Components
+import { Form, Head } from '@inertiajs/react'
+import { IconMailCheck } from '@tabler/icons-react'
 import TextLink from '@/components/text-link'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
@@ -6,8 +8,6 @@ import { Spinner } from '@/components/ui/spinner'
 import AuthLayout from '@/layouts/auth-layout'
 import { logout } from '@/routes'
 import { send } from '@/routes/verification'
-import { Form, Head } from '@inertiajs/react'
-import { IconMailCheck } from '@tabler/icons-react'
 
 export default function VerifyEmail({ status }: { status?: string }) {
   return (

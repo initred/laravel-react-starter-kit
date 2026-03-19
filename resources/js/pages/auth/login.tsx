@@ -1,3 +1,5 @@
+import { Form, Head } from '@inertiajs/react'
+import { IconCircleCheck } from '@tabler/icons-react'
 import TextLink from '@/components/text-link'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
@@ -16,8 +18,6 @@ import { register } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { store } from '@/routes/login'
 import { request } from '@/routes/password'
-import { Form, Head } from '@inertiajs/react'
-import { IconCircleCheck } from '@tabler/icons-react'
 
 interface LoginProps {
   status?: string

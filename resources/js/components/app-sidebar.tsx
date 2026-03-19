@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react'
 import { NavFooter } from '@/components/nav-footer'
 import { NavMain } from '@/components/nav-main'
 import { NavUser } from '@/components/nav-user'
@@ -12,7 +13,6 @@ import {
 } from '@/components/ui/sidebar'
 import { docsNavItems, mainNavItems } from '@/lib/navigation'
 import { dashboard } from '@/routes'
-import { Link } from '@inertiajs/react'
 import AppLogo from './app-logo'
 
 export function AppSidebar() {

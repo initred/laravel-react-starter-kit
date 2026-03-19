@@ -1,12 +1,9 @@
-import { Appearance, useAppearance } from '@/hooks/use-appearance'
+import { IconDeviceDesktop, IconMoon, IconSun } from '@tabler/icons-react'
+import type { Icon } from '@tabler/icons-react'
+import type { HTMLAttributes } from 'react'
+import type { Appearance } from '@/hooks/use-appearance'
+import { useAppearance } from '@/hooks/use-appearance'
 import { cn } from '@/lib/utils'
-import {
-  type Icon,
-  IconDeviceDesktop,
-  IconMoon,
-  IconSun,
-} from '@tabler/icons-react'
-import { HTMLAttributes } from 'react'
 
 export default function AppearanceToggleTab({
   className = '',

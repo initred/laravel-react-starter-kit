@@ -1,5 +1,5 @@
-import { docsNavItems } from '@/lib/navigation'
 import { Link } from '@inertiajs/react'
+import { docsNavItems } from '@/lib/navigation'
 
 export function AppFooter() {
   return (

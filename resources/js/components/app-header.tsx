@@ -1,3 +1,5 @@
+import { Link, usePage } from '@inertiajs/react'
+import { IconMenu2 } from '@tabler/icons-react'
 import { AppSearch } from '@/components/app-search'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { Icon } from '@/components/icon'
@@ -27,9 +29,7 @@ import { useInitials } from '@/hooks/use-initials'
 import { docsNavItems, mainNavItems } from '@/lib/navigation'
 import { cn, toUrl } from '@/lib/utils'
 import { dashboard } from '@/routes'
-import { BreadcrumbItem } from '@/types/navigation'
-import { Link, usePage } from '@inertiajs/react'
-import { IconMenu2 } from '@tabler/icons-react'
+import type { BreadcrumbItem } from '@/types/navigation'
 import AppLogo from './app-logo'
 import AppLogoIcon from './app-logo-icon'
 
@@ -90,6 +90,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                     <div className="flex flex-col space-y-4">
                       {docsNavItems.map((item) => {
                         const isExternal = toUrl(item.href).startsWith('http')
+
                         return isExternal ? (
                           <a
                             key={item.title}

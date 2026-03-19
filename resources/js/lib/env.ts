@@ -1,4 +1,4 @@
-import { ImportMetaEnv } from '@/types/vite-env'
+import type { ImportMetaEnv } from '@/types/vite-env'
 
 export default function env(
   key: keyof ImportMetaEnv,

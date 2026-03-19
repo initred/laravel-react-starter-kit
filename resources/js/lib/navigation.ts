@@ -1,9 +1,3 @@
-import { dashboard } from '@/routes'
-import { edit as editAppearance } from '@/routes/appearance'
-import { privacy, terms } from '@/routes/docs'
-import { edit as editProfile } from '@/routes/profile'
-import { edit as editSecurity } from '@/routes/security'
-import { type NavItem } from '@/types'
 import {
   IconDashboard,
   IconFile,
@@ -11,6 +5,12 @@ import {
   IconShield,
   IconUser,
 } from '@tabler/icons-react'
+import { dashboard } from '@/routes'
+import { edit as editAppearance } from '@/routes/appearance'
+import { privacy, terms } from '@/routes/docs'
+import { edit as editProfile } from '@/routes/profile'
+import { edit as editSecurity } from '@/routes/security'
+import type { NavItem } from '@/types'
 
 export const mainNavItems: NavItem[] = [
   {

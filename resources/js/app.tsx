@@ -37,6 +37,7 @@ createInertiaApp({
 // Flash message listener (registered once, outside React)
 router.on('flash', (event) => {
   const flashToast = event.detail.flash.toast
+
   if (flashToast) {
     toast[flashToast.type](flashToast.message)
   }

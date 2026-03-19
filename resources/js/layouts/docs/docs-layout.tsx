@@ -1,10 +1,10 @@
+import { Link } from '@inertiajs/react'
+import type { PropsWithChildren } from 'react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { useCurrentUrl } from '@/hooks/use-current-url'
 import { docsNavItems } from '@/lib/navigation'
 import { cn, toUrl } from '@/lib/utils'
-import { Link } from '@inertiajs/react'
-import { type PropsWithChildren } from 'react'
 
 export default function DocsLayout({
   children,
