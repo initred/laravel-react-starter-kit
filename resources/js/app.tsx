@@ -1,32 +1,38 @@
-import '../css/app.css'
-
 import { createInertiaApp, router } from '@inertiajs/react'
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
 import { toast, Toaster } from 'sonner'
-import { TooltipProvider } from './components/ui/tooltip'
-import { initializeTheme } from './hooks/use-appearance'
+import { TooltipProvider } from '@/components/ui/tooltip'
+import { initializeTheme } from '@/hooks/use-appearance'
+import AppLayout from '@/layouts/app-layout'
+import AuthLayout from '@/layouts/auth-layout'
+import DocsLayout from '@/layouts/docs/docs-layout'
+import SettingsLayout from '@/layouts/settings/layout'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
 
 createInertiaApp({
   title: (title) => (title ? `${title} - ${appName}` : appName),
-  resolve: (name) =>
-    resolvePageComponent(
-      `./pages/${name}.tsx`,
-      import.meta.glob('./pages/**/*.tsx'),
-    ),
-  setup({ el, App, props }) {
-    const root = createRoot(el)
-
-    root.render(
-      <StrictMode>
-        <TooltipProvider delayDuration={0}>
-          <App {...props} />
-          <Toaster position="top-center" richColors />
-        </TooltipProvider>
-      </StrictMode>,
+  layout: (name) => {
+    switch (true) {
+      case name === 'home':
+        return null
+      case name.startsWith('auth/'):
+        return AuthLayout
+      case name.startsWith('settings/'):
+      case name.startsWith('teams/'):
+        return [AppLayout, SettingsLayout]
+      case name.startsWith('docs/'):
+        return DocsLayout
+      default:
+        return AppLayout
+    }
+  },
+  strictMode: true,
+  withApp(app) {
+    return (
+      <TooltipProvider delayDuration={0}>
+        {app}
+        <Toaster position="top-center" richColors />
+      </TooltipProvider>
     )
   },
   progress: {

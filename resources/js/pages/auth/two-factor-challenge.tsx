@@ -10,7 +10,6 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp'
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth'
-import AuthLayout from '@/layouts/auth-layout'
 import { store } from '@/routes/two-factor/login'
 
 export default function TwoFactorChallenge() {
@@ -46,74 +45,73 @@ export default function TwoFactorChallenge() {
   }
 
   return (
-    <AuthLayout
-      title={authConfigContent.title}
-      description={authConfigContent.description}
-    >
+    <>
       <Head title="Two-Factor Authentication" />
 
-      <Form
-        {...store.form()}
-        disableWhileProcessing
-        resetOnError
-        resetOnSuccess={!showRecoveryInput}
-      >
-        {({ errors, processing, clearErrors }) => (
-          <FieldGroup>
-            {showRecoveryInput ? (
-              <Field data-invalid={!!errors.recovery_code}>
-                <Input
-                  name="recovery_code"
-                  type="text"
-                  placeholder="Enter recovery code"
-                  autoFocus={showRecoveryInput}
-                  required
-                  aria-invalid={!!errors.recovery_code}
-                />
-                {errors.recovery_code && (
-                  <FieldError>{errors.recovery_code}</FieldError>
-                )}
-              </Field>
-            ) : (
-              <Field
-                data-invalid={!!errors.code}
-                className="items-center text-center"
-              >
-                <InputOTP
-                  name="code"
-                  maxLength={OTP_MAX_LENGTH}
-                  value={code}
-                  onChange={(value) => setCode(value)}
-                  disabled={processing}
-                  pattern={REGEXP_ONLY_DIGITS}
+      <div className="space-y-6">
+        <Form
+          {...store.form()}
+          disableWhileProcessing
+          resetOnError
+          resetOnSuccess={!showRecoveryInput}
+        >
+          {({ errors, processing, clearErrors }) => (
+            <FieldGroup>
+              {showRecoveryInput ? (
+                <Field data-invalid={!!errors.recovery_code}>
+                  <Input
+                    name="recovery_code"
+                    type="text"
+                    placeholder="Enter recovery code"
+                    autoFocus={showRecoveryInput}
+                    required
+                    aria-invalid={!!errors.recovery_code}
+                  />
+                  {errors.recovery_code && (
+                    <FieldError>{errors.recovery_code}</FieldError>
+                  )}
+                </Field>
+              ) : (
+                <Field
+                  data-invalid={!!errors.code}
+                  className="items-center text-center"
                 >
-                  <InputOTPGroup>
-                    {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                      <InputOTPSlot key={index} index={index} />
-                    ))}
-                  </InputOTPGroup>
-                </InputOTP>
-                {errors.code && <FieldError>{errors.code}</FieldError>}
-              </Field>
-            )}
+                  <InputOTP
+                    name="code"
+                    maxLength={OTP_MAX_LENGTH}
+                    value={code}
+                    onChange={(value) => setCode(value)}
+                    disabled={processing}
+                    pattern={REGEXP_ONLY_DIGITS}
+                  >
+                    <InputOTPGroup>
+                      {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
+                        <InputOTPSlot key={index} index={index} />
+                      ))}
+                    </InputOTPGroup>
+                  </InputOTP>
+                  {errors.code && <FieldError>{errors.code}</FieldError>}
+                </Field>
+              )}
 
-            <Button type="submit" className="w-full">
-              Continue
-            </Button>
+              <Button type="submit" className="w-full">
+                Continue
+              </Button>
 
-            <div className="text-center text-sm text-muted-foreground">
-              <span>or you can </span>
-              <button
-                type="button"
-                className="cursor-pointer text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
-                onClick={() => toggleRecoveryMode(clearErrors)}
-              >
-                {authConfigContent.toggleText}
-              </button>
-            </div>
-          </FieldGroup>
-        )}
-      </Form>
-    </AuthLayout>
+              <div className="text-center text-sm text-muted-foreground">
+                <span>or you can </span>
+                <button
+                  type="button"
+                  className="cursor-pointer text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
+                  onClick={() => toggleRecoveryMode(clearErrors)}
+                >
+                  {authConfigContent.toggleText}
+                </button>
+              </div>
+            </FieldGroup>
+          )}
+        </Form>
+      </div>
+    </>
   )
 }

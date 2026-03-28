@@ -4,18 +4,20 @@ import {
   IconPalette,
   IconShield,
   IconUser,
+  IconUsersGroup,
 } from '@tabler/icons-react'
 import { dashboard } from '@/routes'
 import { edit as editAppearance } from '@/routes/appearance'
 import { privacy, terms } from '@/routes/docs'
 import { edit as editProfile } from '@/routes/profile'
 import { edit as editSecurity } from '@/routes/security'
+import { index as teams } from '@/routes/teams'
 import type { NavItem } from '@/types'
 
-export const mainNavItems: NavItem[] = [
+export const mainNavItems = (currentTeamSlug: string): NavItem[] => [
   {
     title: 'Dashboard',
-    href: dashboard(),
+    href: dashboard(currentTeamSlug),
     icon: IconDashboard,
   },
 ]
@@ -43,6 +45,11 @@ export const settingsNavItems: NavItem[] = [
     title: 'Security',
     href: editSecurity(),
     icon: IconShield,
+  },
+  {
+    title: 'Teams',
+    href: teams(),
+    icon: IconUsersGroup,
   },
   {
     title: 'Appearance',

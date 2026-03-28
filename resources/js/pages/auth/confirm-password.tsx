@@ -8,15 +8,11 @@ import {
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
-import AuthLayout from '@/layouts/auth-layout'
 import { store } from '@/routes/password/confirm'
 
 export default function ConfirmPassword() {
   return (
-    <AuthLayout
-      title="Confirm your password"
-      description="This is a secure area of the application. Please confirm your password before continuing."
-    >
+    <>
       <Head title="Confirm password" />
 
       <Form
@@ -51,6 +47,12 @@ export default function ConfirmPassword() {
           </FieldGroup>
         )}
       </Form>
-    </AuthLayout>
+    </>
   )
+}
+
+ConfirmPassword.layout = {
+  title: 'Confirm your password',
+  description:
+    'This is a secure area of the application. Please confirm your password before continuing.',
 }

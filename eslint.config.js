@@ -95,6 +95,7 @@ export default [
       '@stylistic': stylistic,
     },
     rules: {
+      '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
       '@stylistic/padding-line-between-statements': [
         'error',
         ...paddingAroundControl,

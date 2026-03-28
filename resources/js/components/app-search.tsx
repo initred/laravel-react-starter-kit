@@ -1,4 +1,4 @@
-import { router } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/react'
 import { IconCommand, IconSearch } from '@tabler/icons-react'
 import { useCallback, useEffect, useState } from 'react'
 import { UAParser } from 'ua-parser-js'
@@ -25,6 +25,8 @@ interface AppSearchProps {
 }
 
 export function AppSearch({ className }: AppSearchProps) {
+  const { currentTeam } = usePage().props
+  const currentTeamSlug = currentTeam?.slug ?? ''
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -71,7 +73,7 @@ export function AppSearch({ className }: AppSearchProps) {
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Suggestions">
-              {mainNavItems.map((item) => (
+              {mainNavItems(currentTeamSlug).map((item) => (
                 <CommandItem
                   key={item.title}
                   onSelect={() => runCommand(() => router.visit(item.href))}

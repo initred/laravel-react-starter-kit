@@ -42,7 +42,8 @@ interface AppHeaderProps {
 
 export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
   const page = usePage()
-  const { auth } = page.props
+  const { auth, currentTeam } = page.props
+  const currentTeamSlug = currentTeam?.slug ?? ''
   const getInitials = useInitials()
   const { isCurrentUrl, whenCurrentUrl } = useCurrentUrl()
 
@@ -73,7 +74,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                 <div className="flex h-full flex-1 flex-col space-y-4 p-4">
                   <div className="flex h-full flex-col justify-between text-sm">
                     <div className="flex flex-col space-y-4">
-                      {mainNavItems.map((item) => (
+                      {mainNavItems(currentTeamSlug).map((item) => (
                         <Link
                           key={item.title}
                           href={item.href}
@@ -125,7 +126,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
           </div>
 
           <Link
-            href={dashboard()}
+            href={dashboard(currentTeamSlug)}
             prefetch
             className="flex items-center space-x-2"
           >
@@ -136,7 +137,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
           <div className="ml-6 hidden h-full items-center space-x-6 lg:flex">
             <NavigationMenu className="flex h-full items-stretch">
               <NavigationMenuList className="flex h-full items-stretch space-x-2">
-                {mainNavItems.map((item, index) => (
+                {mainNavItems(currentTeamSlug).map((item, index) => (
                   <NavigationMenuItem
                     key={index}
                     className="relative flex h-full items-center"

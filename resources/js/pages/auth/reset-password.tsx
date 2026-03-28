@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
-import AuthLayout from '@/layouts/auth-layout'
 import { update } from '@/routes/password'
 
 interface ResetPasswordProps {
@@ -18,10 +17,7 @@ interface ResetPasswordProps {
 
 export default function ResetPassword({ token, email }: ResetPasswordProps) {
   return (
-    <AuthLayout
-      title="Reset password"
-      description="Please enter your new password below"
-    >
+    <>
       <Head title="Reset password" />
 
       <Form
@@ -88,6 +84,11 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
           </FieldGroup>
         )}
       </Form>
-    </AuthLayout>
+    </>
   )
+}
+
+ResetPassword.layout = {
+  title: 'Reset password',
+  description: 'Please enter your new password below',
 }

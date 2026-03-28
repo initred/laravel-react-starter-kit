@@ -13,6 +13,7 @@
     ],
     "sail": true,
     "skills": [
+        "laravel-best-practices",
         "wayfinder-development",
         "pest-testing",
         "inertia-react-development",

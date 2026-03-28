@@ -10,17 +10,13 @@ import {
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
-import AuthLayout from '@/layouts/auth-layout'
 import { login } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { store } from '@/routes/register'
 
 export default function Register() {
   return (
-    <AuthLayout
-      title="Create an account"
-      description="Enter your details below to create your account"
-    >
+    <>
       <Head title="Register" />
       <Form
         {...store.form()}
@@ -122,6 +118,11 @@ export default function Register() {
           </>
         )}
       </Form>
-    </AuthLayout>
+    </>
   )
+}
+
+Register.layout = {
+  title: 'Create an account',
+  description: 'Enter your details below to create your account',
 }

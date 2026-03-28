@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Support;
+
+final readonly class UserTeam
+{
+    public function __construct(
+        public string $id,
+        public string $name,
+        public string $slug,
+        public bool $isPersonal,
+        public ?string $role,
+        public ?string $roleLabel,
+        public ?bool $isCurrent = null,
+    ) {
+        //
+    }
+}

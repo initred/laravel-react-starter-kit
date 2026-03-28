@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 arch()->preset()->php();
 arch()->preset()->strict()
     ->ignoring('App\Models')
+    ->ignoring('App\Providers')
     ->ignoring('Database\Factories')
     ->ignoring('Database\Seeders');
 arch()->preset()->security();

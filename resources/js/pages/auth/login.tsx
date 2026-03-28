@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
-import AuthLayout from '@/layouts/auth-layout'
 import { register } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { store } from '@/routes/login'
@@ -31,10 +30,7 @@ export default function Login({
   canRegister,
 }: LoginProps) {
   return (
-    <AuthLayout
-      title="Log in to your account"
-      description="Enter your email and password below to log in"
-    >
+    <>
       <Head title="Log in" />
 
       <Form
@@ -130,6 +126,11 @@ export default function Login({
           </>
         )}
       </Form>
-    </AuthLayout>
+    </>
   )
+}
+
+Login.layout = {
+  title: 'Log in to your account',
+  description: 'Enter your email and password below to log in',
 }
