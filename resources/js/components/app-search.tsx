@@ -1,6 +1,6 @@
 import { router, usePage } from '@inertiajs/react'
 import { IconCommand, IconSearch } from '@tabler/icons-react'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 import { UAParser } from 'ua-parser-js'
 import {
   Command,
@@ -17,17 +17,19 @@ import { Kbd } from '@/components/ui/kbd'
 import { docsNavItems, mainNavItems, settingsNavItems } from '@/lib/navigation'
 import { cn } from '@/lib/utils'
 
-const parser = UAParser()
-const isMacOs = parser.os.name === 'macOS'
-
 interface AppSearchProps {
   className?: string
 }
+
+const subscribe = () => () => {}
+const getIsMacOs = () => UAParser().os.name === 'macOS'
+const getServerIsMacOs = () => false
 
 export function AppSearch({ className }: AppSearchProps) {
   const { currentTeam } = usePage().props
   const currentTeamSlug = currentTeam?.slug ?? ''
   const [open, setOpen] = useState(false)
+  const isMacOs = useSyncExternalStore(subscribe, getIsMacOs, getServerIsMacOs)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
