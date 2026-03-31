@@ -14,6 +14,7 @@ import {
 import { docsNavItems, mainNavItems } from '@/lib/navigation'
 import { dashboard } from '@/routes'
 import AppLogo from './app-logo'
+import { TeamSwitcher } from './team-switcher'
 
 export function AppSidebar() {
   const { currentTeam } = usePage().props
@@ -29,6 +30,11 @@ export function AppSidebar() {
                 <AppLogo />
               </Link>
             </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <TeamSwitcher />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

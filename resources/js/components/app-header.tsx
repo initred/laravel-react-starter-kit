@@ -32,6 +32,7 @@ import { dashboard } from '@/routes'
 import type { BreadcrumbItem } from '@/types/navigation'
 import AppLogo from './app-logo'
 import AppLogoIcon from './app-logo-icon'
+import { TeamSwitcher } from './team-switcher'
 
 const activeItemStyles =
   'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100'
@@ -183,6 +184,8 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                 <UserMenuContent user={auth.user} />
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <TeamSwitcher inHeader />
           </div>
         </div>
       </div>
