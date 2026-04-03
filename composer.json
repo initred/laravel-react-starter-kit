@@ -51,7 +51,8 @@
       "@php artisan key:generate",
       "@php artisan migrate --force",
       "bun install",
-      "bun run build"
+      "bun run build",
+      "bunx playwright install"
     ],
     "dev": [
       "Composer\\Config::disableProcessTimeout",
