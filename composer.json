@@ -58,11 +58,6 @@
       "Composer\\Config::disableProcessTimeout",
       "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"bun run dev\" --names=server,queue,logs,vite --kill-others"
     ],
-    "dev:ssr": [
-      "bun run build:ssr",
-      "Composer\\Config::disableProcessTimeout",
-      "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"php artisan inertia:start-ssr --runtime=bun\" --names=server,queue,logs,ssr --kill-others"
-    ],
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi"
@@ -121,6 +116,5 @@
       "php-http/discovery": true
     }
   },
-  "minimum-stability": "stable",
-  "prefer-stable": true
+  "minimum-stability": "stable"
 }
