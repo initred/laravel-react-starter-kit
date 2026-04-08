@@ -17,7 +17,7 @@
 | Auth       | [Laravel Fortify](https://laravel.com/docs/fortify)                                                                                       |
 | Testing    | [Pest 4](https://pestphp.com/) (with browser testing), [Larastan](https://github.com/larastan/larastan), [Rector](https://getrector.com/) |
 | Linting    | [ESLint 9](https://eslint.org/), [Prettier 3](https://prettier.io/), [Laravel Pint](https://laravel.com/docs/pint)                        |
-| AI Dev     | [Laravel Boost](https://github.com/laravel/boost) (MCP server)                                                                            |
+| AI Dev     | [Laravel Boost](https://github.com/laravel/boost) (MCP server), [shadcn skill](https://ui.shadcn.com) (MCP server)                        |
 
 ## Getting Started
 
