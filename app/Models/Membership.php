@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\TeamRole;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property TeamRole $role
  */
 #[Fillable(['team_id', 'user_id', 'role'])]
+#[Table(name: 'team_members')]
 final class Membership extends Pivot
 {
     /** @use HasFactory<Factory<Membership>> */
@@ -29,13 +31,6 @@ final class Membership extends Pivot
      * @var bool
      */
     public $incrementing = true;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'team_members';
 
     /**
      * Get the team that the membership belongs to.
