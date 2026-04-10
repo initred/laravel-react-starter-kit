@@ -1,5 +1,5 @@
-import { createInertiaApp, router } from '@inertiajs/react'
-import { toast, Toaster } from 'sonner'
+import { createInertiaApp } from '@inertiajs/react'
+import { Toaster } from 'sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { initializeTheme } from '@/hooks/use-appearance'
 import AppLayout from '@/layouts/app-layout'
@@ -38,15 +38,6 @@ createInertiaApp({
   progress: {
     color: '#4B5563',
   },
-})
-
-// Flash message listener (registered once, outside React)
-router.on('flash', (event) => {
-  const flashToast = event.detail.flash.toast
-
-  if (flashToast) {
-    toast[flashToast.type](flashToast.message)
-  }
 })
 
 // This will set light / dark mode on load...

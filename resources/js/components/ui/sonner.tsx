@@ -1,13 +1,16 @@
-import { useTheme } from "next-themes"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 import { IconCircleCheck, IconInfoCircle, IconAlertTriangle, IconAlertOctagon, IconLoader } from "@tabler/icons-react"
+import { useFlashToast } from '@/hooks/use-flash-toast';
+import { useAppearance } from "@/hooks/use-appearance";
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+  const { appearance } = useAppearance();
+
+  useFlashToast()
 
   return (
     <Sonner
-      theme={theme as ToasterProps["theme"]}
+      theme={appearance}
       className="toaster group"
       icons={{
         success: (
