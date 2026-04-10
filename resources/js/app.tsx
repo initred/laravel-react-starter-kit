@@ -1,11 +1,11 @@
 import { createInertiaApp } from '@inertiajs/react'
-import { Toaster } from 'sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { initializeTheme } from '@/hooks/use-appearance'
 import AppLayout from '@/layouts/app-layout'
 import AuthLayout from '@/layouts/auth-layout'
 import DocsLayout from '@/layouts/docs/docs-layout'
 import SettingsLayout from '@/layouts/settings/layout'
+import { Toaster } from './components/ui/sonner'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
 
