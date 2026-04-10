@@ -112,6 +112,8 @@ final class TeamController
             return $team;
         });
 
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Team updated.')]);
+
         return to_route('teams.edit', ['team' => $team->slug]);
     }
 

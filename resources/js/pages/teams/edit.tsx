@@ -1,4 +1,3 @@
-import { Transition } from '@headlessui/react'
 import { Form, Head, router } from '@inertiajs/react'
 import {
   IconChevronDown,
@@ -107,7 +106,7 @@ export default function TeamEdit({
               />
 
               <Form {...update.form(team.slug)} className="space-y-6">
-                {({ errors, processing, recentlySuccessful }) => (
+                {({ errors, processing }) => (
                   <>
                     <div className="grid gap-2">
                       <Label htmlFor="name">Team name</Label>
@@ -129,16 +128,6 @@ export default function TeamEdit({
                       >
                         Save
                       </Button>
-
-                      <Transition
-                        show={recentlySuccessful}
-                        enter="transition ease-in-out"
-                        enterFrom="opacity-0"
-                        leave="transition ease-in-out"
-                        leaveTo="opacity-0"
-                      >
-                        <p className="text-sm text-neutral-600">Saved.</p>
-                      </Transition>
                     </div>
                   </>
                 )}
