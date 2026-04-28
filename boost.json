@@ -2,7 +2,8 @@
     "agents": [
         "claude_code",
         "copilot",
-        "junie"
+        "junie",
+        "codex"
     ],
     "guidelines": true,
     "mcp": true,
