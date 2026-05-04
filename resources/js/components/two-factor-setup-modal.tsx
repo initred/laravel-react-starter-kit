@@ -178,6 +178,7 @@ function TwoFactorVerificationStep({
                 onChange={setCode}
                 disabled={processing}
                 pattern={REGEXP_ONLY_DIGITS}
+                autoFocus
               >
                 <InputOTPGroup>
                   {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
