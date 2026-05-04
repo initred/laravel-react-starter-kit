@@ -11,6 +11,7 @@ export default defineConfig({
     laravel({
       input: ['resources/css/app.css', 'resources/js/app.tsx'],
       refresh: true,
+      // fonts: [],
     }),
     inertia(),
     react(),
