@@ -13,9 +13,14 @@ import { update } from '@/routes/password'
 interface ResetPasswordProps {
   token: string
   email: string
+  passwordRules: string
 }
 
-export default function ResetPassword({ token, email }: ResetPasswordProps) {
+export default function ResetPassword({
+  token,
+  email,
+  passwordRules,
+}: ResetPasswordProps) {
   return (
     <>
       <Head title="Reset password" />
@@ -52,6 +57,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
                 autoFocus
                 placeholder="Password"
                 aria-invalid={!!errors.password}
+                passwordrules={passwordRules}
               />
               {errors.password && <FieldError>{errors.password}</FieldError>}
             </Field>
@@ -67,6 +73,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
                 autoComplete="new-password"
                 placeholder="Confirm password"
                 aria-invalid={!!errors.password_confirmation}
+                passwordrules={passwordRules}
               />
               {errors.password_confirmation && (
                 <FieldError>{errors.password_confirmation}</FieldError>

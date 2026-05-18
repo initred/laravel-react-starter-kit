@@ -14,7 +14,11 @@ import { login } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { store } from '@/routes/register'
 
-export default function Register() {
+type Props = {
+  passwordRules: string
+}
+
+export default function Register({ passwordRules }: Props) {
   return (
     <>
       <Head title="Register" />
@@ -69,6 +73,7 @@ export default function Register() {
                   autoComplete="new-password"
                   placeholder="Password"
                   aria-invalid={!!errors.password}
+                  passwordrules={passwordRules}
                 />
                 {errors.password && <FieldError>{errors.password}</FieldError>}
               </Field>
@@ -86,6 +91,7 @@ export default function Register() {
                   autoComplete="new-password"
                   placeholder="Confirm password"
                   aria-invalid={!!errors.password_confirmation}
+                  passwordrules={passwordRules}
                 />
                 {errors.password_confirmation && (
                   <FieldError>{errors.password_confirmation}</FieldError>

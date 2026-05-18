@@ -1,6 +1,13 @@
 import type { Auth } from '@/types/auth'
 import type { FlashType } from '@/types/index'
 
+declare module 'react' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface InputHTMLAttributes<T> {
+    passwordrules?: string
+  }
+}
+
 declare module '@inertiajs/core' {
   export interface InertiaConfig {
     sharedPageProps: {
