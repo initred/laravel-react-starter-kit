@@ -46,6 +46,6 @@ trait GeneratesUniqueTeamSlugs
 
         return $existingSlugs->isEmpty()
             ? $defaultSlug
-            : $defaultSlug.'-'.(is_int($maxSuffix) ? $maxSuffix + 1 : 1);
+            : $defaultSlug.'-'.($maxSuffix + 1);
     }
 }
