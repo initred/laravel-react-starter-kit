@@ -1,5 +1,5 @@
 import type { Auth } from '@/types/auth'
-import type { FlashType } from '@/types/index'
+import type { FlashToast } from '@/types/index'
 
 declare module 'react' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -19,7 +19,7 @@ declare module '@inertiajs/core' {
       [key: string]: unknown
     }
     flashDataType: {
-      toast?: FlashType
+      toast?: FlashToast
     }
   }
 }
