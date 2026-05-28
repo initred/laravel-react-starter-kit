@@ -119,6 +119,7 @@ return [
     'limiters' => [
         'login' => 'login',
         'two-factor' => 'two-factor',
+        'passkeys' => 'passkeys',
     ],
 
     /*
@@ -133,6 +134,22 @@ return [
     */
 
     'views' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Passkeys
+    |--------------------------------------------------------------------------
+    |
+    | These settings configure Fortify's passkey (WebAuthn) support.
+    |
+    */
+
+    'passkeys' => [
+        'relying_party_id' => is_string($url = config('app.url')) ? parse_url($url, PHP_URL_HOST) : null,
+        'allowed_origins' => [config('app.url')],
+        'user_handle_secret' => env('PASSKEYS_USER_HANDLE_SECRET', config('app.key')),
+        'timeout' => 60000,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -153,6 +170,9 @@ return [
             'confirm' => true,
             'confirmPassword' => true,
             // 'window' => 0
+        ]),
+        Features::passkeys([
+            'confirmPassword' => true,
         ]),
     ],
 

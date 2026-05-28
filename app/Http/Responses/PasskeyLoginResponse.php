@@ -7,11 +7,11 @@ namespace App\Http\Responses;
 use App\Http\Responses\Concerns\RedirectsToCurrentTeam;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Fortify;
+use Laravel\Passkeys\Contracts\PasskeyLoginResponse as PasskeyLoginResponseContract;
 use Symfony\Component\HttpFoundation\Response;
 
-final class LoginResponse implements LoginResponseContract
+final class PasskeyLoginResponse implements PasskeyLoginResponseContract
 {
     use RedirectsToCurrentTeam;
 
@@ -20,8 +20,10 @@ final class LoginResponse implements LoginResponseContract
      */
     public function toResponse(mixed $request): Response
     {
+        $redirect = $this->redirectPathForCurrentTeam($request, Fortify::redirects('login'));
+
         return $request->wantsJson()
-            ? new JsonResponse(['two_factor' => false], 200)
-            : redirect()->intended($this->redirectPathForCurrentTeam($request, Fortify::redirects('login')));
+            ? new JsonResponse(['redirect' => redirect()->intended($redirect)->getTargetUrl()], 200)
+            : redirect()->intended($redirect);
     }
 }

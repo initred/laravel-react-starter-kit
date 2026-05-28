@@ -32,6 +32,12 @@ it('returns JSON for API requests', function (): void {
         ->and($response->getStatusCode())->toBe(200);
 });
 
+it('aborts 403 when user is not authenticated', function (): void {
+    $request = Request::create('/login', 'POST');
+
+    $response = (new LoginResponse)->toResponse($request);
+})->throws(HttpException::class);
+
 it('aborts 403 when user has no team', function (): void {
     $user = User::factory()->create();
     $user->teams()->detach();

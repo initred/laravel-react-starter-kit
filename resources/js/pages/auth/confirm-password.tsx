@@ -1,4 +1,9 @@
 import { Form, Head } from '@inertiajs/react'
+import {
+  index as confirmOptions,
+  store as confirmStore,
+} from '@/actions/Laravel/Passkeys/Http/Controllers/PasskeyConfirmationController'
+import PasskeyVerify from '@/components/passkey-verify'
 import { Button } from '@/components/ui/button'
 import {
   Field,
@@ -14,6 +19,16 @@ export default function ConfirmPassword() {
   return (
     <>
       <Head title="Confirm password" />
+
+      <PasskeyVerify
+        routes={{
+          options: confirmOptions(),
+          submit: confirmStore(),
+        }}
+        label="Confirm with passkey"
+        loadingLabel="Confirming..."
+        separator="Or confirm with password"
+      />
 
       <Form
         {...store.form()}

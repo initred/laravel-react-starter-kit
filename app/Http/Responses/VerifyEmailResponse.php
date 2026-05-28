@@ -7,11 +7,11 @@ namespace App\Http\Responses;
 use App\Http\Responses\Concerns\RedirectsToCurrentTeam;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract;
 use Laravel\Fortify\Fortify;
 use Symfony\Component\HttpFoundation\Response;
 
-final class LoginResponse implements LoginResponseContract
+final class VerifyEmailResponse implements VerifyEmailResponseContract
 {
     use RedirectsToCurrentTeam;
 
@@ -21,7 +21,7 @@ final class LoginResponse implements LoginResponseContract
     public function toResponse(mixed $request): Response
     {
         return $request->wantsJson()
-            ? new JsonResponse(['two_factor' => false], 200)
-            : redirect()->intended($this->redirectPathForCurrentTeam($request, Fortify::redirects('login')));
+            ? new JsonResponse('', 204)
+            : redirect()->intended($this->redirectPathForCurrentTeam($request, Fortify::redirects('email-verification')).'?verified=1');
     }
 }

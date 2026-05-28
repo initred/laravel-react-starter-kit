@@ -17,3 +17,25 @@ it('configures two-factor rate limiter', function (): void {
 
     expect($result)->toBeInstanceOf(Limit::class);
 });
+
+it('configures passkeys rate limiter keyed by credential id', function (): void {
+    $request = Request::create('/passkeys/authenticate', 'POST', ['credential' => ['id' => 'credential-123']]);
+    $request->setLaravelSession(resolve(Session::class));
+
+    $limiter = RateLimiter::limiter('passkeys');
+    $result = $limiter($request);
+
+    expect($result)->toBeInstanceOf(Limit::class)
+        ->and($result->key)->toContain('credential-123');
+});
+
+it('configures passkeys rate limiter falling back to session id', function (): void {
+    $request = Request::create('/passkeys/authenticate', 'POST');
+    $request->setLaravelSession(resolve(Session::class));
+
+    $limiter = RateLimiter::limiter('passkeys');
+    $result = $limiter($request);
+
+    expect($result)->toBeInstanceOf(Limit::class)
+        ->and($result->key)->toContain($request->session()->getId());
+});

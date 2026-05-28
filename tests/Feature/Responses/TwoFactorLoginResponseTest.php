@@ -32,7 +32,7 @@ it('returns JSON for API requests', function (): void {
         ->and($response->getStatusCode())->toBe(200);
 });
 
-it('sets current team when user has no current team', function (): void {
+it('falls back to personal team when user has no current team', function (): void {
     $user = User::factory()->create();
     $personalTeam = $user->personalTeam();
     $user->update(['current_team_id' => null]);
@@ -44,8 +44,8 @@ it('sets current team when user has no current team', function (): void {
 
     $response = (new TwoFactorLoginResponse)->toResponse($request);
 
-    expect($user->fresh()->current_team_id)->toBe($personalTeam->id)
-        ->and($response->getStatusCode())->toBe(302);
+    expect($response->getStatusCode())->toBe(302)
+        ->and($response->headers->get('Location'))->toContain($personalTeam->slug.'/dashboard');
 });
 
 it('aborts 403 when user has no team at all', function (): void {
