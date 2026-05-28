@@ -82,7 +82,7 @@
     ],
     "update:requirements": [
       "composer bump",
-      "bun update"
+      "bunx npm-check-updates -u"
     ],
     "lint": [
       "rector",
@@ -95,8 +95,11 @@
       "rector --dry-run",
       "bun run lint:check"
     ],
-    "test:unit": "pest --parallel --coverage --exactly=100.0 --exclude-testsuite=Browser",
-    "test:types": "phpstan",
+    "test:unit": "XDEBUG_MODE=\"coverage\" pest --parallel --coverage --exactly=100.0",
+    "test:types": [
+      "phpstan",
+      "bun run types"
+    ],
     "test": [
       "@test:type-coverage",
       "@test:unit",
@@ -118,5 +121,6 @@
       "php-http/discovery": true
     }
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }

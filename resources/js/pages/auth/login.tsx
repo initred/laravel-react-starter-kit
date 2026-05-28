@@ -1,5 +1,6 @@
 import { Form, Head } from '@inertiajs/react'
 import { IconCircleCheck } from '@tabler/icons-react'
+import PasskeyVerify from '@/components/passkey-verify'
 import TextLink from '@/components/text-link'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
@@ -21,17 +22,14 @@ import { request } from '@/routes/password'
 interface LoginProps {
   status?: string
   canResetPassword: boolean
-  canRegister: boolean
 }
 
-export default function Login({
-  status,
-  canResetPassword,
-  canRegister,
-}: LoginProps) {
+export default function Login({ status, canResetPassword }: LoginProps) {
   return (
     <>
       <Head title="Log in" />
+
+      <PasskeyVerify />
 
       <Form
         {...store.form()}
@@ -109,14 +107,12 @@ export default function Login({
               </Button>
             </FieldGroup>
 
-            {canRegister && (
-              <div className="text-center text-sm text-muted-foreground">
-                Don't have an account?{' '}
-                <TextLink href={register()} tabIndex={5}>
-                  Sign up
-                </TextLink>
-              </div>
-            )}
+            <div className="text-center text-sm text-muted-foreground">
+              Don't have an account?{' '}
+              <TextLink href={register()} tabIndex={5}>
+                Sign up
+              </TextLink>
+            </div>
 
             <FieldDescription className="mt-4 px-6 text-center">
               By clicking continue, you agree to our{' '}

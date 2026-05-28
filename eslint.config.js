@@ -31,7 +31,7 @@ export default [
   ...typescript.configs.recommended,
   {
     ...react.configs.flat.recommended,
-    ...react.configs.flat['jsx-runtime'], // Required for React 17+
+    ...react.configs.flat['jsx-runtime'],
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -81,10 +81,7 @@ export default [
             'sibling',
             'index',
           ],
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
+          alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
       'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
@@ -116,7 +113,7 @@ export default [
       'resources/js/wayfinder/**',
     ],
   },
-  prettier, // Turn off all rules that might conflict with Prettier
+  prettier,
   {
     plugins: {
       '@stylistic': stylistic,
