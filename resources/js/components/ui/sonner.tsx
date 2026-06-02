@@ -3,7 +3,7 @@ import { IconCircleCheck, IconInfoCircle, IconAlertTriangle, IconAlertOctagon, I
 import { useFlashToast } from '@/hooks/use-flash-toast';
 import { useAppearance } from "@/hooks/use-appearance";
 
-function Toaster({ ...props }: ToasterProps) {
+const Toaster = ({ ...props }: ToasterProps) => {
   const { appearance } = useAppearance();
 
   useFlashToast()
