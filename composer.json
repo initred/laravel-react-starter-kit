@@ -12,7 +12,7 @@
     "php": "^8.5",
     "inertiajs/inertia-laravel": "^3.1.0",
     "laravel/fortify": "^1.37.2",
-    "laravel/framework": "^13.14.0",
+    "laravel/framework": "^13.15.0",
     "laravel/tinker": "^3.0.2",
     "laravel/wayfinder": "^0.1.20"
   },
@@ -20,7 +20,7 @@
     "driftingly/rector-laravel": "^2.5.0",
     "fakerphp/faker": "^1.24.1",
     "larastan/larastan": "^3.10.0",
-    "laravel/boost": "^2.4.9",
+    "laravel/boost": "^2.4.10",
     "laravel/pail": "^1.2.7",
     "laravel/pao": "^1.1.0",
     "laravel/pint": "^1.29.1",
