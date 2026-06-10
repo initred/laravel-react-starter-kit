@@ -94,6 +94,10 @@
       "@test:lint",
       "@test:types"
     ],
+    "update:requirements": [
+      "composer bump",
+      "bunx npm-check-updates -u"
+    ],
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi"
@@ -113,10 +117,6 @@
     ],
     "pre-package-uninstall": [
       "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
-    ],
-    "update:requirements": [
-      "composer bump",
-      "bunx npm-check-updates -u"
     ]
   },
   "extra": {
