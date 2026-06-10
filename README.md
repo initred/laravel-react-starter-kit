@@ -59,12 +59,6 @@ vendor/bin/sail composer setup
 vendor/bin/sail composer dev
 ```
 
-For server-side rendering (SSR):
-
-```bash
-vendor/bin/sail composer dev:ssr
-```
-
 ## Testing
 
 ```bash
