@@ -10,7 +10,7 @@
     "format:check": "prettier --check resources/",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
-    "types": "tsc --noEmit"
+    "types:check": "tsc --noEmit"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
