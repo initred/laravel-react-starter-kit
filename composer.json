@@ -12,7 +12,7 @@
     "php": "^8.5",
     "inertiajs/inertia-laravel": "^3.1.0",
     "laravel/fortify": "^1.37.2",
-    "laravel/framework": "^13.15.0",
+    "laravel/framework": "^13.16.1",
     "laravel/tinker": "^3.0.2",
     "laravel/wayfinder": "^0.1.20"
   },
@@ -23,7 +23,7 @@
     "laravel/boost": "^2.4.10",
     "laravel/pail": "^1.2.7",
     "laravel/pao": "^1.1.1",
-    "laravel/pint": "^1.29.1",
+    "laravel/pint": "^1.29.3",
     "laravel/sail": "^1.62",
     "mockery/mockery": "^1.6.12",
     "nunomaduro/collision": "^8.9.4",
@@ -32,7 +32,7 @@
     "pestphp/pest-plugin-laravel": "^4.1",
     "pestphp/pest-plugin-type-coverage": "^4.0.4",
     "phpunit/phpunit": "^12.5.29",
-    "rector/rector": "^2.4.5"
+    "rector/rector": "^2.4.6"
   },
   "autoload": {
     "psr-4": {
