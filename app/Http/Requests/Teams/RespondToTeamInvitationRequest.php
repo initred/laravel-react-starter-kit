@@ -8,7 +8,7 @@ use App\Rules\ValidTeamInvitation;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-final class AcceptTeamInvitationRequest extends FormRequest
+final class RespondToTeamInvitationRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -29,11 +29,8 @@ final class AcceptTeamInvitationRequest extends FormRequest
      */
     public function validationData(): array
     {
-        /** @var array<string, mixed> $data */
-        $data = array_merge(parent::validationData(), [
+        return array_merge(parent::validationData(), [
             'invitation' => $this->route('invitation'),
         ]);
-
-        return $data;
     }
 }

@@ -10,6 +10,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Gate;
+use Inertia\Inertia;
 
 final class TeamMemberController
 {
@@ -30,6 +31,8 @@ final class TeamMemberController
             ->firstOrFail()
             ->update(['role' => $newRole]);
 
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Member role updated.')]);
+
         return to_route('teams.edit', ['team' => $team->slug]);
     }
 
@@ -40,19 +43,19 @@ final class TeamMemberController
     {
         Gate::authorize('removeMember', $team);
 
-        abort_if($team->owner()?->is($user) === true, 403, 'The team owner cannot be removed.');
+        abort_if($team->owner()?->is($user) ?? false, 403, __('The team owner cannot be removed.'));
 
         $team->memberships()
             ->where('user_id', $user->id)
             ->delete();
 
-        if ($user->isCurrentTeam($team)) {
-            $personalTeam = $user->personalTeam();
+        $personalTeam = $user->personalTeam();
 
-            if ($personalTeam instanceof Team) {
-                $user->switchTeam($personalTeam);
-            }
+        if ($user->isCurrentTeam($team) && $personalTeam instanceof Team) {
+            $user->switchTeam($personalTeam);
         }
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Member removed.')]);
 
         return to_route('teams.edit', ['team' => $team->slug]);
     }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Notifications\Teams;
 
 use App\Models\TeamInvitation as TeamInvitationModel;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -41,12 +40,17 @@ final class TeamInvitation extends Notification implements ShouldQueue
         $team = $this->invitation->team;
         $inviter = $this->invitation->inviter;
 
-        /** @var \App\Models\Team $team */
-        /** @var User $inviter */
         return (new MailMessage)
-            ->subject("You've been invited to join ".$team->name)
-            ->line(sprintf('%s has invited you to join the %s team.', $inviter->name, $team->name))
-            ->action('Accept invitation', url(sprintf('/invitations/%s/accept', $this->invitation->code)));
+            ->subject(__("You've been invited to join :teamName", ['teamName' => $team->name]))
+            ->line(__(':inviterName has invited you to join the :teamName team.', [
+                'inviterName' => $inviter->name,
+                'teamName' => $team->name,
+            ]))
+            ->line(__('Log in and visit your dashboard to accept or decline this invitation.'))
+            ->action(
+                __('Log in'),
+                route('login', ['invitation' => $this->invitation->code]),
+            );
     }
 
     /**
@@ -59,7 +63,7 @@ final class TeamInvitation extends Notification implements ShouldQueue
         return [
             'invitation_id' => $this->invitation->id,
             'team_id' => $this->invitation->team_id,
-            'team_name' => $this->invitation->team?->name,
+            'team_name' => $this->invitation->team->name,
             'role' => $this->invitation->role->value,
         ];
     }
