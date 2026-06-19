@@ -10,17 +10,13 @@ import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import { update } from '@/routes/password'
 
-interface ResetPasswordProps {
+type Props = {
   token: string
   email: string
   passwordRules: string
 }
 
-export default function ResetPassword({
-  token,
-  email,
-  passwordRules,
-}: ResetPasswordProps) {
+export default function ResetPassword({ token, email, passwordRules }: Props) {
   return (
     <>
       <Head title="Reset password" />
