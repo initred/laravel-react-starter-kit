@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Data\TeamPermissions;
+use App\Data\UserTeam;
+use App\Enums\TeamPermission;
 use App\Enums\TeamRole;
 use App\Models\Team;
 use App\Models\User;
-use App\Support\TeamPermissions;
-use App\Support\UserTeam;
 
 it('returns all teams user belongs to', function (): void {
     $user = User::factory()->create();
@@ -176,11 +177,11 @@ it('checks team permissions', function (): void {
     $user = User::factory()->create();
     $team = $user->currentTeam;
 
-    expect($user->hasTeamPermission($team, 'team:update'))->toBeTrue()
-        ->and($user->hasTeamPermission($team, 'team:delete'))->toBeTrue();
+    expect($user->hasTeamPermission($team, TeamPermission::UpdateTeam))->toBeTrue()
+        ->and($user->hasTeamPermission($team, TeamPermission::DeleteTeam))->toBeTrue();
 
     $memberTeam = Team::factory()->create();
     $memberTeam->members()->attach($user, ['role' => TeamRole::Member->value]);
 
-    expect($user->hasTeamPermission($memberTeam, 'team:update'))->toBeFalse();
+    expect($user->hasTeamPermission($memberTeam, TeamPermission::UpdateTeam))->toBeFalse();
 });

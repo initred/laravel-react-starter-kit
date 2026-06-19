@@ -15,9 +15,18 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 /**
+ * @property string $id
+ * @property string $code
+ * @property string $team_id
+ * @property string $email
  * @property TeamRole $role
+ * @property string $invited_by
  * @property Carbon|null $expires_at
  * @property Carbon|null $accepted_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Team $team
+ * @property-read User $inviter
  */
 #[Fillable(['team_id', 'email', 'role', 'invited_by', 'expires_at', 'accepted_at'])]
 final class TeamInvitation extends Model

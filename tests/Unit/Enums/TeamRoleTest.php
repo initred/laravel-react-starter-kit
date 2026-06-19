@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\TeamPermission;
 use App\Enums\TeamRole;
 
 it('returns only admin and member for assignable roles', function (): void {
@@ -20,28 +21,20 @@ it('returns correct labels for each role', function (): void {
 });
 
 it('returns correct permissions for each role', function (): void {
-    expect(TeamRole::Owner->permissions())->toBe([
-        'team:update',
-        'team:delete',
-        'member:add',
-        'member:update',
-        'member:remove',
-        'invitation:create',
-        'invitation:cancel',
-    ])
+    expect(TeamRole::Owner->permissions())->toBe(TeamPermission::cases())
         ->and(TeamRole::Admin->permissions())->toBe([
-            'team:update',
-            'invitation:create',
-            'invitation:cancel',
+            TeamPermission::UpdateTeam,
+            TeamPermission::CreateInvitation,
+            TeamPermission::CancelInvitation,
         ])
         ->and(TeamRole::Member->permissions())->toBe([]);
 });
 
 it('checks permission correctly', function (): void {
-    expect(TeamRole::Owner->hasPermission('team:delete'))->toBeTrue()
-        ->and(TeamRole::Admin->hasPermission('team:update'))->toBeTrue()
-        ->and(TeamRole::Admin->hasPermission('team:delete'))->toBeFalse()
-        ->and(TeamRole::Member->hasPermission('team:update'))->toBeFalse();
+    expect(TeamRole::Owner->hasPermission(TeamPermission::DeleteTeam))->toBeTrue()
+        ->and(TeamRole::Admin->hasPermission(TeamPermission::UpdateTeam))->toBeTrue()
+        ->and(TeamRole::Admin->hasPermission(TeamPermission::DeleteTeam))->toBeFalse()
+        ->and(TeamRole::Member->hasPermission(TeamPermission::UpdateTeam))->toBeFalse();
 });
 
 it('returns correct hierarchy levels', function (): void {

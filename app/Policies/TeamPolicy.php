@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
+use App\Enums\TeamPermission;
 use App\Models\Team;
 use App\Models\User;
 
@@ -38,7 +39,17 @@ final class TeamPolicy
      */
     public function update(User $user, Team $team): bool
     {
-        return $user->hasTeamPermission($team, 'team:update');
+        return $user->hasTeamPermission($team, TeamPermission::UpdateTeam);
+    }
+
+    /**
+     * Determine whether the user can leave the team.
+     */
+    public function leave(User $user, Team $team): bool
+    {
+        return ! $team->is_personal
+            && $user->belongsToTeam($team)
+            && ! $user->ownsTeam($team);
     }
 
     /**
@@ -46,7 +57,7 @@ final class TeamPolicy
      */
     public function addMember(User $user, Team $team): bool
     {
-        return $user->hasTeamPermission($team, 'member:add');
+        return $user->hasTeamPermission($team, TeamPermission::AddMember);
     }
 
     /**
@@ -54,7 +65,7 @@ final class TeamPolicy
      */
     public function updateMember(User $user, Team $team): bool
     {
-        return $user->hasTeamPermission($team, 'member:update');
+        return $user->hasTeamPermission($team, TeamPermission::UpdateMember);
     }
 
     /**
@@ -62,7 +73,7 @@ final class TeamPolicy
      */
     public function removeMember(User $user, Team $team): bool
     {
-        return $user->hasTeamPermission($team, 'member:remove');
+        return $user->hasTeamPermission($team, TeamPermission::RemoveMember);
     }
 
     /**
@@ -70,7 +81,7 @@ final class TeamPolicy
      */
     public function inviteMember(User $user, Team $team): bool
     {
-        return $user->hasTeamPermission($team, 'invitation:create');
+        return $user->hasTeamPermission($team, TeamPermission::CreateInvitation);
     }
 
     /**
@@ -78,7 +89,7 @@ final class TeamPolicy
      */
     public function cancelInvitation(User $user, Team $team): bool
     {
-        return $user->hasTeamPermission($team, 'invitation:cancel');
+        return $user->hasTeamPermission($team, TeamPermission::CancelInvitation);
     }
 
     /**
@@ -86,6 +97,6 @@ final class TeamPolicy
      */
     public function delete(User $user, Team $team): bool
     {
-        return ! $team->is_personal && $user->hasTeamPermission($team, 'team:delete');
+        return ! $team->is_personal && $user->hasTeamPermission($team, TeamPermission::DeleteTeam);
     }
 }
