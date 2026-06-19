@@ -47,6 +47,8 @@ final class TeamController
 
         $team = $createTeam->handle($user, $name);
 
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Team created.')]);
+
         return to_route('teams.edit', ['team' => $team->slug]);
     }
 
@@ -65,15 +67,15 @@ final class TeamController
                 'slug' => $team->slug,
                 'isPersonal' => $team->is_personal,
             ],
-            'members' => $team->memberships()->with('user')->get()->map(function (Membership $membership): array {
-                /** @var User $user */
-                $user = $membership->user;
+            'members' => $team->members()->get()->map(function (User $member): array {
+                /** @var Membership $membership */
+                $membership = $member->getRelation('pivot');
 
                 return [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'avatar' => $user->avatar ?? null,
+                    'id' => $member->id,
+                    'name' => $member->name,
+                    'email' => $member->email,
+                    'avatar' => $member->avatar ?? null,
                     'role' => $membership->role->value,
                     'role_label' => $membership->role->label(),
                 ];
@@ -100,14 +102,10 @@ final class TeamController
     {
         Gate::authorize('update', $team);
 
-        /** @var Team $team */
-        $team = DB::transaction(function () use ($request, $team): Team {
+        $team = DB::transaction(function () use ($request, $team) {
             $team = Team::query()->whereKey($team->id)->lockForUpdate()->firstOrFail();
 
-            /** @var string $name */
-            $name = $request->validated('name');
-
-            $team->update(['name' => $name]);
+            $team->update(['name' => $request->validated('name')]);
 
             return $team;
         });
@@ -130,6 +128,33 @@ final class TeamController
         $user->switchTeam($team);
 
         return back();
+    }
+
+    /**
+     * Leave the specified team.
+     */
+    public function leave(Request $request, Team $team): RedirectResponse
+    {
+        Gate::authorize('leave', $team);
+
+        /** @var User $user */
+        $user = $request->user();
+
+        $fallbackTeam = $user->isCurrentTeam($team)
+            ? $user->fallbackTeam($team)
+            : null;
+
+        $team->memberships()
+            ->where('user_id', $user->id)
+            ->delete();
+
+        if ($fallbackTeam) {
+            $user->switchTeam($fallbackTeam);
+        }
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('You left the team ":name"', ['name' => $team->name])]);
+
+        return to_route('teams.index');
     }
 
     /**
@@ -161,8 +186,9 @@ final class TeamController
 
         if ($fallbackTeam) {
             $user->switchTeam($fallbackTeam);
-
         }
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Team deleted.')]);
 
         return to_route('teams.index');
     }

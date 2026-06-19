@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Teams;
 
 use App\Enums\TeamRole;
-use App\Http\Requests\Teams\AcceptTeamInvitationRequest;
 use App\Http\Requests\Teams\CreateTeamInvitationRequest;
+use App\Http\Requests\Teams\RespondToTeamInvitationRequest;
 use App\Models\Team;
 use App\Models\TeamInvitation;
 use App\Models\User;
@@ -15,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
+use Inertia\Inertia;
 
 final class TeamInvitationController
 {
@@ -44,6 +45,8 @@ final class TeamInvitationController
         Notification::route('mail', $invitation->email)
             ->notify(new TeamInvitationNotification($invitation));
 
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Invitation sent.')]);
+
         return to_route('teams.edit', ['team' => $team->slug]);
     }
 
@@ -58,13 +61,15 @@ final class TeamInvitationController
 
         $invitation->delete();
 
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Invitation cancelled.')]);
+
         return to_route('teams.edit', ['team' => $team->slug]);
     }
 
     /**
      * Accept the invitation.
      */
-    public function accept(AcceptTeamInvitationRequest $request, TeamInvitation $invitation): RedirectResponse
+    public function accept(RespondToTeamInvitationRequest $request, TeamInvitation $invitation): RedirectResponse
     {
         /** @var User $user */
         $user = $request->user();
@@ -84,6 +89,20 @@ final class TeamInvitationController
 
             $user->switchTeam($team);
         });
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Invitation accepted.')]);
+
+        return to_route('dashboard');
+    }
+
+    /**
+     * Decline the invitation.
+     */
+    public function decline(RespondToTeamInvitationRequest $request, TeamInvitation $invitation): RedirectResponse
+    {
+        $invitation->delete();
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('Invitation declined.')]);
 
         return to_route('dashboard');
     }
