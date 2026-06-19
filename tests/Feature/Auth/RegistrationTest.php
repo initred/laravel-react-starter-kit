@@ -2,10 +2,36 @@
 
 declare(strict_types=1);
 
+use App\Enums\TeamRole;
+use App\Models\Team;
+use App\Models\TeamInvitation;
+use App\Models\User;
+use Inertia\Testing\AssertableInertia as Assert;
+
 test('registration screen can be rendered', function (): void {
     $response = $this->get(route('register'));
 
     $response->assertStatus(200);
+});
+
+test('registration screen includes team invitation context', function (): void {
+    $owner = User::factory()->create();
+    $team = Team::factory()->create(['name' => 'Laravel Team']);
+    $team->members()->attach($owner, ['role' => TeamRole::Owner->value]);
+
+    $invitation = TeamInvitation::factory()->create([
+        'team_id' => $team->id,
+        'invited_by' => $owner->id,
+    ]);
+
+    $response = $this->get(route('register', ['invitation' => $invitation->code]));
+
+    $response->assertStatus(200);
+    $response->assertInertia(fn (Assert $page): Assert => $page
+        ->component('auth/register')
+        ->where('teamInvitation.code', $invitation->code)
+        ->where('teamInvitation.teamName', 'Laravel Team'),
+    );
 });
 
 test('new users can register', function (): void {

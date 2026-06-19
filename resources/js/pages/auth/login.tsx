@@ -1,6 +1,7 @@
 import { Form, Head } from '@inertiajs/react'
 import { IconCircleCheck } from '@tabler/icons-react'
 import PasskeyVerify from '@/components/passkey-verify'
+import TeamInvitationAlert from '@/components/team-invitation-alert'
 import TextLink from '@/components/text-link'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
@@ -18,16 +19,26 @@ import { register } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { store } from '@/routes/login'
 import { request } from '@/routes/password'
+import type { TeamInvitationContext } from '@/types'
 
-interface LoginProps {
+type Props = {
   status?: string
   canResetPassword: boolean
+  teamInvitation?: TeamInvitationContext | null
 }
 
-export default function Login({ status, canResetPassword }: LoginProps) {
+export default function Login({
+  status,
+  canResetPassword,
+  teamInvitation,
+}: Props) {
   return (
     <>
       <Head title="Log in" />
+
+      {teamInvitation && (
+        <TeamInvitationAlert invitation={teamInvitation} action="Log in" />
+      )}
 
       <PasskeyVerify />
 

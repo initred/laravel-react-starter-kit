@@ -11,7 +11,9 @@ use App\Http\Responses\PasskeyLoginResponse;
 use App\Http\Responses\RegisterResponse;
 use App\Http\Responses\TwoFactorLoginResponse;
 use App\Http\Responses\VerifyEmailResponse;
+use App\Models\TeamInvitation;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
@@ -66,6 +68,7 @@ final class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(fn (Request $request) => Inertia::render('auth/login', [
             'canResetPassword' => Features::enabled(Features::resetPasswords()),
             'status' => $request->session()->get('status'),
+            'teamInvitation' => $this->teamInvitation($request),
         ]));
 
         Fortify::resetPasswordView(fn (Request $request) => Inertia::render('auth/reset-password', [
@@ -81,7 +84,9 @@ final class FortifyServiceProvider extends ServiceProvider
             'status' => $request->session()->get('status'),
         ]));
 
-        Fortify::registerView(fn () => Inertia::render('auth/register'));
+        Fortify::registerView(fn (Request $request) => Inertia::render('auth/register', [
+            'teamInvitation' => $this->teamInvitation($request),
+        ]));
 
         Fortify::twoFactorChallengeView(fn () => Inertia::render('auth/two-factor-challenge'));
 
@@ -96,17 +101,49 @@ final class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('two-factor', fn (Request $request) => Limit::perMinute(5)->by($request->session()->get('login.id')));
 
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower((string) $request->string(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(Str::lower($request->string(Fortify::username())->value()).'|'.$request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
         });
 
         RateLimiter::for('passkeys', function (Request $request) {
-            $credentialId = $request->string('credential.id')->toString();
+            $credentialId = $request->string('credential.id')->value();
 
             return Limit::perMinute(10)->by(
-                ($credentialId !== '' ? $credentialId : $request->session()->getId()).'|'.$request->ip(),
+                ($credentialId ?: $request->session()->getId()).'|'.$request->ip(),
             );
         });
+    }
+
+    /**
+     * Get the pending team invitation context for auth pages.
+     *
+     * @return array{code: string, teamName: string}|null
+     */
+    private function teamInvitation(Request $request): ?array
+    {
+        $invitationCode = $request->query('invitation');
+
+        if (! is_string($invitationCode)) {
+            return null;
+        }
+
+        $invitation = TeamInvitation::query()
+            ->with('team')
+            ->where('code', $invitationCode)
+            ->whereNull('accepted_at')
+            ->where(fn (Builder $query) => $query
+                ->whereNull('expires_at')
+                ->orWhere('expires_at', '>=', now()))
+            ->first();
+
+        if (! $invitation) {
+            return null;
+        }
+
+        return [
+            'code' => $invitation->code,
+            'teamName' => $invitation->team->name,
+        ];
     }
 }

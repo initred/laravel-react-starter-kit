@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react'
+import TeamInvitationAlert from '@/components/team-invitation-alert'
 import TextLink from '@/components/text-link'
 import { Button } from '@/components/ui/button'
 import {
@@ -13,15 +14,22 @@ import { Spinner } from '@/components/ui/spinner'
 import { login } from '@/routes'
 import { privacy, terms } from '@/routes/docs'
 import { store } from '@/routes/register'
+import type { TeamInvitationContext } from '@/types'
 
 type Props = {
   passwordRules: string
+  teamInvitation?: TeamInvitationContext | null
 }
 
-export default function Register({ passwordRules }: Props) {
+export default function Register({ passwordRules, teamInvitation }: Props) {
   return (
     <>
       <Head title="Register" />
+
+      {teamInvitation && (
+        <TeamInvitationAlert invitation={teamInvitation} action="Register" />
+      )}
+
       <Form
         {...store.form()}
         resetOnSuccess={['password', 'password_confirmation']}
