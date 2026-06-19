@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Concerns;
 
+use App\Data\TeamPermissions;
+use App\Data\UserTeam;
+use App\Enums\TeamPermission;
 use App\Enums\TeamRole;
 use App\Models\Membership;
 use App\Models\Team;
-use App\Support\TeamPermissions;
-use App\Support\UserTeam;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -123,11 +125,10 @@ trait HasTeams
      */
     public function teamRole(Team $team): ?TeamRole
     {
-        $membership = $this->teamMemberships()
+        return $this->teamMemberships()
             ->where('team_id', $team->id)
-            ->first();
-
-        return $membership?->role;
+            ->first()
+            ?->role;
     }
 
     /**
@@ -170,32 +171,28 @@ trait HasTeams
         $role = $this->teamRole($team);
 
         return new TeamPermissions(
-            canUpdateTeam: $role?->hasPermission('team:update') ?? false,
-            canDeleteTeam: $role?->hasPermission('team:delete') ?? false,
-            canAddMember: $role?->hasPermission('member:add') ?? false,
-            canUpdateMember: $role?->hasPermission('member:update') ?? false,
-            canRemoveMember: $role?->hasPermission('member:remove') ?? false,
-            canCreateInvitation: $role?->hasPermission('invitation:create') ?? false,
-            canCancelInvitation: $role?->hasPermission('invitation:cancel') ?? false,
+            canUpdateTeam: $role?->hasPermission(TeamPermission::UpdateTeam) ?? false,
+            canDeleteTeam: $role?->hasPermission(TeamPermission::DeleteTeam) ?? false,
+            canAddMember: $role?->hasPermission(TeamPermission::AddMember) ?? false,
+            canUpdateMember: $role?->hasPermission(TeamPermission::UpdateMember) ?? false,
+            canRemoveMember: $role?->hasPermission(TeamPermission::RemoveMember) ?? false,
+            canCreateInvitation: $role?->hasPermission(TeamPermission::CreateInvitation) ?? false,
+            canCancelInvitation: $role?->hasPermission(TeamPermission::CancelInvitation) ?? false,
         );
     }
 
     public function fallbackTeam(?Team $excluding = null): ?Team
     {
-        $query = $this->teams();
-
-        if ($excluding instanceof Team) {
-            $query->where('teams.id', '!=', $excluding->id);
-        }
-
-        return $query->orderByRaw('LOWER(teams.name)')
+        return $this->teams()
+            ->when($excluding, fn (Builder $query, Team $excluding): Builder => $query->where('teams.id', '!=', $excluding->id))
+            ->orderByRaw('LOWER(teams.name)')
             ->first();
     }
 
     /**
      * Determine if the user has the given permission on the team.
      */
-    public function hasTeamPermission(Team $team, string $permission): bool
+    public function hasTeamPermission(Team $team, TeamPermission $permission): bool
     {
         return $this->teamRole($team)?->hasPermission($permission) ?? false;
     }
