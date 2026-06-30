@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
 
@@ -41,14 +41,14 @@ jobs:
           node-version: 24
 
       - name: Cache Composer Dependencies
-        uses: actions/cache@v5
+        uses: actions/cache@v5.0.5
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Cache Bun Dependencies
-        uses: actions/cache@v5
+        uses: actions/cache@v5.0.5
         with:
           path: node_modules
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
@@ -74,7 +74,7 @@ jobs:
         run: echo "version=$(bun pm ls 2>/dev/null | grep playwright | head -1 | sed 's/.*@//')" >> $GITHUB_OUTPUT
 
       - name: Cache Playwright Browsers
-        uses: actions/cache@v5
+        uses: actions/cache@v5.0.5
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
@@ -89,14 +89,14 @@ jobs:
         run: bunx playwright install-deps
 
       - name: Cache Rector
-        uses: actions/cache@v5
+        uses: actions/cache@v5.0.5
         with:
           path: /tmp/rector
           key: ${{ runner.os }}-rector-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-rector-
 
       - name: Cache PHPStan
-        uses: actions/cache@v5
+        uses: actions/cache@v5.0.5
         with:
           path: /tmp/phpstan
           key: ${{ runner.os }}-phpstan-${{ hashFiles('composer.lock') }}
