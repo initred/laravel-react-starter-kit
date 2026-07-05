@@ -3,7 +3,8 @@
         "claude_code",
         "copilot",
         "junie",
-        "codex"
+        "codex",
+        "antigravity"
     ],
     "cloud": false,
     "guidelines": true,
