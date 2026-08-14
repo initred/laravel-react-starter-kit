@@ -1,10 +1,8 @@
 {
     "agents": [
         "claude_code",
-        "copilot",
-        "junie",
         "codex",
-        "antigravity"
+        "grok_build"
     ],
     "cloud": false,
     "guidelines": true,
