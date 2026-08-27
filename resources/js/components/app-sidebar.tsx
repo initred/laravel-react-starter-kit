@@ -25,10 +25,11 @@ export function AppSidebar() {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link href={dashboard(currentTeamSlug)} prefetch>
-                <AppLogo />
-              </Link>
+            <SidebarMenuButton
+              size="lg"
+              render={<Link href={dashboard(currentTeamSlug)} prefetch />}
+            >
+              <AppLogo />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

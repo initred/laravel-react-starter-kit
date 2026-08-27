@@ -64,36 +64,38 @@ export default function TeamsIndex({ teams }: Props) {
                 <div className="flex items-center gap-2">
                   {team.role === 'member' ? (
                     <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          data-test="team-view-button"
-                          asChild
-                        >
-                          <Link href={edit(team.slug)}>
+                      <TooltipTrigger
+                        render={
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            data-test="team-view-button"
+                            nativeButton={false}
+                            render={<Link href={edit(team.slug)} />}
+                          >
                             <IconEye className="h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </TooltipTrigger>
+                          </Button>
+                        }
+                      />
                       <TooltipContent>
                         <p>View team</p>
                       </TooltipContent>
                     </Tooltip>
                   ) : (
                     <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          data-test="team-edit-button"
-                          asChild
-                        >
-                          <Link href={edit(team.slug)}>
+                      <TooltipTrigger
+                        render={
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            data-test="team-edit-button"
+                            nativeButton={false}
+                            render={<Link href={edit(team.slug)} />}
+                          >
                             <IconPencil className="h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </TooltipTrigger>
+                          </Button>
+                        }
+                      />
                       <TooltipContent>
                         <p>Edit team</p>
                       </TooltipContent>
