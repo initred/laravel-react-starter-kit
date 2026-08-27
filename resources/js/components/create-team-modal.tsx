@@ -1,5 +1,6 @@
 import { Form } from '@inertiajs/react'
-import type { PropsWithChildren } from 'react'
+import type { PropsWithChildren, ReactElement } from 'react'
+import { isValidElement } from 'react'
 import { useState } from 'react'
 import InputError from '@/components/input-error'
 import { Button } from '@/components/ui/button'
@@ -22,7 +23,11 @@ export default function CreateTeamModal({ children }: PropsWithChildren) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger
+        render={
+          isValidElement(children) ? (children as ReactElement) : undefined
+        }
+      />
       <DialogContent>
         <Form
           key={String(open)}
@@ -52,8 +57,8 @@ export default function CreateTeamModal({ children }: PropsWithChildren) {
               </div>
 
               <DialogFooter className="gap-2">
-                <DialogClose asChild>
-                  <Button variant="secondary">Cancel</Button>
+                <DialogClose render={<Button variant="secondary" />}>
+                  Cancel
                 </DialogClose>
 
                 <Button

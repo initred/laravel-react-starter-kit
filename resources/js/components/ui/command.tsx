@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { Command as CommandPrimitive } from "cmdk"
 
@@ -38,11 +40,12 @@ function CommandDialog({
   className,
   showCloseButton = false,
   ...props
-}: React.ComponentProps<typeof Dialog> & {
+}: Omit<React.ComponentProps<typeof Dialog>, "children"> & {
   title?: string
   description?: string
   className?: string
   showCloseButton?: boolean
+  children: React.ReactNode
 }) {
   return (
     <Dialog {...props}>

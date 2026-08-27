@@ -58,55 +58,53 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          data-test="team-switcher-trigger"
+      <DropdownMenuTrigger
+        render={
+          <Button
+            variant="ghost"
+            data-test="team-switcher-trigger"
+            className={
+              inHeader
+                ? 'h-8 gap-1 px-2'
+                : 'w-full justify-start px-2 has-[>svg]:px-2 data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground'
+            }
+          />
+        }
+      >
+        <IconUsers
           className={
             inHeader
-              ? 'h-8 gap-1 px-2'
-              : 'w-full justify-start px-2 has-[>svg]:px-2 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+              ? 'hidden'
+              : 'hidden size-4 shrink-0 group-data-[collapsible=icon]:block'
+          }
+        />
+        <div
+          className={
+            inHeader
+              ? 'grid flex-1 text-left text-sm leading-tight'
+              : 'grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden'
           }
         >
-          <IconUsers
+          <span
             className={
               inHeader
-                ? 'hidden'
-                : 'hidden size-4 shrink-0 group-data-[collapsible=icon]:block'
-            }
-          />
-          <div
-            className={
-              inHeader
-                ? 'grid flex-1 text-left text-sm leading-tight'
-                : 'grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden'
+                ? 'max-w-[120px] truncate font-medium'
+                : 'truncate font-semibold'
             }
           >
-            <span
-              className={
-                inHeader
-                  ? 'max-w-[120px] truncate font-medium'
-                  : 'truncate font-semibold'
-              }
-            >
-              {currentTeam?.name ?? 'Select team'}
-            </span>
-          </div>
-          <IconSelector
-            className={
-              inHeader
-                ? 'size-4 opacity-50'
-                : 'ml-auto group-data-[collapsible=icon]:hidden'
-            }
-          />
-        </Button>
+            {currentTeam?.name ?? 'Select team'}
+          </span>
+        </div>
+        <IconSelector
+          className={
+            inHeader
+              ? 'size-4 opacity-50'
+              : 'ml-auto group-data-[collapsible=icon]:hidden'
+          }
+        />
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className={
-          inHeader
-            ? 'w-56'
-            : 'w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg'
-        }
+        className={inHeader ? 'w-56' : 'w-(--anchor-width) min-w-56 rounded-lg'}
         side={inHeader ? undefined : isMobile ? 'bottom' : 'right'}
         align={inHeader ? 'end' : 'start'}
         sideOffset={inHeader ? undefined : 4}
@@ -121,7 +119,7 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
             className={
               inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'
             }
-            onSelect={() => switchTeam(team)}
+            onClick={() => switchTeam(team)}
           >
             {team.name}
             {currentTeam?.id === team.id && (
@@ -138,7 +136,7 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
             className={
               inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'
             }
-            onSelect={(event) => event.preventDefault()}
+            closeOnClick={false}
           >
             <IconPlus className={inHeader ? 'size-4' : 'h-4 w-4'} />
             <span className="text-muted-foreground">New team</span>

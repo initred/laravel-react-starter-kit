@@ -84,9 +84,13 @@ export default function InviteMemberModal({
                     name="role"
                     data-test="invite-role"
                     value={inviteRole}
-                    onValueChange={(value) =>
+                    onValueChange={(value) => {
+                      if (value === null) {
+                        return
+                      }
+
                       setInviteRole(value as RoleOption['value'])
-                    }
+                    }}
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select a role" />
@@ -104,8 +108,8 @@ export default function InviteMemberModal({
               </div>
 
               <DialogFooter className="gap-2">
-                <DialogClose asChild>
-                  <Button variant="secondary">Cancel</Button>
+                <DialogClose render={<Button variant="secondary" />}>
+                  Cancel
                 </DialogClose>
 
                 <Button
