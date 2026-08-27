@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
+import { Field, FieldLabel } from '@/components/ui/field'
 
 export default function DeleteUser() {
   const passwordInput = useRef<HTMLInputElement>(null)
@@ -63,10 +63,10 @@ export default function DeleteUser() {
             >
               {({ resetAndClearErrors, processing, errors }) => (
                 <>
-                  <div className="grid gap-2">
-                    <Label htmlFor="password" className="sr-only">
+                  <Field>
+                    <FieldLabel htmlFor="password" className="sr-only">
                       Password
-                    </Label>
+                    </FieldLabel>
 
                     <PasswordInput
                       id="password"
@@ -77,7 +77,7 @@ export default function DeleteUser() {
                     />
 
                     <InputError message={errors.password} />
-                  </div>
+                  </Field>
 
                   <DialogFooter className="gap-2">
                     <DialogClose
