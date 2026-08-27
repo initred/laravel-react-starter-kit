@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -109,39 +110,43 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
         align={inHeader ? 'end' : 'start'}
         sideOffset={inHeader ? undefined : 4}
       >
-        <DropdownMenuLabel className="text-xs text-muted-foreground">
-          Teams
-        </DropdownMenuLabel>
-        {teams.map((team) => (
-          <DropdownMenuItem
-            key={team.id}
-            data-test="team-switcher-item"
-            className={
-              inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'
-            }
-            onClick={() => switchTeam(team)}
-          >
-            {team.name}
-            {currentTeam?.id === team.id && (
-              <IconCheck
-                className={inHeader ? 'ml-auto size-4' : 'ml-auto h-4 w-4'}
-              />
-            )}
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="text-xs text-muted-foreground">
+            Teams
+          </DropdownMenuLabel>
+          {teams.map((team) => (
+            <DropdownMenuItem
+              key={team.id}
+              data-test="team-switcher-item"
+              className={
+                inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'
+              }
+              onClick={() => switchTeam(team)}
+            >
+              {team.name}
+              {currentTeam?.id === team.id && (
+                <IconCheck
+                  className={inHeader ? 'ml-auto size-4' : 'ml-auto h-4 w-4'}
+                />
+              )}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <CreateTeamModal>
-          <DropdownMenuItem
-            data-test="team-switcher-new-team"
-            className={
-              inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'
-            }
-            closeOnClick={false}
-          >
-            <IconPlus className={inHeader ? 'size-4' : 'h-4 w-4'} />
-            <span className="text-muted-foreground">New team</span>
-          </DropdownMenuItem>
-        </CreateTeamModal>
+        <DropdownMenuGroup>
+          <CreateTeamModal>
+            <DropdownMenuItem
+              data-test="team-switcher-new-team"
+              className={
+                inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'
+              }
+              closeOnClick={false}
+            >
+              <IconPlus className={inHeader ? 'size-4' : 'h-4 w-4'} />
+              <span className="text-muted-foreground">New team</span>
+            </DropdownMenuItem>
+          </CreateTeamModal>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   )

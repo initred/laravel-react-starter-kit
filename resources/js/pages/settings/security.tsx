@@ -9,7 +9,7 @@ import type { Props as ManageTwoFactorProps } from '@/components/manage-two-fact
 import ManageTwoFactor from '@/components/manage-two-factor'
 import PasswordInput from '@/components/password-input'
 import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
+import { Field, FieldLabel } from '@/components/ui/field'
 import { edit } from '@/routes/security'
 
 type Props = {
@@ -58,60 +58,61 @@ export default function Security(props: Props) {
         >
           {({ errors, processing }) => (
             <>
-              <div className="grid gap-2">
-                <Label htmlFor="current_password">Current password</Label>
+              <Field>
+                <FieldLabel htmlFor="current_password">
+                  Current password
+                </FieldLabel>
 
                 <PasswordInput
                   id="current_password"
                   ref={currentPasswordInput}
                   name="current_password"
-                  className="mt-1 block w-full"
                   autoComplete="current-password"
                   placeholder="Current password"
                 />
 
                 <InputError message={errors.current_password} />
-              </div>
+              </Field>
 
-              <div className="grid gap-2">
-                <Label htmlFor="password">New password</Label>
+              <Field>
+                <FieldLabel htmlFor="password">New password</FieldLabel>
 
                 <PasswordInput
                   id="password"
                   ref={passwordInput}
                   name="password"
-                  className="mt-1 block w-full"
                   autoComplete="new-password"
                   placeholder="New password"
                   passwordrules={props.passwordRules}
                 />
 
                 <InputError message={errors.password} />
-              </div>
+              </Field>
 
-              <div className="grid gap-2">
-                <Label htmlFor="password_confirmation">Confirm password</Label>
+              <Field>
+                <FieldLabel htmlFor="password_confirmation">
+                  Confirm password
+                </FieldLabel>
 
                 <PasswordInput
                   id="password_confirmation"
                   name="password_confirmation"
-                  className="mt-1 block w-full"
                   autoComplete="new-password"
                   placeholder="Confirm password"
                   passwordrules={props.passwordRules}
                 />
 
                 <InputError message={errors.password_confirmation} />
-              </div>
+              </Field>
 
-              <div className="flex items-center gap-4">
+              <Field orientation="horizontal">
                 <Button
                   disabled={processing}
                   data-test="update-password-button"
                 >
                   Save
                 </Button>
-              </div>
+              </Field>
             </>
           )}
         </Form>
