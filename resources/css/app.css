@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 @import '@fontsource/pretendard/100.css';

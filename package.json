@@ -39,7 +39,6 @@
     "@rolldown/plugin-babel": "^0.2.3",
     "@shadcn/react": "^0.3.0",
     "@tabler/icons-react": "^3.46.0",
-    "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",

@@ -51,7 +51,7 @@ export default function DocsLayout({
         <Separator className="my-6 lg:hidden" />
 
         <div className="flex-1">
-          <article className="prose max-w-none prose-neutral dark:prose-invert">
+          <article className="typeset typeset-docs max-w-[37em]">
             {children}
           </article>
         </div>
