@@ -8,6 +8,7 @@ use App\Concerns\GeneratesUniqueTeamSlugs;
 use App\Enums\TeamRole;
 use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\RouteKey;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @property-read Collection<int, User> $members
  */
 #[Fillable(['name', 'slug', 'is_personal'])]
+#[RouteKey('slug')]
 final class Team extends Model
 {
     use GeneratesUniqueTeamSlugs;
@@ -81,14 +83,6 @@ final class Team extends Model
     public function invitations(): HasMany
     {
         return $this->hasMany(TeamInvitation::class);
-    }
-
-    /**
-     * Get the route key for the model.
-     */
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
     }
 
     /**
