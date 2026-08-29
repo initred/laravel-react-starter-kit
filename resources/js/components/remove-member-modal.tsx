@@ -36,10 +36,7 @@ export default function RemoveMemberModal({ team, member, open, onOpenChange }: 
   }
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Remove team member</DialogTitle>

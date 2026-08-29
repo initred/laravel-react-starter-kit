@@ -25,18 +25,12 @@ function GridScanIcon() {
       <div className="border-border bg-muted relative overflow-hidden rounded-full border p-2.5">
         <div className="absolute inset-0 grid grid-cols-5 opacity-50">
           {Array.from({ length: 5 }, (_, i) => (
-            <div
-              key={`col-${i + 1}`}
-              className="border-border border-r last:border-r-0"
-            />
+            <div key={`col-${i + 1}`} className="border-border border-r last:border-r-0" />
           ))}
         </div>
         <div className="absolute inset-0 grid grid-rows-5 opacity-50">
           {Array.from({ length: 5 }, (_, i) => (
-            <div
-              key={`row-${i + 1}`}
-              className="border-border border-b last:border-b-0"
-            />
+            <div key={`row-${i + 1}`} className="border-border border-b last:border-b-0" />
           ))}
         </div>
         <IconQrcode className="text-foreground relative z-20 size-6" />
@@ -90,10 +84,7 @@ function TwoFactorSetupStep({
           </div>
 
           <div className="flex w-full space-x-5">
-            <Button
-              className="w-full"
-              onClick={onNextStep}
-            >
+            <Button className="w-full" onClick={onNextStep}>
               {buttonText}
             </Button>
           </div>
@@ -150,12 +141,7 @@ function TwoFactorVerificationStep({
   }, [])
 
   return (
-    <Form
-      {...confirm.form()}
-      onSuccess={() => onClose()}
-      resetOnError
-      resetOnSuccess
-    >
+    <Form {...confirm.form()} onSuccess={() => onClose()} resetOnError resetOnSuccess>
       {({
         processing,
         errors,
@@ -164,10 +150,7 @@ function TwoFactorVerificationStep({
         errors?: { confirmTwoFactorAuthentication?: { code?: string } }
       }) => (
         <>
-          <div
-            ref={pinInputContainerRef}
-            className="relative w-full space-y-3"
-          >
+          <div ref={pinInputContainerRef} className="relative w-full space-y-3">
             <div className="flex w-full flex-col items-center space-y-3 py-2">
               <InputOTP
                 id="otp"
@@ -180,10 +163,7 @@ function TwoFactorVerificationStep({
               >
                 <InputOTPGroup>
                   {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                    <InputOTPSlot
-                      key={index}
-                      index={index}
-                    />
+                    <InputOTPSlot key={index} index={index} />
                   ))}
                 </InputOTPGroup>
               </InputOTP>
@@ -301,10 +281,7 @@ export default function TwoFactorSetupModal({
   }, [onClose, resetModalState])
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(open) => !open && handleClose()}
-    >
+    <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="flex items-center justify-center">
           <GridScanIcon />

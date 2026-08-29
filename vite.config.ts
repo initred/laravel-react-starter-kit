@@ -51,7 +51,6 @@ export default defineConfig({
   },
   fmt: {
     semi: false,
-    singleAttributePerLine: true,
     singleQuote: true,
     ignorePatterns: [
       '.github/**',

@@ -25,11 +25,7 @@ export default function Profile({
       <h1 className="sr-only">Profile settings</h1>
 
       <div className="space-y-6">
-        <Heading
-          variant="small"
-          title="Profile"
-          description="Update your name and email address"
-        />
+        <Heading variant="small" title="Profile" description="Update your name and email address" />
 
         <Form
           {...ProfileController.update.form()}
@@ -53,10 +49,7 @@ export default function Profile({
                   placeholder="Full name"
                 />
 
-                <InputError
-                  className="mt-2"
-                  message={errors.name}
-                />
+                <InputError className="mt-2" message={errors.name} />
               </div>
 
               <div className="grid gap-2">
@@ -73,10 +66,7 @@ export default function Profile({
                   placeholder="Email address"
                 />
 
-                <InputError
-                  className="mt-2"
-                  message={errors.email}
-                />
+                <InputError className="mt-2" message={errors.email} />
               </div>
 
               {mustVerifyEmail && auth.user.email_verified_at === null && (
@@ -101,10 +91,7 @@ export default function Profile({
               )}
 
               <div className="flex items-center gap-4">
-                <Button
-                  disabled={processing}
-                  data-test="update-profile-button"
-                >
+                <Button disabled={processing} data-test="update-profile-button">
                   Save
                 </Button>
               </div>

@@ -26,10 +26,7 @@ export default function DocsLayout({
 
       <div className="flex flex-col lg:flex-row lg:space-x-12">
         <aside className="w-full max-w-xl lg:w-48">
-          <nav
-            className="flex flex-col space-y-1 space-x-0"
-            aria-label="Documents"
-          >
+          <nav className="flex flex-col space-y-1 space-x-0" aria-label="Documents">
             {docsNavItems.map((item, index) => (
               <Button
                 key={`${toUrl(item.href)}-${index}`}
@@ -41,12 +38,7 @@ export default function DocsLayout({
                 })}
                 render={<Link href={item.href} />}
               >
-                {item.icon && (
-                  <item.icon
-                    stroke={2}
-                    className="h-4 w-4"
-                  />
-                )}
+                {item.icon && <item.icon stroke={2} className="h-4 w-4" />}
                 {item.title}
               </Button>
             ))}

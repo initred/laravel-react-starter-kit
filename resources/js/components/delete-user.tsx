@@ -33,14 +33,7 @@ export default function DeleteUser() {
         </div>
 
         <Dialog>
-          <DialogTrigger
-            render={
-              <Button
-                variant="destructive"
-                data-test="delete-user-button"
-              />
-            }
-          >
+          <DialogTrigger render={<Button variant="destructive" data-test="delete-user-button" />}>
             Delete account
           </DialogTrigger>
           <DialogContent>
@@ -63,10 +56,7 @@ export default function DeleteUser() {
               {({ resetAndClearErrors, processing, errors }) => (
                 <>
                   <Field>
-                    <FieldLabel
-                      htmlFor="password"
-                      className="sr-only"
-                    >
+                    <FieldLabel htmlFor="password" className="sr-only">
                       Password
                     </FieldLabel>
 
@@ -83,12 +73,7 @@ export default function DeleteUser() {
 
                   <DialogFooter className="gap-2">
                     <DialogClose
-                      render={
-                        <Button
-                          variant="secondary"
-                          onClick={() => resetAndClearErrors()}
-                        />
-                      }
+                      render={<Button variant="secondary" onClick={() => resetAndClearErrors()} />}
                     >
                       Cancel
                     </DialogClose>

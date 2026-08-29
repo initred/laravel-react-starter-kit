@@ -17,11 +17,7 @@ export default function PasswordInput({
 
   return (
     <InputGroup className={className}>
-      <InputGroupInput
-        type={showPassword ? 'text' : 'password'}
-        ref={ref}
-        {...props}
-      />
+      <InputGroupInput type={showPassword ? 'text' : 'password'} ref={ref} {...props} />
       <InputGroupAddon align="inline-end">
         <InputGroupButton
           aria-label={showPassword ? 'Hide password' : 'Show password'}

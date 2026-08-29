@@ -36,10 +36,7 @@ export default function CancelInvitationModal({ team, invitation, open, onOpenCh
   }
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Cancel invitation</DialogTitle>

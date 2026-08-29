@@ -49,13 +49,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
           <div className="lg:hidden">
             <Sheet>
               <SheetTrigger
-                render={
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="mr-2 h-8.5 w-8.5"
-                  />
-                }
+                render={<Button variant="ghost" size="icon" className="mr-2 h-8.5 w-8.5" />}
               >
                 <IconMenu2 className="h-5 w-5" />
               </SheetTrigger>
@@ -76,12 +70,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                           href={item.href}
                           className="flex items-center space-x-2 font-medium"
                         >
-                          {item.icon && (
-                            <Icon
-                              iconNode={item.icon}
-                              className="h-5 w-5"
-                            />
-                          )}
+                          {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
                           <span>{item.title}</span>
                         </Link>
                       ))}
@@ -99,12 +88,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             rel="noopener noreferrer"
                             className="flex items-center space-x-2 font-medium"
                           >
-                            {item.icon && (
-                              <Icon
-                                iconNode={item.icon}
-                                className="h-5 w-5"
-                              />
-                            )}
+                            {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
                             <span>{item.title}</span>
                           </a>
                         ) : (
@@ -113,12 +97,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             href={item.href}
                             className="flex items-center space-x-2 font-medium"
                           >
-                            {item.icon && (
-                              <Icon
-                                iconNode={item.icon}
-                                className="h-5 w-5"
-                              />
-                            )}
+                            {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
                             <span>{item.title}</span>
                           </Link>
                         )
@@ -130,11 +109,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
             </Sheet>
           </div>
 
-          <Link
-            href={dashboard(currentTeamSlug)}
-            prefetch
-            className="flex items-center space-x-2"
-          >
+          <Link href={dashboard(currentTeamSlug)} prefetch className="flex items-center space-x-2">
             <AppLogo />
           </Link>
 
@@ -143,10 +118,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
             <NavigationMenu className="flex h-full items-stretch">
               <NavigationMenuList className="flex h-full items-stretch space-x-2">
                 {mainNavItems(currentTeamSlug).map((item, index) => (
-                  <NavigationMenuItem
-                    key={index}
-                    className="relative flex h-full items-center"
-                  >
+                  <NavigationMenuItem key={index} className="relative flex h-full items-center">
                     <Link
                       href={item.href}
                       className={cn(
@@ -155,12 +127,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                         'h-9 cursor-pointer px-3',
                       )}
                     >
-                      {item.icon && (
-                        <Icon
-                          iconNode={item.icon}
-                          className="mr-2 h-4 w-4"
-                        />
-                      )}
+                      {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
                       {item.title}
                     </Link>
                     {isCurrentUrl(item.href) && (
@@ -178,27 +145,16 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger
-                render={
-                  <Button
-                    variant="ghost"
-                    className="size-10 rounded-full p-1"
-                  />
-                }
+                render={<Button variant="ghost" className="size-10 rounded-full p-1" />}
               >
                 <Avatar className="size-8 overflow-hidden rounded-full">
-                  <AvatarImage
-                    src={auth.user.avatar}
-                    alt={auth.user.name}
-                  />
+                  <AvatarImage src={auth.user.avatar} alt={auth.user.name} />
                   <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
                     {getInitials(auth.user.name)}
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-56"
-                align="end"
-              >
+              <DropdownMenuContent className="w-56" align="end">
                 <UserMenuContent user={auth.user} />
               </DropdownMenuContent>
             </DropdownMenu>

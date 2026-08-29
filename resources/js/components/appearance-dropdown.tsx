@@ -27,19 +27,10 @@ export default function AppearanceToggleDropdown({
   }
 
   return (
-    <div
-      className={className}
-      {...props}
-    >
+    <div className={className} {...props}>
       <DropdownMenu>
         <DropdownMenuTrigger
-          render={
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-9 w-9 rounded-md"
-            />
-          }
+          render={<Button variant="ghost" size="icon" className="h-9 w-9 rounded-md" />}
         >
           {getCurrentIcon()}
           <span className="sr-only">Toggle theme</span>

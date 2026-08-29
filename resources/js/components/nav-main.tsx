@@ -24,16 +24,9 @@ export function NavMain({ items }: { items: NavItem[] }) {
               tooltip={{ children: item.title }}
               render={
                 item.target ? (
-                  <a
-                    href={toUrl(item.href)}
-                    target={item.target}
-                    rel="noopener noreferrer"
-                  />
+                  <a href={toUrl(item.href)} target={item.target} rel="noopener noreferrer" />
                 ) : (
-                  <Link
-                    href={item.href}
-                    prefetch
-                  />
+                  <Link href={item.href} prefetch />
                 )
               }
             >

@@ -42,10 +42,7 @@ export default function InviteMemberModal({ team, availableRoles, open, onOpenCh
   }
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={handleOpenChange}
-    >
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <Form
           key={String(open)}
@@ -93,10 +90,7 @@ export default function InviteMemberModal({ team, availableRoles, open, onOpenCh
                     </SelectTrigger>
                     <SelectContent>
                       {availableRoles.map((role) => (
-                        <SelectItem
-                          key={role.value}
-                          value={role.value}
-                        >
+                        <SelectItem key={role.value} value={role.value}>
                           {role.label}
                         </SelectItem>
                       ))}
@@ -109,11 +103,7 @@ export default function InviteMemberModal({ team, availableRoles, open, onOpenCh
               <DialogFooter className="gap-2">
                 <DialogClose render={<Button variant="secondary" />}>Cancel</DialogClose>
 
-                <Button
-                  type="submit"
-                  data-test="invite-submit"
-                  disabled={processing}
-                >
+                <Button type="submit" data-test="invite-submit" disabled={processing}>
                   Send invitation
                 </Button>
               </DialogFooter>

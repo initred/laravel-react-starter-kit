@@ -22,10 +22,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
       )}
 
       <div className="space-y-6">
-        <Form
-          {...email.form()}
-          disableWhileProcessing
-        >
+        <Form {...email.form()} disableWhileProcessing>
           {({ processing, errors }) => (
             <FieldGroup>
               <Field data-invalid={!!errors.email}>
@@ -42,10 +39,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 {errors.email && <FieldError>{errors.email}</FieldError>}
               </Field>
 
-              <Button
-                className="w-full"
-                data-test="email-password-reset-link-button"
-              >
+              <Button className="w-full" data-test="email-password-reset-link-button">
                 {processing && <Spinner />}
                 Email password reset link
               </Button>

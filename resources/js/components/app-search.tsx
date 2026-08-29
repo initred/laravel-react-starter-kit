@@ -51,10 +51,7 @@ export function AppSearch({ className }: AppSearchProps) {
 
   return (
     <>
-      <InputGroup
-        className={cn('cursor-pointer', className)}
-        onClick={() => setOpen(true)}
-      >
+      <InputGroup className={cn('cursor-pointer', className)} onClick={() => setOpen(true)}>
         <button
           type="button"
           className="text-muted-foreground placeholder:text-muted-foreground/70 flex h-9 flex-1 cursor-pointer items-center bg-transparent px-3 text-sm outline-none"
@@ -69,11 +66,7 @@ export function AppSearch({ className }: AppSearchProps) {
           <Kbd>K</Kbd>
         </InputGroupAddon>
       </InputGroup>
-      <CommandDialog
-        open={open}
-        onOpenChange={setOpen}
-        showCloseButton={false}
-      >
+      <CommandDialog open={open} onOpenChange={setOpen} showCloseButton={false}>
         <Command>
           <CommandInput placeholder="Type a command or search..." />
           <CommandList>

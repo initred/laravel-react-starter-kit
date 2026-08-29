@@ -54,11 +54,7 @@ export default function ManagePasskeys(props: Props) {
       <div className="border-border overflow-hidden rounded-lg border">
         {passkeys.length > 0 ? (
           passkeys.map((passkey) => (
-            <PasskeyItem
-              key={passkey.id}
-              passkey={passkey}
-              onDelete={handleDelete}
-            />
+            <PasskeyItem key={passkey.id} passkey={passkey} onDelete={handleDelete} />
           ))
         ) : (
           <EmptyState />

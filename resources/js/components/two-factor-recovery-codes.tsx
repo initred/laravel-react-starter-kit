@@ -50,10 +50,7 @@ export default function TwoFactorRecoveryCodes({
     <Card>
       <CardHeader>
         <CardTitle className="flex gap-3">
-          <IconLockSquare
-            className="size-4"
-            aria-hidden="true"
-          />
+          <IconLockSquare className="size-4" aria-hidden="true" />
           2FA recovery codes
         </CardTitle>
         <CardDescription>
@@ -69,10 +66,7 @@ export default function TwoFactorRecoveryCodes({
             aria-expanded={codesAreVisible}
             aria-controls="recovery-codes-section"
           >
-            <RecoveryCodeIconComponent
-              className="size-4"
-              aria-hidden="true"
-            />
+            <RecoveryCodeIconComponent className="size-4" aria-hidden="true" />
             {codesAreVisible ? 'Hide' : 'View'} recovery codes
           </Button>
 
@@ -113,19 +107,12 @@ export default function TwoFactorRecoveryCodes({
                 >
                   {recoveryCodesList.length ? (
                     recoveryCodesList.map((code, index) => (
-                      <div
-                        key={index}
-                        role="listitem"
-                        className="select-text"
-                      >
+                      <div key={index} role="listitem" className="select-text">
                         {code}
                       </div>
                     ))
                   ) : (
-                    <div
-                      className="space-y-2"
-                      aria-label="Loading recovery codes"
-                    >
+                    <div className="space-y-2" aria-label="Loading recovery codes">
                       {Array.from({ length: 8 }, (_, index) => (
                         <div
                           key={index}
