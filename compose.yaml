@@ -84,6 +84,8 @@ networks:
     sail:
         driver: bridge
 volumes:
+    sail-node-modules:
+        driver: local
     sail-pgsql:
         driver: local
     sail-redis:
