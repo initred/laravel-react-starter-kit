@@ -1,11 +1,6 @@
 import { Form, Head } from '@inertiajs/react'
 import { Button } from '@/components/ui/button'
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from '@/components/ui/field'
+import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import { update } from '@/routes/password'
@@ -59,9 +54,7 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
             </Field>
 
             <Field data-invalid={!!errors.password_confirmation}>
-              <FieldLabel htmlFor="password_confirmation">
-                Confirm password
-              </FieldLabel>
+              <FieldLabel htmlFor="password_confirmation">Confirm password</FieldLabel>
               <Input
                 id="password_confirmation"
                 type="password"

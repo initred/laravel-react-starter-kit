@@ -39,9 +39,7 @@ export function NavUser() {
           <DropdownMenuContent
             className="w-(--anchor-width) min-w-56 rounded-lg"
             align="end"
-            side={
-              isMobile ? 'bottom' : state === 'collapsed' ? 'left' : 'bottom'
-            }
+            side={isMobile ? 'bottom' : state === 'collapsed' ? 'left' : 'bottom'}
           >
             <UserMenuContent user={auth.user} />
           </DropdownMenuContent>

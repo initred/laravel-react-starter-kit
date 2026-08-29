@@ -3,12 +3,7 @@ import { IconMailCheck } from '@tabler/icons-react'
 import TextLink from '@/components/text-link'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from '@/components/ui/field'
+import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import { login } from '@/routes'
@@ -27,7 +22,10 @@ export default function ForgotPassword({ status }: { status?: string }) {
       )}
 
       <div className="space-y-6">
-        <Form {...email.form()} disableWhileProcessing>
+        <Form
+          {...email.form()}
+          disableWhileProcessing
+        >
           {({ processing, errors }) => (
             <FieldGroup>
               <Field data-invalid={!!errors.email}>
@@ -55,7 +53,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
           )}
         </Form>
 
-        <div className="space-x-1 text-center text-sm text-muted-foreground">
+        <div className="text-muted-foreground space-x-1 text-center text-sm">
           <span>Or, return to</span>
           <TextLink href={login()}>log in</TextLink>
         </div>

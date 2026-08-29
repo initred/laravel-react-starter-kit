@@ -27,7 +27,10 @@ export default function AppearanceToggleDropdown({
   }
 
   return (
-    <div className={className} {...props}>
+    <div
+      className={className}
+      {...props}
+    >
       <DropdownMenu>
         <DropdownMenuTrigger
           render={

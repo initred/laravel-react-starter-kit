@@ -1,0 +1,19 @@
+{
+    "prettier.enable": false,
+    "eslint.enable": false,
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "[javascript]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+    "[javascriptreact]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+    "[typescript]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+    "[typescriptreact]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+    "oxc.path.oxfmt": "./node_modules/vite-plus/bin/oxfmt",
+    "oxc.path.oxlint": "./node_modules/vite-plus/bin/oxlint",
+    "oxc.disableNestedConfig": true,
+    "oxc.fmt.disableNestedConfig": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.oxc": "explicit"
+    },
+    "npm.scriptRunner": "vp"
+}

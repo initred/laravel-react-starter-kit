@@ -7,9 +7,10 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 import { useCurrentUrl } from '@/hooks/use-current-url'
+import { toUrl } from '@/lib/utils'
 import type { NavItem } from '@/types'
 
-export function NavMain({ items = [] }: { items: NavItem[] }) {
+export function NavMain({ items }: { items: NavItem[] }) {
   const { isCurrentUrl } = useCurrentUrl()
 
   return (
@@ -24,12 +25,15 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
               render={
                 item.target ? (
                   <a
-                    href={String(item.href)}
+                    href={toUrl(item.href)}
                     target={item.target}
                     rel="noopener noreferrer"
                   />
                 ) : (
-                  <Link href={item.href} prefetch />
+                  <Link
+                    href={item.href}
+                    prefetch
+                  />
                 )
               }
             >

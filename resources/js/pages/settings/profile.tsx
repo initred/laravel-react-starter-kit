@@ -53,7 +53,10 @@ export default function Profile({
                   placeholder="Full name"
                 />
 
-                <InputError className="mt-2" message={errors.name} />
+                <InputError
+                  className="mt-2"
+                  message={errors.name}
+                />
               </div>
 
               <div className="grid gap-2">
@@ -70,12 +73,15 @@ export default function Profile({
                   placeholder="Email address"
                 />
 
-                <InputError className="mt-2" message={errors.email} />
+                <InputError
+                  className="mt-2"
+                  message={errors.email}
+                />
               </div>
 
               {mustVerifyEmail && auth.user.email_verified_at === null && (
                 <div>
-                  <p className="-mt-4 text-sm text-muted-foreground">
+                  <p className="text-muted-foreground -mt-4 text-sm">
                     Your email address is unverified.{' '}
                     <Link
                       href={send()}
@@ -88,15 +94,17 @@ export default function Profile({
 
                   {status === 'verification-link-sent' && (
                     <div className="mt-2 text-sm font-medium text-green-600">
-                      A new verification link has been sent to your email
-                      address.
+                      A new verification link has been sent to your email address.
                     </div>
                   )}
                 </div>
               )}
 
               <div className="flex items-center gap-4">
-                <Button disabled={processing} data-test="update-profile-button">
+                <Button
+                  disabled={processing}
+                  data-test="update-profile-button"
+                >
                   Save
                 </Button>
               </div>

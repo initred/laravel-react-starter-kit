@@ -4,12 +4,7 @@ import CreateTeamModal from '@/components/create-team-modal'
 import Heading from '@/components/heading'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { edit, index } from '@/routes/teams'
 import type { Team } from '@/types'
 
@@ -50,13 +45,9 @@ export default function TeamsIndex({ teams }: Props) {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-medium">{team.name}</span>
-                    {team.isPersonal ? (
-                      <Badge variant="secondary">Personal</Badge>
-                    ) : null}
+                    {team.isPersonal ? <Badge variant="secondary">Personal</Badge> : null}
                   </div>
-                  <span className="text-sm text-muted-foreground">
-                    {team.roleLabel}
-                  </span>
+                  <span className="text-muted-foreground text-sm">{team.roleLabel}</span>
                 </div>
               </div>
 
@@ -107,7 +98,7 @@ export default function TeamsIndex({ teams }: Props) {
           ))}
 
           {teams.length === 0 ? (
-            <p className="py-8 text-center text-muted-foreground">
+            <p className="text-muted-foreground py-8 text-center">
               You don't belong to any teams yet.
             </p>
           ) : null}

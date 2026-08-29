@@ -36,7 +36,10 @@ export default function DeleteTeamModal({ team, open, onOpenChange }: Props) {
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog
+      open={open}
+      onOpenChange={handleOpenChange}
+    >
       <DialogContent>
         <Form
           key={String(open)}
@@ -49,8 +52,8 @@ export default function DeleteTeamModal({ team, open, onOpenChange }: Props) {
               <DialogHeader>
                 <DialogTitle>Are you sure?</DialogTitle>
                 <DialogDescription>
-                  This action cannot be undone. This will permanently delete the
-                  team <strong>"{team.name}"</strong>.
+                  This action cannot be undone. This will permanently delete the team{' '}
+                  <strong>"{team.name}"</strong>.
                 </DialogDescription>
               </DialogHeader>
 
@@ -64,9 +67,7 @@ export default function DeleteTeamModal({ team, open, onOpenChange }: Props) {
                     name="name"
                     data-test="delete-team-name"
                     value={confirmationName}
-                    onChange={(event) =>
-                      setConfirmationName(event.target.value)
-                    }
+                    onChange={(event) => setConfirmationName(event.target.value)}
                     placeholder="Enter team name"
                     autoComplete="off"
                   />
@@ -75,9 +76,7 @@ export default function DeleteTeamModal({ team, open, onOpenChange }: Props) {
               </div>
 
               <DialogFooter className="gap-2">
-                <DialogClose render={<Button variant="secondary" />}>
-                  Cancel
-                </DialogClose>
+                <DialogClose render={<Button variant="secondary" />}>Cancel</DialogClose>
 
                 <Button
                   variant="destructive"

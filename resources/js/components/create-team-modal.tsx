@@ -22,12 +22,11 @@ export default function CreateTeamModal({ children }: PropsWithChildren) {
   const [open, setOpen] = useState(false)
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
-        render={
-          isValidElement(children) ? (children as ReactElement) : undefined
-        }
-      />
+    <Dialog
+      open={open}
+      onOpenChange={setOpen}
+    >
+      <DialogTrigger render={isValidElement(children) ? (children as ReactElement) : undefined} />
       <DialogContent>
         <Form
           key={String(open)}
@@ -39,9 +38,7 @@ export default function CreateTeamModal({ children }: PropsWithChildren) {
             <>
               <DialogHeader>
                 <DialogTitle>Create a new team</DialogTitle>
-                <DialogDescription>
-                  Create a new team to collaborate with others.
-                </DialogDescription>
+                <DialogDescription>Create a new team to collaborate with others.</DialogDescription>
               </DialogHeader>
 
               <div className="grid gap-2">
@@ -57,9 +54,7 @@ export default function CreateTeamModal({ children }: PropsWithChildren) {
               </div>
 
               <DialogFooter className="gap-2">
-                <DialogClose render={<Button variant="secondary" />}>
-                  Cancel
-                </DialogClose>
+                <DialogClose render={<Button variant="secondary" />}>Cancel</DialogClose>
 
                 <Button
                   type="submit"

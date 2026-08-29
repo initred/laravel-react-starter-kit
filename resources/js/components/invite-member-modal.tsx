@@ -30,12 +30,7 @@ type Props = {
   onOpenChange: (open: boolean) => void
 }
 
-export default function InviteMemberModal({
-  team,
-  availableRoles,
-  open,
-  onOpenChange,
-}: Props) {
+export default function InviteMemberModal({ team, availableRoles, open, onOpenChange }: Props) {
   const [inviteRole, setInviteRole] = useState<RoleOption['value']>('member')
 
   const handleOpenChange = (nextOpen: boolean) => {
@@ -47,7 +42,10 @@ export default function InviteMemberModal({
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog
+      open={open}
+      onOpenChange={handleOpenChange}
+    >
       <DialogContent>
         <Form
           key={String(open)}
@@ -59,9 +57,7 @@ export default function InviteMemberModal({
             <>
               <DialogHeader>
                 <DialogTitle>Invite a team member</DialogTitle>
-                <DialogDescription>
-                  Send an invitation to join this team.
-                </DialogDescription>
+                <DialogDescription>Send an invitation to join this team.</DialogDescription>
               </DialogHeader>
 
               <div className="grid gap-4">
@@ -97,7 +93,10 @@ export default function InviteMemberModal({
                     </SelectTrigger>
                     <SelectContent>
                       {availableRoles.map((role) => (
-                        <SelectItem key={role.value} value={role.value}>
+                        <SelectItem
+                          key={role.value}
+                          value={role.value}
+                        >
                           {role.label}
                         </SelectItem>
                       ))}
@@ -108,9 +107,7 @@ export default function InviteMemberModal({
               </div>
 
               <DialogFooter className="gap-2">
-                <DialogClose render={<Button variant="secondary" />}>
-                  Cancel
-                </DialogClose>
+                <DialogClose render={<Button variant="secondary" />}>Cancel</DialogClose>
 
                 <Button
                   type="submit"

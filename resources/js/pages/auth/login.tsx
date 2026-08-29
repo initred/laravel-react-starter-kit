@@ -6,13 +6,7 @@ import TextLink from '@/components/text-link'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from '@/components/ui/field'
+import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import { register } from '@/routes'
@@ -27,17 +21,16 @@ type Props = {
   teamInvitation?: TeamInvitationContext | null
 }
 
-export default function Login({
-  status,
-  canResetPassword,
-  teamInvitation,
-}: Props) {
+export default function Login({ status, canResetPassword, teamInvitation }: Props) {
   return (
     <>
       <Head title="Log in" />
 
       {teamInvitation && (
-        <TeamInvitationAlert invitation={teamInvitation} action="Log in" />
+        <TeamInvitationAlert
+          invitation={teamInvitation}
+          action="Log in"
+        />
       )}
 
       <PasskeyVerify />
@@ -103,7 +96,11 @@ export default function Login({
               </Field>
 
               <Field orientation="horizontal">
-                <Checkbox id="remember" name="remember" tabIndex={3} />
+                <Checkbox
+                  id="remember"
+                  name="remember"
+                  tabIndex={3}
+                />
                 <FieldLabel htmlFor="remember">Remember me</FieldLabel>
               </Field>
 
@@ -118,9 +115,12 @@ export default function Login({
               </Button>
             </FieldGroup>
 
-            <div className="text-center text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-center text-sm">
               Don't have an account?{' '}
-              <TextLink href={register()} tabIndex={5}>
+              <TextLink
+                href={register()}
+                tabIndex={5}
+              >
                 Sign up
               </TextLink>
             </div>
