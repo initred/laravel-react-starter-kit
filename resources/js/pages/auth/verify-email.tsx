@@ -23,11 +23,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
         </Alert>
       )}
 
-      <Form
-        {...send.form()}
-        disableWhileProcessing
-        className="space-y-6 text-center"
-      >
+      <Form {...send.form()} disableWhileProcessing className="space-y-6 text-center">
         {({ processing }) => (
           <>
             <Button variant="secondary">
@@ -35,10 +31,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
               Resend verification email
             </Button>
 
-            <TextLink
-              href={logout()}
-              className="mx-auto block text-sm"
-            >
+            <TextLink href={logout()} className="mx-auto block text-sm">
               Log out
             </TextLink>
           </>

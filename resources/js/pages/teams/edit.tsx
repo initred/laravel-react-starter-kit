@@ -86,10 +86,7 @@ export default function TeamEdit({
                 description="Update your team name and settings"
               />
 
-              <Form
-                {...update.form(team.slug)}
-                className="space-y-6"
-              >
+              <Form {...update.form(team.slug)} className="space-y-6">
                 {({ errors, processing }) => (
                   <>
                     <div className="grid gap-2">
@@ -105,11 +102,7 @@ export default function TeamEdit({
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <Button
-                        type="submit"
-                        data-test="team-save-button"
-                        disabled={processing}
-                      >
+                      <Button type="submit" data-test="team-save-button" disabled={processing}>
                         Save
                       </Button>
                     </div>
@@ -119,10 +112,7 @@ export default function TeamEdit({
             </>
           ) : (
             <>
-              <Heading
-                variant="small"
-                title={team.name}
-              />
+              <Heading variant="small" title={team.name} />
             </>
           )}
         </div>
@@ -136,10 +126,7 @@ export default function TeamEdit({
             />
 
             {permissions.canCreateInvitation ? (
-              <Button
-                data-test="invite-member-button"
-                onClick={() => setInviteDialogOpen(true)}
-              >
+              <Button data-test="invite-member-button" onClick={() => setInviteDialogOpen(true)}>
                 <IconUserPlus /> Invite member
               </Button>
             ) : null}
@@ -154,12 +141,7 @@ export default function TeamEdit({
               >
                 <div className="flex items-center gap-4">
                   <Avatar className="h-10 w-10">
-                    {member.avatar ? (
-                      <AvatarImage
-                        src={member.avatar}
-                        alt={member.name}
-                      />
-                    ) : null}
+                    {member.avatar ? <AvatarImage src={member.avatar} alt={member.name} /> : null}
                     <AvatarFallback>{getInitials(member.name)}</AvatarFallback>
                   </Avatar>
                   <div>
@@ -173,11 +155,7 @@ export default function TeamEdit({
                     <DropdownMenu>
                       <DropdownMenuTrigger
                         render={
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            data-test="member-role-trigger"
-                          />
+                          <Button variant="outline" size="sm" data-test="member-role-trigger" />
                         }
                       >
                         {member.role_label}
@@ -326,11 +304,7 @@ export default function TeamEdit({
       />
 
       {permissions.canDeleteTeam && !team.isPersonal ? (
-        <DeleteTeamModal
-          team={team}
-          open={deleteDialogOpen}
-          onOpenChange={setDeleteDialogOpen}
-        />
+        <DeleteTeamModal team={team} open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen} />
       ) : null}
     </>
   )

@@ -98,10 +98,7 @@ export default function Security(props: Props) {
               </Field>
 
               <Field orientation="horizontal">
-                <Button
-                  disabled={processing}
-                  data-test="update-password-button"
-                >
+                <Button disabled={processing} data-test="update-password-button">
                   Save
                 </Button>
               </Field>
@@ -116,10 +113,7 @@ export default function Security(props: Props) {
         twoFactorEnabled={props.twoFactorEnabled}
       />
 
-      <ManagePasskeys
-        canManagePasskeys={props.canManagePasskeys}
-        passkeys={props.passkeys}
-      />
+      <ManagePasskeys canManagePasskeys={props.canManagePasskeys} passkeys={props.passkeys} />
     </>
   )
 }

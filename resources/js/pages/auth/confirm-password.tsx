@@ -25,11 +25,7 @@ export default function ConfirmPassword() {
         separator="Or confirm with password"
       />
 
-      <Form
-        {...store.form()}
-        disableWhileProcessing
-        resetOnSuccess={['password']}
-      >
+      <Form {...store.form()} disableWhileProcessing resetOnSuccess={['password']}>
         {({ processing, errors }) => (
           <FieldGroup>
             <Field data-invalid={!!errors.password}>
@@ -46,11 +42,7 @@ export default function ConfirmPassword() {
               {errors.password && <FieldError>{errors.password}</FieldError>}
             </Field>
 
-            <Button
-              className="w-full"
-              disabled={processing}
-              data-test="confirm-password-button"
-            >
+            <Button className="w-full" disabled={processing} data-test="confirm-password-button">
               {processing && <Spinner />}
               Confirm password
             </Button>

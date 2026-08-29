@@ -65,10 +65,7 @@ export default function TwoFactorChallenge() {
                   {errors.recovery_code && <FieldError>{errors.recovery_code}</FieldError>}
                 </Field>
               ) : (
-                <Field
-                  data-invalid={!!errors.code}
-                  className="items-center text-center"
-                >
+                <Field data-invalid={!!errors.code} className="items-center text-center">
                   <InputOTP
                     name="code"
                     maxLength={OTP_MAX_LENGTH}
@@ -80,10 +77,7 @@ export default function TwoFactorChallenge() {
                   >
                     <InputOTPGroup>
                       {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                        <InputOTPSlot
-                          key={index}
-                          index={index}
-                        />
+                        <InputOTPSlot key={index} index={index} />
                       ))}
                     </InputOTPGroup>
                   </InputOTP>
@@ -91,10 +85,7 @@ export default function TwoFactorChallenge() {
                 </Field>
               )}
 
-              <Button
-                type="submit"
-                className="w-full"
-              >
+              <Button type="submit" className="w-full">
                 Continue
               </Button>
 

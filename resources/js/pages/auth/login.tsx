@@ -26,12 +26,7 @@ export default function Login({ status, canResetPassword, teamInvitation }: Prop
     <>
       <Head title="Log in" />
 
-      {teamInvitation && (
-        <TeamInvitationAlert
-          invitation={teamInvitation}
-          action="Log in"
-        />
-      )}
+      {teamInvitation && <TeamInvitationAlert invitation={teamInvitation} action="Log in" />}
 
       <PasskeyVerify />
 
@@ -73,11 +68,7 @@ export default function Login({ status, canResetPassword, teamInvitation }: Prop
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                   {canResetPassword && (
-                    <TextLink
-                      href={request()}
-                      className="ml-auto text-sm"
-                      tabIndex={5}
-                    >
+                    <TextLink href={request()} className="ml-auto text-sm" tabIndex={5}>
                       Forgot your password?
                     </TextLink>
                   )}
@@ -96,20 +87,11 @@ export default function Login({ status, canResetPassword, teamInvitation }: Prop
               </Field>
 
               <Field orientation="horizontal">
-                <Checkbox
-                  id="remember"
-                  name="remember"
-                  tabIndex={3}
-                />
+                <Checkbox id="remember" name="remember" tabIndex={3} />
                 <FieldLabel htmlFor="remember">Remember me</FieldLabel>
               </Field>
 
-              <Button
-                type="submit"
-                className="mt-4 w-full"
-                tabIndex={4}
-                data-test="login-button"
-              >
+              <Button type="submit" className="mt-4 w-full" tabIndex={4} data-test="login-button">
                 {processing && <Spinner />}
                 Log in
               </Button>
@@ -117,10 +99,7 @@ export default function Login({ status, canResetPassword, teamInvitation }: Prop
 
             <div className="text-muted-foreground text-center text-sm">
               Don't have an account?{' '}
-              <TextLink
-                href={register()}
-                tabIndex={5}
-              >
+              <TextLink href={register()} tabIndex={5}>
                 Sign up
               </TextLink>
             </div>

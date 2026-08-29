@@ -20,12 +20,7 @@ export default function Register({ passwordRules, teamInvitation }: Props) {
     <>
       <Head title="Register" />
 
-      {teamInvitation && (
-        <TeamInvitationAlert
-          invitation={teamInvitation}
-          action="Register"
-        />
-      )}
+      {teamInvitation && <TeamInvitationAlert invitation={teamInvitation} action="Register" />}
 
       <Form
         {...store.form()}
@@ -114,10 +109,7 @@ export default function Register({ passwordRules, teamInvitation }: Props) {
 
             <div className="text-muted-foreground text-center text-sm">
               Already have an account?{' '}
-              <TextLink
-                href={login()}
-                tabIndex={6}
-              >
+              <TextLink href={login()} tabIndex={6}>
                 Log in
               </TextLink>
             </div>

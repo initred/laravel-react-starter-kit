@@ -36,10 +36,7 @@ export default function DeleteTeamModal({ team, open, onOpenChange }: Props) {
   }
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={handleOpenChange}
-    >
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <Form
           key={String(open)}

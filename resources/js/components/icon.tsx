@@ -6,10 +6,5 @@ interface IconProps extends TablerIconProps {
 }
 
 export function Icon({ iconNode: IconComponent, className, ...props }: IconProps) {
-  return (
-    <IconComponent
-      className={cn('size-4', className)}
-      {...props}
-    />
-  )
+  return <IconComponent className={cn('size-4', className)} {...props} />
 }

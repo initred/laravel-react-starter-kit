@@ -22,10 +22,7 @@ export default function CreateTeamModal({ children }: PropsWithChildren) {
   const [open, setOpen] = useState(false)
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={setOpen}
-    >
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger render={isValidElement(children) ? (children as ReactElement) : undefined} />
       <DialogContent>
         <Form
@@ -56,11 +53,7 @@ export default function CreateTeamModal({ children }: PropsWithChildren) {
               <DialogFooter className="gap-2">
                 <DialogClose render={<Button variant="secondary" />}>Cancel</DialogClose>
 
-                <Button
-                  type="submit"
-                  data-test="create-team-submit"
-                  disabled={processing}
-                >
+                <Button type="submit" data-test="create-team-submit" disabled={processing}>
                   Create team
                 </Button>
               </DialogFooter>

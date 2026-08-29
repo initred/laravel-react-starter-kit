@@ -69,11 +69,7 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
               )}
             </Field>
 
-            <Button
-              type="submit"
-              className="mt-4 w-full"
-              data-test="reset-password-button"
-            >
+            <Button type="submit" className="mt-4 w-full" data-test="reset-password-button">
               {processing && <Spinner />}
               Reset password
             </Button>
