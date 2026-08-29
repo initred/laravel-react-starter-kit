@@ -7,6 +7,11 @@ import laravel from 'laravel-vite-plugin'
 import { defineConfig, lazyPlugins } from 'vite-plus'
 // import { bunny } from 'laravel-vite-plugin/fonts';
 
+const wayfinderCommand =
+  process.env.LARAVEL_SAIL || process.env.CI === 'true'
+    ? 'php artisan wayfinder:generate'
+    : 'vendor/bin/sail artisan wayfinder:generate'
+
 export default defineConfig({
   plugins: lazyPlugins(() => [
     laravel({
@@ -22,9 +27,7 @@ export default defineConfig({
     tailwindcss(),
     wayfinder({
       formVariants: true,
-      command: process.env.LARAVEL_SAIL
-        ? 'php artisan wayfinder:generate'
-        : 'vendor/bin/sail artisan wayfinder:generate',
+      command: wayfinderCommand,
     }),
   ]),
   server: {
