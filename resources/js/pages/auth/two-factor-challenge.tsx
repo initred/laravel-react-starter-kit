@@ -4,11 +4,7 @@ import { useMemo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Field, FieldError, FieldGroup } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from '@/components/ui/input-otp'
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth'
 import { store } from '@/routes/two-factor/login'
 
@@ -32,8 +28,7 @@ export default function TwoFactorChallenge() {
 
     return {
       title: 'Authentication Code',
-      description:
-        'Enter the authentication code provided by your authenticator application.',
+      description: 'Enter the authentication code provided by your authenticator application.',
       toggleText: 'login using a recovery code',
     }
   }, [showRecoveryInput])
@@ -67,9 +62,7 @@ export default function TwoFactorChallenge() {
                     required
                     aria-invalid={!!errors.recovery_code}
                   />
-                  {errors.recovery_code && (
-                    <FieldError>{errors.recovery_code}</FieldError>
-                  )}
+                  {errors.recovery_code && <FieldError>{errors.recovery_code}</FieldError>}
                 </Field>
               ) : (
                 <Field
@@ -87,7 +80,10 @@ export default function TwoFactorChallenge() {
                   >
                     <InputOTPGroup>
                       {Array.from({ length: OTP_MAX_LENGTH }, (_, index) => (
-                        <InputOTPSlot key={index} index={index} />
+                        <InputOTPSlot
+                          key={index}
+                          index={index}
+                        />
                       ))}
                     </InputOTPGroup>
                   </InputOTP>
@@ -95,15 +91,18 @@ export default function TwoFactorChallenge() {
                 </Field>
               )}
 
-              <Button type="submit" className="w-full">
+              <Button
+                type="submit"
+                className="w-full"
+              >
                 Continue
               </Button>
 
-              <div className="text-center text-sm text-muted-foreground">
+              <div className="text-muted-foreground text-center text-sm">
                 <span>or you can </span>
                 <button
                   type="button"
-                  className="cursor-pointer text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
+                  className="text-foreground cursor-pointer underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
                   onClick={() => toggleRecoveryMode(clearErrors)}
                 >
                   {authConfigContent.toggleText}

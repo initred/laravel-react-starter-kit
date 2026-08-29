@@ -39,11 +39,7 @@ export default function Security(props: Props) {
           options={{
             preserveScroll: true,
           }}
-          resetOnError={[
-            'password',
-            'password_confirmation',
-            'current_password',
-          ]}
+          resetOnError={['password', 'password_confirmation', 'current_password']}
           resetOnSuccess
           onError={(errors) => {
             if (errors.password) {
@@ -59,9 +55,7 @@ export default function Security(props: Props) {
           {({ errors, processing }) => (
             <>
               <Field>
-                <FieldLabel htmlFor="current_password">
-                  Current password
-                </FieldLabel>
+                <FieldLabel htmlFor="current_password">Current password</FieldLabel>
 
                 <PasswordInput
                   id="current_password"
@@ -90,9 +84,7 @@ export default function Security(props: Props) {
               </Field>
 
               <Field>
-                <FieldLabel htmlFor="password_confirmation">
-                  Confirm password
-                </FieldLabel>
+                <FieldLabel htmlFor="password_confirmation">Confirm password</FieldLabel>
 
                 <PasswordInput
                   id="password_confirmation"

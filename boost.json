@@ -1,9 +1,5 @@
 {
-    "agents": [
-        "claude_code",
-        "codex",
-        "grok_build"
-    ],
+    "agents": ["claude_code", "codex", "grok_build"],
     "cloud": false,
     "guidelines": true,
     "mcp": true,

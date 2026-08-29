@@ -21,13 +21,21 @@ export function AppSidebar() {
   const currentTeamSlug = currentTeam?.slug ?? ''
 
   return (
-    <Sidebar collapsible="icon" variant="inset">
+    <Sidebar
+      collapsible="icon"
+      variant="inset"
+    >
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               size="lg"
-              render={<Link href={dashboard(currentTeamSlug)} prefetch />}
+              render={
+                <Link
+                  href={dashboard(currentTeamSlug)}
+                  prefetch
+                />
+              }
             >
               <AppLogo />
             </SidebarMenuButton>
@@ -45,7 +53,10 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <NavFooter items={docsNavItems} className="mt-auto" />
+        <NavFooter
+          items={docsNavItems}
+          className="mt-auto"
+        />
         <NavUser />
       </SidebarFooter>
     </Sidebar>

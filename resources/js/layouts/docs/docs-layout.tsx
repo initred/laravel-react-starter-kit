@@ -41,7 +41,12 @@ export default function DocsLayout({
                 })}
                 render={<Link href={item.href} />}
               >
-                {item.icon && <item.icon stroke={2} className="h-4 w-4" />}
+                {item.icon && (
+                  <item.icon
+                    stroke={2}
+                    className="h-4 w-4"
+                  />
+                )}
                 {item.title}
               </Button>
             ))}
@@ -51,9 +56,7 @@ export default function DocsLayout({
         <Separator className="my-6 lg:hidden" />
 
         <div className="flex-1">
-          <article className="typeset typeset-docs max-w-[37em]">
-            {children}
-          </article>
+          <article className="typeset typeset-docs max-w-[37em]">{children}</article>
         </div>
       </div>
     </div>

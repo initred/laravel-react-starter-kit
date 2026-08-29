@@ -1,9 +1,6 @@
 import type { ImportMetaEnv } from '@/types/vite-env'
 
-export default function env(
-  key: keyof ImportMetaEnv,
-  defaultValue: string = '',
-): string {
+export default function env(key: keyof ImportMetaEnv, defaultValue: string = ''): string {
   const value = import.meta.env[key] || defaultValue
 
   if (typeof value === 'undefined') {

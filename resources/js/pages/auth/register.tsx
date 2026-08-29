@@ -2,13 +2,7 @@ import { Form, Head } from '@inertiajs/react'
 import TeamInvitationAlert from '@/components/team-invitation-alert'
 import TextLink from '@/components/text-link'
 import { Button } from '@/components/ui/button'
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from '@/components/ui/field'
+import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import { login } from '@/routes'
@@ -27,7 +21,10 @@ export default function Register({ passwordRules, teamInvitation }: Props) {
       <Head title="Register" />
 
       {teamInvitation && (
-        <TeamInvitationAlert invitation={teamInvitation} action="Register" />
+        <TeamInvitationAlert
+          invitation={teamInvitation}
+          action="Register"
+        />
       )}
 
       <Form
@@ -87,9 +84,7 @@ export default function Register({ passwordRules, teamInvitation }: Props) {
               </Field>
 
               <Field data-invalid={!!errors.password_confirmation}>
-                <FieldLabel htmlFor="password_confirmation">
-                  Confirm password
-                </FieldLabel>
+                <FieldLabel htmlFor="password_confirmation">Confirm password</FieldLabel>
                 <Input
                   id="password_confirmation"
                   type="password"
@@ -117,9 +112,12 @@ export default function Register({ passwordRules, teamInvitation }: Props) {
               </Button>
             </FieldGroup>
 
-            <div className="text-center text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-center text-sm">
               Already have an account?{' '}
-              <TextLink href={login()} tabIndex={6}>
+              <TextLink
+                href={login()}
+                tabIndex={6}
+              >
                 Log in
               </TextLink>
             </div>

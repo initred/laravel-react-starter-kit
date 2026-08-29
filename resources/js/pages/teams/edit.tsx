@@ -1,10 +1,5 @@
 import { Form, Head, router } from '@inertiajs/react'
-import {
-  IconChevronDown,
-  IconMail,
-  IconUserPlus,
-  IconX,
-} from '@tabler/icons-react'
+import { IconChevronDown, IconMail, IconUserPlus, IconX } from '@tabler/icons-react'
 import { useMemo, useState } from 'react'
 import CancelInvitationModal from '@/components/cancel-invitation-modal'
 import DeleteTeamModal from '@/components/delete-team-modal'
@@ -23,22 +18,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { useInitials } from '@/hooks/use-initials'
 import { edit, index, update } from '@/routes/teams'
 import { update as updateMember } from '@/routes/teams/members'
-import type {
-  RoleOption,
-  Team,
-  TeamInvitation,
-  TeamMember,
-  TeamPermissions,
-} from '@/types'
+import type { RoleOption, Team, TeamInvitation, TeamMember, TeamPermissions } from '@/types'
 
 type Props = {
   team: Team
@@ -61,14 +45,11 @@ export default function TeamEdit({
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [removeMemberDialogOpen, setRemoveMemberDialogOpen] = useState(false)
   const [memberToRemove, setMemberToRemove] = useState<TeamMember | null>(null)
-  const [cancelInvitationDialogOpen, setCancelInvitationDialogOpen] =
-    useState(false)
-  const [invitationToCancel, setInvitationToCancel] =
-    useState<TeamInvitation | null>(null)
+  const [cancelInvitationDialogOpen, setCancelInvitationDialogOpen] = useState(false)
+  const [invitationToCancel, setInvitationToCancel] = useState<TeamInvitation | null>(null)
 
   const pageTitle = useMemo(
-    () =>
-      permissions.canUpdateTeam ? `Edit ${team.name}` : `View ${team.name}`,
+    () => (permissions.canUpdateTeam ? `Edit ${team.name}` : `View ${team.name}`),
     [permissions.canUpdateTeam, team.name],
   )
 
@@ -105,7 +86,10 @@ export default function TeamEdit({
                 description="Update your team name and settings"
               />
 
-              <Form {...update.form(team.slug)} className="space-y-6">
+              <Form
+                {...update.form(team.slug)}
+                className="space-y-6"
+              >
                 {({ errors, processing }) => (
                   <>
                     <div className="grid gap-2">
@@ -135,7 +119,10 @@ export default function TeamEdit({
             </>
           ) : (
             <>
-              <Heading variant="small" title={team.name} />
+              <Heading
+                variant="small"
+                title={team.name}
+              />
             </>
           )}
         </div>
@@ -145,11 +132,7 @@ export default function TeamEdit({
             <Heading
               variant="small"
               title="Team members"
-              description={
-                permissions.canCreateInvitation
-                  ? 'Manage who belongs to this team'
-                  : ''
-              }
+              description={permissions.canCreateInvitation ? 'Manage who belongs to this team' : ''}
             />
 
             {permissions.canCreateInvitation ? (
@@ -172,15 +155,16 @@ export default function TeamEdit({
                 <div className="flex items-center gap-4">
                   <Avatar className="h-10 w-10">
                     {member.avatar ? (
-                      <AvatarImage src={member.avatar} alt={member.name} />
+                      <AvatarImage
+                        src={member.avatar}
+                        alt={member.name}
+                      />
                     ) : null}
                     <AvatarFallback>{getInitials(member.name)}</AvatarFallback>
                   </Avatar>
                   <div>
                     <div className="font-medium">{member.name}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {member.email}
-                    </div>
+                    <div className="text-muted-foreground text-sm">{member.email}</div>
                   </div>
                 </div>
 
@@ -258,14 +242,12 @@ export default function TeamEdit({
                   className="flex items-center justify-between rounded-lg border p-4"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
-                      <IconMail className="h-5 w-5 text-muted-foreground" />
+                    <div className="bg-muted flex h-10 w-10 items-center justify-center rounded-full">
+                      <IconMail className="text-muted-foreground h-5 w-5" />
                     </div>
                     <div>
                       <div className="font-medium">{invitation.email}</div>
-                      <div className="text-sm text-muted-foreground">
-                        {invitation.role_label}
-                      </div>
+                      <div className="text-muted-foreground text-sm">{invitation.role_label}</div>
                     </div>
                   </div>
 
@@ -278,9 +260,7 @@ export default function TeamEdit({
                               variant="ghost"
                               size="sm"
                               data-test="invitation-cancel-button"
-                              onClick={() =>
-                                confirmCancelInvitation(invitation)
-                              }
+                              onClick={() => confirmCancelInvitation(invitation)}
                             >
                               <IconX className="h-4 w-4" />
                             </Button>
@@ -308,9 +288,7 @@ export default function TeamEdit({
             <div className="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10">
               <div className="relative space-y-0.5 text-red-600 dark:text-red-100">
                 <p className="font-medium">Warning</p>
-                <p className="text-sm">
-                  Please proceed with caution, this cannot be undone.
-                </p>
+                <p className="text-sm">Please proceed with caution, this cannot be undone.</p>
               </div>
               <Button
                 variant="destructive"

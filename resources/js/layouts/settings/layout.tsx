@@ -34,7 +34,12 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                 })}
                 render={<Link href={item.href} />}
               >
-                {item.icon && <item.icon stroke={2} className="h-4 w-4" />}
+                {item.icon && (
+                  <item.icon
+                    stroke={2}
+                    className="h-4 w-4"
+                  />
+                )}
                 {item.title}
               </Button>
             ))}

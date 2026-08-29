@@ -1,10 +1,5 @@
 import { router, usePage } from '@inertiajs/react'
-import {
-  IconCheck,
-  IconPlus,
-  IconSelector,
-  IconUsers,
-} from '@tabler/icons-react'
+import { IconCheck, IconPlus, IconSelector, IconUsers } from '@tabler/icons-react'
 import CreateTeamModal from '@/components/create-team-modal'
 import { Button } from '@/components/ui/button'
 import {
@@ -67,16 +62,14 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
             className={
               inHeader
                 ? 'h-8 gap-1 px-2'
-                : 'w-full justify-start px-2 has-[>svg]:px-2 data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground'
+                : 'data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground w-full justify-start px-2 has-[>svg]:px-2'
             }
           />
         }
       >
         <IconUsers
           className={
-            inHeader
-              ? 'hidden'
-              : 'hidden size-4 shrink-0 group-data-[collapsible=icon]:block'
+            inHeader ? 'hidden' : 'hidden size-4 shrink-0 group-data-[collapsible=icon]:block'
           }
         />
         <div
@@ -87,20 +80,14 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
           }
         >
           <span
-            className={
-              inHeader
-                ? 'max-w-[120px] truncate font-medium'
-                : 'truncate font-semibold'
-            }
+            className={inHeader ? 'max-w-[120px] truncate font-medium' : 'truncate font-semibold'}
           >
             {currentTeam?.name ?? 'Select team'}
           </span>
         </div>
         <IconSelector
           className={
-            inHeader
-              ? 'size-4 opacity-50'
-              : 'ml-auto group-data-[collapsible=icon]:hidden'
+            inHeader ? 'size-4 opacity-50' : 'ml-auto group-data-[collapsible=icon]:hidden'
           }
         />
       </DropdownMenuTrigger>
@@ -111,23 +98,17 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
         sideOffset={inHeader ? undefined : 4}
       >
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="text-xs text-muted-foreground">
-            Teams
-          </DropdownMenuLabel>
+          <DropdownMenuLabel className="text-muted-foreground text-xs">Teams</DropdownMenuLabel>
           {teams.map((team) => (
             <DropdownMenuItem
               key={team.id}
               data-test="team-switcher-item"
-              className={
-                inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'
-              }
+              className={inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'}
               onClick={() => switchTeam(team)}
             >
               {team.name}
               {currentTeam?.id === team.id && (
-                <IconCheck
-                  className={inHeader ? 'ml-auto size-4' : 'ml-auto h-4 w-4'}
-                />
+                <IconCheck className={inHeader ? 'ml-auto size-4' : 'ml-auto h-4 w-4'} />
               )}
             </DropdownMenuItem>
           ))}
@@ -137,9 +118,7 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
           <CreateTeamModal>
             <DropdownMenuItem
               data-test="team-switcher-new-team"
-              className={
-                inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'
-              }
+              className={inHeader ? 'cursor-pointer gap-2' : 'cursor-pointer gap-2 p-2'}
               closeOnClick={false}
             >
               <IconPlus className={inHeader ? 'size-4' : 'h-4 w-4'} />

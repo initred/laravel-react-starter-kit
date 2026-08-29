@@ -28,9 +28,5 @@ function getServerSnapshot(): boolean {
 }
 
 export function useIsMobile(): boolean {
-  return useSyncExternalStore(
-    mediaQueryListener,
-    isSmallerThanBreakpoint,
-    getServerSnapshot,
-  )
+  return useSyncExternalStore(mediaQueryListener, isSmallerThanBreakpoint, getServerSnapshot)
 }

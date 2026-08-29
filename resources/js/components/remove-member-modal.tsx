@@ -20,12 +20,7 @@ type Props = {
   onOpenChange: (open: boolean) => void
 }
 
-export default function RemoveMemberModal({
-  team,
-  member,
-  open,
-  onOpenChange,
-}: Props) {
+export default function RemoveMemberModal({ team, member, open, onOpenChange }: Props) {
   const [processing, setProcessing] = useState(false)
 
   const removeMember = () => {
@@ -41,20 +36,20 @@ export default function RemoveMemberModal({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog
+      open={open}
+      onOpenChange={onOpenChange}
+    >
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Remove team member</DialogTitle>
           <DialogDescription>
-            Are you sure you want to remove <strong>{member?.name}</strong> from
-            this team?
+            Are you sure you want to remove <strong>{member?.name}</strong> from this team?
           </DialogDescription>
         </DialogHeader>
 
         <DialogFooter className="gap-2">
-          <DialogClose render={<Button variant="secondary" />}>
-            Cancel
-          </DialogClose>
+          <DialogClose render={<Button variant="secondary" />}>Cancel</DialogClose>
 
           <Button
             variant="destructive"
