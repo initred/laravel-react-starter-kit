@@ -20,6 +20,9 @@ services:
         volumes:
             - ".:/var/www/html"
             - "sail-node-modules:/var/www/html/node_modules"
+        post_start:
+            - command: chown -R sail:dialout /var/www/html/node_modules
+              user: root
         networks:
             - sail
         depends_on:
