@@ -1,9 +1,9 @@
-import { Toast } from '@base-ui/react/toast'
 import { router } from '@inertiajs/react'
 import { useEffect } from 'react'
+import { useToastManager } from '@/components/ui/toast'
 
 export function useFlashToast(): void {
-  const { add } = Toast.useToastManager()
+  const { add } = useToastManager()
 
   useEffect(() => {
     return router.on('flash', (event) => {
@@ -19,4 +19,10 @@ export function useFlashToast(): void {
       })
     })
   }, [add])
+}
+
+export function FlashToastListener() {
+  useFlashToast()
+
+  return null
 }
