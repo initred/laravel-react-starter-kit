@@ -3,7 +3,7 @@ import type { Icon } from '@tabler/icons-react'
 import type { HTMLAttributes } from 'react'
 import type { Appearance } from '@/hooks/use-appearance'
 import { useAppearance } from '@/hooks/use-appearance'
-import { cn } from '@/lib/utils'
+import { cn } from 'cn'
 
 export default function AppearanceToggleTab({
   className = '',

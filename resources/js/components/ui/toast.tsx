@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import { Toast as ToastPrimitive } from "@base-ui/react/toast"
+import { cn } from "cn"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { useFlashToast } from "@/hooks/use-flash-toast"
 import { IconX, IconCircleCheck, IconInfoCircle, IconAlertTriangle, IconAlertOctagon, IconLoader } from "@tabler/icons-react"
 
 const toast = ToastPrimitive.createToastManager()
@@ -203,8 +202,6 @@ function Toaster({
   toastManager = toast,
   ...props
 }: ToastPrimitive.Provider.Props) {
-  useFlashToast()
-
   return (
     <ToastProvider toastManager={toastManager} {...props}>
       {children}
