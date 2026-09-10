@@ -26,7 +26,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
       <Form {...send.form()} disableWhileProcessing className="space-y-6 text-center">
         {({ processing }) => (
           <>
-            <Button variant="secondary">
+            <Button type="submit" variant="secondary">
               {processing && <Spinner />}
               Resend verification email
             </Button>

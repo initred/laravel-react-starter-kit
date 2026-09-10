@@ -39,7 +39,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 {errors.email && <FieldError>{errors.email}</FieldError>}
               </Field>
 
-              <Button className="w-full" data-test="email-password-reset-link-button">
+              <Button type="submit" className="w-full" data-test="email-password-reset-link-button">
                 {processing && <Spinner />}
                 Email password reset link
               </Button>

@@ -198,15 +198,20 @@ function ToastList() {
   ))
 }
 
+function FlashToastListener() {
+  useFlashToast()
+
+  return null
+}
+
 function Toaster({
   children,
   toastManager = toast,
   ...props
 }: ToastPrimitive.Provider.Props) {
-  useFlashToast()
-
   return (
     <ToastProvider toastManager={toastManager} {...props}>
+      <FlashToastListener />
       {children}
       <ToastPortal>
         <ToastViewport>

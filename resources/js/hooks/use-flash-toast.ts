@@ -1,22 +1,22 @@
+import { Toast } from '@base-ui/react/toast'
 import { router } from '@inertiajs/react'
 import { useEffect } from 'react'
-import { toast } from '@/components/ui/toast'
-import type { FlashToast } from '@/types'
 
 export function useFlashToast(): void {
+  const { add } = Toast.useToastManager()
+
   useEffect(() => {
     return router.on('flash', (event) => {
-      const flash = (event as CustomEvent).detail?.flash
-      const data = flash?.toast as FlashToast | undefined
+      const data = event.detail.flash.toast
 
       if (!data) {
         return
       }
 
-      toast.add({
+      add({
         type: data.type,
         title: data.message,
       })
     })
-  }, [])
+  }, [add])
 }
