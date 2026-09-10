@@ -13,6 +13,7 @@ services:
             - "${VITE_PORT:-5173}:${VITE_PORT:-5173}"
         environment:
             WWWUSER: "${WWWUSER}"
+            WWWGROUP: "${WWWGROUP}"
             LARAVEL_SAIL: 1
             XDEBUG_MODE: "${SAIL_XDEBUG_MODE:-off}"
             XDEBUG_CONFIG: "${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}"
@@ -21,7 +22,7 @@ services:
             - ".:/var/www/html"
             - "sail-node-modules:/var/www/html/node_modules"
         post_start:
-            - command: chown -R sail:dialout /var/www/html/node_modules
+            - command: /bin/sh -c 'chown -R "$${WWWUSER}:$${WWWGROUP}" /var/www/html/node_modules'
               user: root
         networks:
             - sail
