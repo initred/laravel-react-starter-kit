@@ -98,7 +98,7 @@ export default function Security(props: Props) {
               </Field>
 
               <Field orientation="horizontal">
-                <Button disabled={processing} data-test="update-password-button">
+                <Button type="submit" disabled={processing} data-test="update-password-button">
                   Save
                 </Button>
               </Field>

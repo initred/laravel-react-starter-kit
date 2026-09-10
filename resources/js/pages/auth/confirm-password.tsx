@@ -42,7 +42,7 @@ export default function ConfirmPassword() {
               {errors.password && <FieldError>{errors.password}</FieldError>}
             </Field>
 
-            <Button className="w-full" disabled={processing} data-test="confirm-password-button">
+            <Button type="submit" className="w-full" disabled={processing} data-test="confirm-password-button">
               {processing && <Spinner />}
               Confirm password
             </Button>
