@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { useCurrentUrl } from '@/hooks/use-current-url'
 import { docsNavItems } from '@/lib/navigation'
-import { cn, toUrl } from '@/lib/utils'
+import { toUrl } from '@/lib/utils'
+import { cn } from 'cn'
 
 export default function DocsLayout({
   children,

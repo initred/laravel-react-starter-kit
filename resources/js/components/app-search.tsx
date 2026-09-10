@@ -15,7 +15,7 @@ import {
 import { InputGroup, InputGroupAddon } from '@/components/ui/input-group'
 import { Kbd } from '@/components/ui/kbd'
 import { docsNavItems, mainNavItems, settingsNavItems } from '@/lib/navigation'
-import { cn } from '@/lib/utils'
+import { cn } from 'cn'
 
 interface AppSearchProps {
   className?: string
