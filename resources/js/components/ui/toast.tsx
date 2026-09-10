@@ -6,7 +6,6 @@ import { cn } from "cn"
 
 import { Button } from "@/components/ui/button"
 import { IconX, IconCircleCheck, IconInfoCircle, IconAlertTriangle, IconAlertOctagon, IconLoader } from "@tabler/icons-react"
-import { useFlashToast } from "@/hooks/use-flash-toast"
 
 const toast = ToastPrimitive.createToastManager()
 
@@ -198,12 +197,6 @@ function ToastList() {
   ))
 }
 
-function FlashToastListener() {
-  useFlashToast()
-
-  return null
-}
-
 function Toaster({
   children,
   toastManager = toast,
@@ -211,7 +204,6 @@ function Toaster({
 }: ToastPrimitive.Provider.Props) {
   return (
     <ToastProvider toastManager={toastManager} {...props}>
-      <FlashToastListener />
       {children}
       <ToastPortal>
         <ToastViewport>
