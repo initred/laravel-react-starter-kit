@@ -27,6 +27,7 @@ export default defineConfig({
   server: {
     watch: {
       ignored: [
+        '**/.ai/**',
         '**/.agents/**',
         '**/.claude/**',
         '**/.cursor/**',
@@ -61,6 +62,7 @@ export default defineConfig({
       'composer.json',
       'resources/js/components/ui/*',
       'resources/views/mail/*',
+      '.ai/**',
       '.agents/skills/**',
       '.claude/skills/**',
       '.grok/skills/**',
