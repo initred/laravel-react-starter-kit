@@ -34,6 +34,14 @@ test('email can be verified', function (): void {
     $response->assertRedirect('/'.$user->currentTeam->slug.'/dashboard?verified=1');
 });
 
+test('unverified users are redirected to the email verification prompt', function (): void {
+    $user = User::factory()->unverified()->create();
+
+    $response = $this->actingAs($user)->get(route('appearance.edit'));
+
+    $response->assertRedirect(route('verification.notice'));
+});
+
 test('email is not verified with invalid hash', function (): void {
     $user = User::factory()->unverified()->create();
 
