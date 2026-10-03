@@ -1,5 +1,6 @@
 import { Link, router } from '@inertiajs/react'
-import { IconLogout, IconSettings } from '@tabler/icons-react'
+import { IconLogout } from '@tabler/icons-react'
+import AppearanceToggleTab from '@/components/appearance-tabs'
 import {
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -8,8 +9,9 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { UserInfo } from '@/components/user-info'
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation'
+import { settingsNavItems } from '@/lib/navigation'
+import { toUrl } from '@/lib/utils'
 import { logout } from '@/routes'
-import { edit } from '@/routes/profile'
 import type { User } from '@/types'
 
 interface UserMenuContentProps {
@@ -35,20 +37,26 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
-        <DropdownMenuItem
-          render={
-            <Link
-              className="block w-full cursor-pointer"
-              href={edit()}
-              prefetch
-              onClick={cleanup}
-            />
-          }
-        >
-          <IconSettings />
+        <DropdownMenuLabel className="font-mono text-[11px] tracking-[0.08em] uppercase">
           Settings
-        </DropdownMenuItem>
+        </DropdownMenuLabel>
+        {settingsNavItems.map((item) => (
+          <DropdownMenuItem
+            key={toUrl(item.href)}
+            render={
+              <Link className="w-full cursor-pointer" href={item.href} prefetch onClick={cleanup} />
+            }
+          >
+            {item.icon && <item.icon className="text-muted-foreground" />}
+            {item.title}
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <div className="flex items-center justify-between gap-4 px-2 py-1">
+        <span className="text-muted-foreground text-sm">Theme</span>
+        <AppearanceToggleTab />
+      </div>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
         <DropdownMenuItem
@@ -62,7 +70,7 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
             />
           }
         >
-          <IconLogout />
+          <IconLogout className="text-muted-foreground" />
           Log out
         </DropdownMenuItem>
       </DropdownMenuGroup>

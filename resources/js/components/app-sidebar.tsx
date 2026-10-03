@@ -21,32 +21,34 @@ export function AppSidebar() {
   const currentTeamSlug = currentTeam?.slug ?? ''
 
   return (
-    <Sidebar collapsible="icon" variant="inset">
-      <SidebarHeader>
-        <SidebarMenu>
+    <Sidebar collapsible="icon">
+      <SidebarHeader className="gap-0 p-0">
+        <SidebarMenu className="h-14 justify-center border-b px-2">
           <SidebarMenuItem>
             <SidebarMenuButton
-              size="lg"
+              className="h-10"
               render={<Link href={dashboard(currentTeamSlug)} prefetch />}
             >
               <AppLogo />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-        <SidebarMenu>
+        <SidebarMenu className="border-b p-2">
           <SidebarMenuItem>
             <TeamSwitcher />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="pt-2">
         <NavMain items={mainNavItems(currentTeamSlug)} />
       </SidebarContent>
 
-      <SidebarFooter>
+      <SidebarFooter className="gap-0 p-0">
         <NavFooter items={docsNavItems} className="mt-auto" />
-        <NavUser />
+        <div className="border-t p-2">
+          <NavUser />
+        </div>
       </SidebarFooter>
     </Sidebar>
   )
