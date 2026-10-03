@@ -1,10 +1,11 @@
 import { Head, Link } from '@inertiajs/react'
-import { IconEye, IconPencil, IconPlus } from '@tabler/icons-react'
+import { IconChevronRight, IconPlus } from '@tabler/icons-react'
 import CreateTeamModal from '@/components/create-team-modal'
-import Heading from '@/components/heading'
+import { SettingsSection } from '@/components/settings-section'
+import { StatusBadge } from '@/components/status-badge'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { edit as editProfile } from '@/routes/profile'
 import { edit, index } from '@/routes/teams'
 import type { Team } from '@/types'
 
@@ -17,99 +18,68 @@ export default function TeamsIndex({ teams }: Props) {
     <>
       <Head title="Teams" />
 
-      <h1 className="sr-only">Teams</h1>
+      <SettingsSection
+        label="Teams"
+        title="Your teams"
+        description="Teams you own or belong to. Switch the active team from the sidebar."
+      >
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-muted-foreground font-mono text-xs">
+              {teams.length} {teams.length === 1 ? 'team' : 'teams'}
+            </span>
 
-      <div className="flex flex-col space-y-6">
-        <div className="flex items-center justify-between">
-          <Heading
-            variant="small"
-            title="Teams"
-            description="Manage your teams and team memberships"
-          />
+            <CreateTeamModal>
+              <Button data-test="teams-new-team-button">
+                <IconPlus /> New team
+              </Button>
+            </CreateTeamModal>
+          </div>
 
-          <CreateTeamModal>
-            <Button data-test="teams-new-team-button">
-              <IconPlus /> New team
-            </Button>
-          </CreateTeamModal>
+          <div className="divide-y overflow-hidden rounded-lg border">
+            {teams.map((team) => (
+              <Link
+                key={team.id}
+                href={edit(team.slug)}
+                data-test="team-row"
+                className="hover:bg-muted/50 flex items-center gap-3.5 px-4 py-3.5 transition-colors"
+              >
+                <span className="bg-muted flex size-9 shrink-0 items-center justify-center rounded-md border font-mono text-sm font-medium">
+                  {team.name.charAt(0).toUpperCase()}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span className="truncate text-sm font-medium">{team.name}</span>
+                    {team.isPersonal ? <Badge variant="outline">Personal</Badge> : null}
+                    {team.isCurrent ? <StatusBadge tone="info">Current</StatusBadge> : null}
+                  </span>
+                  <span className="text-muted-foreground block text-[13px]">
+                    {team.roleLabel}
+                    {team.role === 'member' ? ' · view only' : null}
+                  </span>
+                </span>
+                <IconChevronRight className="text-muted-foreground size-4 shrink-0" />
+              </Link>
+            ))}
+
+            {teams.length === 0 ? (
+              <p className="text-muted-foreground py-10 text-center text-sm">
+                You don't belong to any teams yet.
+              </p>
+            ) : null}
+          </div>
         </div>
-
-        <div className="space-y-3">
-          {teams.map((team) => (
-            <div
-              key={team.id}
-              data-test="team-row"
-              className="flex items-center justify-between rounded-lg border p-4"
-            >
-              <div className="flex items-center gap-4">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{team.name}</span>
-                    {team.isPersonal ? <Badge variant="secondary">Personal</Badge> : null}
-                  </div>
-                  <span className="text-muted-foreground text-sm">{team.roleLabel}</span>
-                </div>
-              </div>
-
-              <TooltipProvider>
-                <div className="flex items-center gap-2">
-                  {team.role === 'member' ? (
-                    <Tooltip>
-                      <TooltipTrigger
-                        render={
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            data-test="team-view-button"
-                            nativeButton={false}
-                            render={<Link href={edit(team.slug)} />}
-                          >
-                            <IconEye className="h-4 w-4" />
-                          </Button>
-                        }
-                      />
-                      <TooltipContent>
-                        <p>View team</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  ) : (
-                    <Tooltip>
-                      <TooltipTrigger
-                        render={
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            data-test="team-edit-button"
-                            nativeButton={false}
-                            render={<Link href={edit(team.slug)} />}
-                          >
-                            <IconPencil className="h-4 w-4" />
-                          </Button>
-                        }
-                      />
-                      <TooltipContent>
-                        <p>Edit team</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
-                </div>
-              </TooltipProvider>
-            </div>
-          ))}
-
-          {teams.length === 0 ? (
-            <p className="text-muted-foreground py-8 text-center">
-              You don't belong to any teams yet.
-            </p>
-          ) : null}
-        </div>
-      </div>
+      </SettingsSection>
     </>
   )
 }
 
 TeamsIndex.layout = {
   breadcrumbs: [
+    {
+      title: 'Settings',
+      href: editProfile(),
+    },
     {
       title: 'Teams',
       href: index(),

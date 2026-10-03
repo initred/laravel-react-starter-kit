@@ -1,15 +1,16 @@
 import { Form, Head } from '@inertiajs/react'
 import { useRef } from 'react'
 import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController'
-import Heading from '@/components/heading'
 import InputError from '@/components/input-error'
 import type { Props as ManagePasskeysProps } from '@/components/manage-passkeys'
 import ManagePasskeys from '@/components/manage-passkeys'
 import type { Props as ManageTwoFactorProps } from '@/components/manage-two-factor'
 import ManageTwoFactor from '@/components/manage-two-factor'
 import PasswordInput from '@/components/password-input'
+import { SettingsSection } from '@/components/settings-section'
 import { Button } from '@/components/ui/button'
 import { Field, FieldLabel } from '@/components/ui/field'
+import { edit as editProfile } from '@/routes/profile'
 import { edit } from '@/routes/security'
 
 type Props = {
@@ -25,15 +26,11 @@ export default function Security(props: Props) {
     <>
       <Head title="Security settings" />
 
-      <h1 className="sr-only">Security settings</h1>
-
-      <div className="space-y-6">
-        <Heading
-          variant="small"
-          title="Update password"
-          description="Ensure your account is using a long, random password to stay secure"
-        />
-
+      <SettingsSection
+        label="Password"
+        title="Update password"
+        description="Use a long, random password to keep your account secure."
+      >
         <Form
           {...SecurityController.update.form()}
           options={{
@@ -50,7 +47,7 @@ export default function Security(props: Props) {
               currentPasswordInput.current?.focus()
             }
           }}
-          className="space-y-6"
+          className="flex flex-col gap-5"
         >
           {({ errors, processing }) => (
             <>
@@ -68,44 +65,46 @@ export default function Security(props: Props) {
                 <InputError message={errors.current_password} />
               </Field>
 
-              <Field>
-                <FieldLabel htmlFor="password">New password</FieldLabel>
+              <div className="grid gap-5 sm:grid-cols-2 sm:gap-4">
+                <Field>
+                  <FieldLabel htmlFor="password">New password</FieldLabel>
 
-                <PasswordInput
-                  id="password"
-                  ref={passwordInput}
-                  name="password"
-                  autoComplete="new-password"
-                  placeholder="New password"
-                  passwordrules={props.passwordRules}
-                />
+                  <PasswordInput
+                    id="password"
+                    ref={passwordInput}
+                    name="password"
+                    autoComplete="new-password"
+                    placeholder="New password"
+                    passwordrules={props.passwordRules}
+                  />
 
-                <InputError message={errors.password} />
-              </Field>
+                  <InputError message={errors.password} />
+                </Field>
 
-              <Field>
-                <FieldLabel htmlFor="password_confirmation">Confirm password</FieldLabel>
+                <Field>
+                  <FieldLabel htmlFor="password_confirmation">Confirm password</FieldLabel>
 
-                <PasswordInput
-                  id="password_confirmation"
-                  name="password_confirmation"
-                  autoComplete="new-password"
-                  placeholder="Confirm password"
-                  passwordrules={props.passwordRules}
-                />
+                  <PasswordInput
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    autoComplete="new-password"
+                    placeholder="Confirm password"
+                    passwordrules={props.passwordRules}
+                  />
 
-                <InputError message={errors.password_confirmation} />
-              </Field>
+                  <InputError message={errors.password_confirmation} />
+                </Field>
+              </div>
 
-              <Field orientation="horizontal">
+              <div className="flex justify-end">
                 <Button type="submit" disabled={processing} data-test="update-password-button">
-                  Save
+                  Update password
                 </Button>
-              </Field>
+              </div>
             </>
           )}
         </Form>
-      </div>
+      </SettingsSection>
 
       <ManageTwoFactor
         canManageTwoFactor={props.canManageTwoFactor}
@@ -121,7 +120,11 @@ export default function Security(props: Props) {
 Security.layout = {
   breadcrumbs: [
     {
-      title: 'Security settings',
+      title: 'Settings',
+      href: editProfile(),
+    },
+    {
+      title: 'Security',
       href: edit(),
     },
   ],

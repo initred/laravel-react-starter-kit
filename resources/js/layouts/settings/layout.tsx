@@ -1,8 +1,5 @@
 import { Link } from '@inertiajs/react'
 import type { PropsWithChildren } from 'react'
-import Heading from '@/components/heading'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 import { useCurrentUrl } from '@/hooks/use-current-url'
 import { settingsNavItems } from '@/lib/navigation'
 import { toUrl } from '@/lib/utils'
@@ -12,36 +9,40 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
   const { isCurrentOrParentUrl } = useCurrentUrl()
 
   return (
-    <div className="space-y-8 px-4 py-6">
-      <Heading title="Settings" description="Manage your profile and account settings" />
+    <div className="flex flex-1 flex-col">
+      <div className="border-b">
+        <div className="mx-auto w-full max-w-5xl px-4 pt-10 sm:px-6 lg:px-10">
+          <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
+          <p className="text-muted-foreground mt-1.5 text-sm">
+            Manage your profile and account settings
+          </p>
 
-      <div className="flex flex-col lg:flex-row lg:space-x-12">
-        <aside className="w-full max-w-xl lg:w-48">
-          <nav className="flex flex-col space-y-1 space-x-0" aria-label="Settings">
-            {settingsNavItems.map((item, index) => (
-              <Button
-                key={`${toUrl(item.href)}-${index}`}
-                size="sm"
-                variant="ghost"
-                nativeButton={false}
-                className={cn('w-full justify-start', {
-                  'bg-muted': isCurrentOrParentUrl(item.href),
-                })}
-                render={<Link href={item.href} />}
-              >
-                {item.icon && <item.icon stroke={2} className="h-4 w-4" />}
-                {item.title}
-              </Button>
-            ))}
+          <nav aria-label="Settings" className="mt-6 -mb-px flex gap-6 overflow-x-auto">
+            {settingsNavItems.map((item) => {
+              const isActive = isCurrentOrParentUrl(item.href)
+
+              return (
+                <Link
+                  key={toUrl(item.href)}
+                  href={item.href}
+                  prefetch
+                  aria-current={isActive ? 'page' : undefined}
+                  className={cn(
+                    'border-b-2 py-3 text-sm whitespace-nowrap transition-colors',
+                    isActive
+                      ? 'border-foreground text-foreground font-medium'
+                      : 'text-muted-foreground hover:text-foreground border-transparent',
+                  )}
+                >
+                  {item.title}
+                </Link>
+              )
+            })}
           </nav>
-        </aside>
-
-        <Separator className="my-6 lg:hidden" />
-
-        <div className="flex-1 md:max-w-2xl">
-          <section className="max-w-xl space-y-12">{children}</section>
         </div>
       </div>
+
+      <div className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 lg:px-10">{children}</div>
     </div>
   )
 }
