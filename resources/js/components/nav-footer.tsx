@@ -24,10 +24,10 @@ export function NavFooter({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
-                className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100"
+                className="text-muted-foreground hover:text-foreground"
                 render={<a href={toUrl(item.href)} target="_blank" rel="noopener noreferrer" />}
               >
-                {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
+                {item.icon && <Icon iconNode={item.icon} className="size-4" />}
                 <span>{item.title}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
