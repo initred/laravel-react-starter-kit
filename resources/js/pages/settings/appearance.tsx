@@ -1,23 +1,21 @@
 import { Head } from '@inertiajs/react'
-import AppearanceTabs from '@/components/appearance-tabs'
-import Heading from '@/components/heading'
+import AppearancePicker from '@/components/appearance-picker'
+import { SettingsSection } from '@/components/settings-section'
 import { edit as editAppearance } from '@/routes/appearance'
+import { edit as editProfile } from '@/routes/profile'
 
 export default function Appearance() {
   return (
     <>
       <Head title="Appearance settings" />
 
-      <h1 className="sr-only">Appearance settings</h1>
-
-      <div className="space-y-6">
-        <Heading
-          variant="small"
-          title="Appearance settings"
-          description="Update the appearance settings for your account"
-        />
-        <AppearanceTabs />
-      </div>
+      <SettingsSection
+        label="Theme"
+        title="Interface theme"
+        description="Choose how the app looks on this device. System follows your OS setting."
+      >
+        <AppearancePicker />
+      </SettingsSection>
     </>
   )
 }
@@ -25,7 +23,11 @@ export default function Appearance() {
 Appearance.layout = {
   breadcrumbs: [
     {
-      title: 'Appearance settings',
+      title: 'Settings',
+      href: editProfile(),
+    },
+    {
+      title: 'Appearance',
       href: editAppearance(),
     },
   ],

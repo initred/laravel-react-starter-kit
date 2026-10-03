@@ -1,9 +1,9 @@
 import { Form } from '@inertiajs/react'
 import { useRef } from 'react'
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController'
-import Heading from '@/components/heading'
 import InputError from '@/components/input-error'
 import PasswordInput from '@/components/password-input'
+import { SettingsSection } from '@/components/settings-section'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -20,17 +20,17 @@ export default function DeleteUser() {
   const passwordInput = useRef<HTMLInputElement>(null)
 
   return (
-    <div className="space-y-6">
-      <Heading
-        variant="small"
-        title="Delete account"
-        description="Delete your account and all of its resources"
-      />
-      <div className="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10">
-        <div className="relative space-y-0.5 text-red-600 dark:text-red-100">
-          <p className="font-medium">Warning</p>
-          <p className="text-sm">Please proceed with caution, this cannot be undone.</p>
-        </div>
+    <SettingsSection
+      label="Danger zone"
+      tone="destructive"
+      title="Delete account"
+      description="This cannot be undone."
+    >
+      <div className="border-destructive/30 flex flex-wrap items-center justify-between gap-4 rounded-lg border p-5">
+        <p className="text-muted-foreground min-w-60 flex-1 text-sm">
+          Permanently delete your account and all of its resources. You'll be asked for your
+          password to confirm.
+        </p>
 
         <Dialog>
           <DialogTrigger render={<Button variant="destructive" data-test="delete-user-button" />}>
@@ -93,6 +93,6 @@ export default function DeleteUser() {
           </DialogContent>
         </Dialog>
       </div>
-    </div>
+    </SettingsSection>
   )
 }

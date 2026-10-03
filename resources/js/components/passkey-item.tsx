@@ -26,25 +26,25 @@ export default function PasskeyItem({ passkey, onDelete }: Props) {
   }
 
   return (
-    <div className="flex items-center justify-between border-b p-4 last:border-b-0">
-      <div className="flex items-center gap-4">
-        <div className="bg-muted flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
-          <IconKey className="text-muted-foreground h-5 w-5" />
+    <div className="flex items-center justify-between gap-4 px-4 py-3.5">
+      <div className="flex min-w-0 items-center gap-3.5">
+        <div className="text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-md border">
+          <IconKey className="size-4.5" />
         </div>
-        <div className="space-y-1">
-          <div className="flex items-center gap-2.5">
-            <p className="font-medium tracking-tight">{passkey.name}</p>
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="text-sm font-medium">{passkey.name}</p>
             {passkey.authenticator && (
-              <span className="bg-muted text-muted-foreground ring-border inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-medium tracking-wide uppercase ring-1 ring-inset">
+              <span className="text-muted-foreground rounded border px-1.5 font-mono text-[11px]">
                 {passkey.authenticator}
               </span>
             )}
           </div>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-[13px]">
             Added {passkey.created_at_diff}
             {passkey.last_used_at_diff && (
               <>
-                <span className="text-muted-foreground/50 mx-1">/</span>
+                <span className="mx-1">·</span>
                 Last used {passkey.last_used_at_diff}
               </>
             )}
@@ -57,8 +57,8 @@ export default function PasskeyItem({ passkey, onDelete }: Props) {
           render={
             <Button
               variant="ghost"
-              size="sm"
-              className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+              size="icon-sm"
+              className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
             />
           }
         >

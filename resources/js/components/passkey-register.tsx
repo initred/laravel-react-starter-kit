@@ -1,4 +1,5 @@
 import { usePasskeyRegister } from '@laravel/passkeys/react'
+import { IconPlus } from '@tabler/icons-react'
 import { useState } from 'react'
 import InputError from '@/components/input-error'
 import { Button } from '@/components/ui/button'
@@ -66,17 +67,17 @@ export default function PasskeyRegistration({ onSuccess }: Props) {
 
   if (!showForm) {
     return (
-      <Button variant="outline" onClick={() => setShowForm(true)}>
-        Add passkey
-      </Button>
+      <div className="flex justify-end">
+        <Button variant="outline" onClick={() => setShowForm(true)}>
+          <IconPlus />
+          Add passkey
+        </Button>
+      </div>
     )
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="border-border bg-muted/50 space-y-4 rounded-lg border p-4"
-    >
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-lg border p-4">
       <div className="grid gap-2">
         <Label htmlFor="passkey-name">Passkey name</Label>
         <Input
@@ -85,7 +86,7 @@ export default function PasskeyRegistration({ onSuccess }: Props) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g., MacBook Pro, iPhone"
-          className="border-foreground/20 mt-1 block w-full"
+          className="mt-1 block w-full"
           autoFocus
         />
         <p className="text-muted-foreground text-xs">
@@ -95,12 +96,12 @@ export default function PasskeyRegistration({ onSuccess }: Props) {
 
       {error && <InputError message={error} />}
 
-      <div className="flex gap-2">
-        <Button type="submit" disabled={isLoading || !name.trim()}>
-          {isLoading ? 'Registering...' : 'Register passkey'}
-        </Button>
+      <div className="flex justify-end gap-2">
         <Button type="button" variant="ghost" onClick={handleCancel}>
           Cancel
+        </Button>
+        <Button type="submit" disabled={isLoading || !name.trim()}>
+          {isLoading ? 'Registering...' : 'Register passkey'}
         </Button>
       </div>
     </form>
