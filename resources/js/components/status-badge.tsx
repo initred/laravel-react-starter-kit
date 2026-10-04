@@ -1,22 +1,31 @@
+import { cva, type VariantProps } from 'class-variance-authority'
 import type { PropsWithChildren } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { cn } from 'cn'
 
-type StatusBadgeProps = PropsWithChildren<{
-  tone?: 'success' | 'warning' | 'info' | 'neutral'
-  className?: string
-}>
+const statusBadgeVariants = cva('', {
+  variants: {
+    variant: {
+      default: 'text-muted-foreground',
+      info: 'text-info',
+      success: 'text-success',
+      warning: 'text-warning',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+})
 
-const toneStyles: Record<NonNullable<StatusBadgeProps['tone']>, string> = {
-  success: 'text-success',
-  warning: 'text-warning',
-  info: 'text-info',
-  neutral: 'text-muted-foreground',
-}
+type StatusBadgeProps = PropsWithChildren<
+  VariantProps<typeof statusBadgeVariants> & {
+    className?: string
+  }
+>
 
-export function StatusBadge({ tone = 'neutral', className, children }: StatusBadgeProps) {
+export function StatusBadge({ variant = 'default', className, children }: StatusBadgeProps) {
   return (
-    <Badge variant="outline" className={cn(toneStyles[tone], className)}>
+    <Badge variant="outline" className={cn(statusBadgeVariants({ variant }), className)}>
       <span aria-hidden="true" className="size-1.5 rounded-full bg-current" />
       {children}
     </Badge>

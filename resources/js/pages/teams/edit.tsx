@@ -281,7 +281,7 @@ export default function TeamEdit({
       {permissions.canDeleteTeam && !team.isPersonal ? (
         <SettingsSection
           label="Danger zone"
-          tone="destructive"
+          variant="destructive"
           title="Delete team"
           description="This cannot be undone."
         >

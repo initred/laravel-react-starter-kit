@@ -30,7 +30,7 @@ export default function Dashboard() {
           <div className="bg-border grid gap-px md:grid-cols-3">
             {['Metric 01', 'Metric 02', 'Metric 03'].map((label) => (
               <div key={label} className="bg-background flex flex-col gap-4 p-6">
-                <SectionLabel tone="muted">{label}</SectionLabel>
+                <SectionLabel variant="muted">{label}</SectionLabel>
                 <div className={`h-24 ${placeholderPattern}`} />
               </div>
             ))}
@@ -40,11 +40,11 @@ export default function Dashboard() {
         <RailSection>
           <div className="bg-border grid gap-px lg:grid-cols-3">
             <div className="bg-background flex flex-col gap-4 p-6 lg:col-span-2">
-              <SectionLabel tone="muted">Primary panel</SectionLabel>
+              <SectionLabel variant="muted">Primary panel</SectionLabel>
               <div className={`h-72 ${placeholderPattern}`} />
             </div>
             <div className="bg-background flex flex-col gap-4 p-6">
-              <SectionLabel tone="muted">Activity</SectionLabel>
+              <SectionLabel variant="muted">Activity</SectionLabel>
               <ul className="divide-y">
                 {[70, 55, 80, 60].map((width) => (
                   <li key={width} className="flex items-center gap-3 py-3">

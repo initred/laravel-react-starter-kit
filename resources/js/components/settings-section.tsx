@@ -6,7 +6,7 @@ type SettingsSectionProps = PropsWithChildren<{
   label: string
   title: string
   description?: string
-  tone?: 'accent' | 'destructive'
+  variant?: 'default' | 'destructive'
   className?: string
 }>
 
@@ -14,7 +14,7 @@ export function SettingsSection({
   label,
   title,
   description,
-  tone = 'accent',
+  variant = 'default',
   className,
   children,
 }: SettingsSectionProps) {
@@ -26,7 +26,7 @@ export function SettingsSection({
       )}
     >
       <header className="lg:w-72 lg:shrink-0">
-        <SectionLabel tone={tone}>{label}</SectionLabel>
+        <SectionLabel variant={variant}>{label}</SectionLabel>
         <h2 className="mt-2.5 text-base font-semibold">{title}</h2>
         {description && <p className="text-muted-foreground mt-1 text-sm">{description}</p>}
       </header>

@@ -22,7 +22,7 @@ export default function DeleteUser() {
   return (
     <SettingsSection
       label="Danger zone"
-      tone="destructive"
+      variant="destructive"
       title="Delete account"
       description="This cannot be undone."
     >
