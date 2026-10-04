@@ -28,7 +28,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                   prefetch
                   aria-current={isActive ? 'page' : undefined}
                   className={cn(
-                    'border-b-2 py-3 text-sm whitespace-nowrap transition-colors',
+                    'focus-visible:ring-ring border-b-2 py-3 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset',
                     isActive
                       ? 'border-foreground text-foreground font-medium'
                       : 'text-muted-foreground hover:text-foreground border-transparent',
