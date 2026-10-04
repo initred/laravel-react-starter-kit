@@ -18,7 +18,7 @@ export function NavFooter({
   items: NavItem[]
 }) {
   return (
-    <SidebarGroup {...props} className={`group-data-[collapsible=icon]:p-0 ${className || ''}`}>
+    <SidebarGroup {...props} className={className}>
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => (

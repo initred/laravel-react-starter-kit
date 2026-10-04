@@ -31,7 +31,7 @@ export function AppSidebar() {
         <SidebarMenu className="h-14 justify-center border-b px-2">
           <SidebarMenuItem>
             <SidebarMenuButton
-              className="h-10"
+              className="h-10 group-data-[collapsible=icon]:p-0.5!"
               render={<Link href={dashboard(currentTeamSlug)} prefetch />}
             >
               <AppLogo />
