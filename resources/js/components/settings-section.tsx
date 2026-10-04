@@ -1,4 +1,6 @@
+import type { VariantProps } from 'class-variance-authority'
 import type { PropsWithChildren } from 'react'
+import type { sectionLabelVariants } from '@/components/section-label'
 import { SectionLabel } from '@/components/section-label'
 import { cn } from 'cn'
 
@@ -6,7 +8,7 @@ type SettingsSectionProps = PropsWithChildren<{
   label: string
   title: string
   description?: string
-  variant?: 'default' | 'destructive'
+  variant?: VariantProps<typeof sectionLabelVariants>['variant']
   className?: string
 }>
 
@@ -14,7 +16,7 @@ export function SettingsSection({
   label,
   title,
   description,
-  variant = 'default',
+  variant = 'info',
   className,
   children,
 }: SettingsSectionProps) {
