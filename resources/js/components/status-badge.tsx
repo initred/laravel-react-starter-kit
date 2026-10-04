@@ -8,9 +8,9 @@ type StatusBadgeProps = PropsWithChildren<{
 }>
 
 const toneStyles: Record<NonNullable<StatusBadgeProps['tone']>, string> = {
-  success: 'text-emerald-700 dark:text-emerald-400',
-  warning: 'text-amber-700 dark:text-amber-400',
-  info: 'text-blue-600 dark:text-blue-400',
+  success: 'text-success',
+  warning: 'text-warning',
+  info: 'text-info',
   neutral: 'text-muted-foreground',
 }
 

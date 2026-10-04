@@ -6,7 +6,7 @@ type SectionLabelProps = ComponentProps<'p'> & {
 }
 
 const toneStyles: Record<NonNullable<SectionLabelProps['tone']>, string> = {
-  accent: 'text-blue-600 dark:text-blue-400',
+  accent: 'text-info',
   muted: 'text-muted-foreground',
   destructive: 'text-destructive',
 }

@@ -110,7 +110,7 @@ export default function Profile({
                 )}
 
                 {status === 'verification-link-sent' && (
-                  <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400">
+                  <p className="text-success text-sm font-medium">
                     A new verification link has been sent to your email address.
                   </p>
                 )}
