@@ -1,6 +1,5 @@
 import { AppSearch } from '@/components/app-search'
 import { Breadcrumbs } from '@/components/breadcrumbs'
-import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types'
 
@@ -9,7 +8,6 @@ export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: Breadcrum
     <header className="bg-background sticky top-0 z-10 flex h-14 shrink-0 items-center gap-3 border-b px-4">
       <div className="flex min-w-0 items-center gap-3">
         <SidebarTrigger className="-ml-1" />
-        <Separator orientation="vertical" className="hidden h-4 self-center! sm:block" />
         <div className="hidden min-w-0 sm:block">
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </div>
