@@ -62,7 +62,7 @@ export function TeamSwitcher({ inHeader = false }: TeamSwitcherProps) {
             className={
               inHeader
                 ? 'h-8 gap-1 px-2'
-                : 'data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground border-sidebar-border w-full justify-start border px-2 group-data-[collapsible=icon]:border-transparent has-[>svg]:px-2'
+                : 'data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground w-full justify-start px-2 has-[>svg]:px-2'
             }
           />
         }
