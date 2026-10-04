@@ -60,7 +60,7 @@ export default function ManageTwoFactor(props: Props) {
             <div className="flex flex-wrap items-center gap-2.5">
               <p className="text-sm font-semibold">Authenticator app</p>
               {twoFactorEnabled ? (
-                <StatusBadge tone="success">Enabled</StatusBadge>
+                <StatusBadge variant="success">Enabled</StatusBadge>
               ) : (
                 <StatusBadge>Disabled</StatusBadge>
               )}

@@ -51,7 +51,7 @@ export default function TeamsIndex({ teams }: Props) {
                   <span className="flex flex-wrap items-center gap-2">
                     <span className="truncate text-sm font-medium">{team.name}</span>
                     {team.isPersonal ? <Badge variant="outline">Personal</Badge> : null}
-                    {team.isCurrent ? <StatusBadge tone="info">Current</StatusBadge> : null}
+                    {team.isCurrent ? <StatusBadge variant="info">Current</StatusBadge> : null}
                   </span>
                   <span className="text-muted-foreground block text-[13px]">
                     {team.roleLabel}

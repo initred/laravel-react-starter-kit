@@ -78,9 +78,9 @@ export default function Profile({
                   <FieldLabel htmlFor="email">Email address</FieldLabel>
                   {mustVerifyEmail &&
                     (isEmailUnverified ? (
-                      <StatusBadge tone="warning">Unverified</StatusBadge>
+                      <StatusBadge variant="warning">Unverified</StatusBadge>
                     ) : (
-                      <StatusBadge tone="success">Verified</StatusBadge>
+                      <StatusBadge variant="success">Verified</StatusBadge>
                     ))}
                 </div>
 
