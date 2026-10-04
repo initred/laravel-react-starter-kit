@@ -1,4 +1,5 @@
-import { Link, usePage } from '@inertiajs/react'
+import { Link, router, usePage } from '@inertiajs/react'
+import { useEffect } from 'react'
 import { NavFooter } from '@/components/nav-footer'
 import { NavMain } from '@/components/nav-main'
 import { NavUser } from '@/components/nav-user'
@@ -10,6 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '@/components/ui/sidebar'
 import { docsNavItems, mainNavItems } from '@/lib/navigation'
 import { dashboard } from '@/routes'
@@ -19,6 +21,9 @@ import { TeamSwitcher } from './team-switcher'
 export function AppSidebar() {
   const { currentTeam } = usePage().props
   const currentTeamSlug = currentTeam?.slug ?? ''
+  const { setOpenMobile } = useSidebar()
+
+  useEffect(() => router.on('navigate', () => setOpenMobile(false)), [setOpenMobile])
 
   return (
     <Sidebar collapsible="icon">
