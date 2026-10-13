@@ -52,7 +52,7 @@
         "vite-plus": "^1.1.0"
     },
     "overrides": {
-        "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0"
+        "vite": "npm:@voidzero-dev/vite-plus-core@1.1.0"
     },
     "optionalDependencies": {
         "@laravel/multiplex": "^0.4.5",
