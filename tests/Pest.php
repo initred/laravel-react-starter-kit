@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Sleep;
 use Illuminate\Support\Str;
+use Pest\Support\Ci;
 use Tests\TestCase;
 
 pest()->extend(TestCase::class)
@@ -31,6 +32,24 @@ pest()->extend(TestCase::class)
         $this->freezeTime();
     })
     ->in('Browser', 'Feature', 'Unit');
+
+/*
+|--------------------------------------------------------------------------
+| Test Impact Analysis
+|--------------------------------------------------------------------------
+|
+| Locally, Pest only re-runs the tests affected by your changes and replays cached results
+| for the rest. It is never enabled on a CI server, and passing the "--ci" flag runs the full
+| suite locally as well. The graph is stored inside the project so it survives Sail container
+| rebuilds, which discard the container home directory.
+|
+*/
+
+if (! Ci::isRunning()) {
+    pest()->tia()
+        ->locally()
+        ->directory('.pest/tia');
+}
 
 /*
 |--------------------------------------------------------------------------

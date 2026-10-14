@@ -78,7 +78,7 @@
             "phpstan analyse"
         ],
         "test:type-coverage": "pest --type-coverage --min=100",
-        "test:unit": "XDEBUG_MODE=\"coverage\" pest --parallel --coverage --exactly=100.0",
+        "test:unit": "XDEBUG_MODE=\"coverage\" pest --ci --parallel --coverage --exactly=100.0",
         "test:lint": [
             "pint --parallel --test",
             "rector --dry-run"
