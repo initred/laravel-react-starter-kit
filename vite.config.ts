@@ -38,6 +38,14 @@ export default defineConfig({
     },
   },
   lint: {
+    jsPlugins: ['@shadcn/lint'],
+    rules: {
+      'shadcn/no-raw-colors': 'error',
+      'shadcn/no-arbitrary-values': 'error',
+      'shadcn/no-inline-styles': 'error',
+      'shadcn/no-unknown-classes': 'error',
+      'shadcn/require-static-classes': 'error',
+    },
     ignorePatterns: [
       'vendor/**',
       'node_modules/**',
