@@ -1,0 +1,10 @@
+@theme {
+  --text-2xs: 0.6875rem;
+  --text-caption: 0.8125rem;
+  --tracking-caps: 0.08em;
+  --container-docs: 37em;
+}
+
+@utility bg-hatch {
+  background-image: repeating-linear-gradient(135deg, var(--border) 0 1px, transparent 1px 8px);
+}

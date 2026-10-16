@@ -1,3 +1,4 @@
+/* oxlint-disable shadcn/no-raw-colors -- Previews render fixed light and dark palettes, independent of the active theme. */
 import { appearanceOptions } from '@/components/appearance-tabs'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import type { Appearance } from '@/hooks/use-appearance'
@@ -62,7 +63,7 @@ export default function AppearancePicker() {
         <label
           key={value}
           className={cn(
-            'cursor-pointer overflow-hidden rounded-lg border transition-[border-color,box-shadow]',
+            'cursor-pointer overflow-hidden rounded-lg border transition',
             appearance === value
               ? 'border-foreground ring-foreground ring-1'
               : 'hover:border-muted-foreground/50',

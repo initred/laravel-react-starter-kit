@@ -53,7 +53,7 @@ export default function TeamsIndex({ teams }: Props) {
                     {team.isPersonal ? <Badge variant="outline">Personal</Badge> : null}
                     {team.isCurrent ? <StatusBadge variant="info">Current</StatusBadge> : null}
                   </span>
-                  <span className="text-muted-foreground block text-[13px]">
+                  <span className="text-muted-foreground text-caption block">
                     {team.roleLabel}
                     {team.role === 'member' ? ' · view only' : null}
                   </span>

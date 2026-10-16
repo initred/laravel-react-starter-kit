@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/dialog'
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
 import { Spinner } from '@/components/ui/spinner'
-import { useAppearance } from '@/hooks/use-appearance'
 import { useClipboard } from '@/hooks/use-clipboard'
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth'
 import { confirm } from '@/routes/two-factor'
@@ -52,7 +51,6 @@ function TwoFactorSetupStep({
   onNextStep: () => void
   errors: string[]
 }) {
-  const { resolvedAppearance } = useAppearance()
   const [copiedText, copy] = useClipboard()
   const IconComponent = copiedText === manualSetupKey ? IconCheck : IconCopy
 
@@ -67,13 +65,9 @@ function TwoFactorSetupStep({
               <div className="z-10 flex h-full w-full items-center justify-center p-5">
                 {qrCodeSvg ? (
                   <div
-                    className="aspect-square w-full rounded-lg bg-white p-2 [&_svg]:size-full"
+                    className="aspect-square w-full rounded-lg bg-white p-2 dark:brightness-150 dark:invert [&_svg]:size-full"
                     dangerouslySetInnerHTML={{
                       __html: qrCodeSvg,
-                    }}
-                    style={{
-                      filter:
-                        resolvedAppearance === 'dark' ? 'invert(1) brightness(1.5)' : undefined,
                     }}
                   />
                 ) : (

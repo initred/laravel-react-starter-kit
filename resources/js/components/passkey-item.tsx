@@ -35,12 +35,12 @@ export default function PasskeyItem({ passkey, onDelete }: Props) {
           <div className="flex flex-wrap items-center gap-2">
             <p className="text-sm font-medium">{passkey.name}</p>
             {passkey.authenticator && (
-              <span className="text-muted-foreground rounded border px-1.5 font-mono text-[11px]">
+              <span className="text-muted-foreground text-2xs rounded border px-1.5 font-mono">
                 {passkey.authenticator}
               </span>
             )}
           </div>
-          <p className="text-muted-foreground text-[13px]">
+          <p className="text-muted-foreground text-caption">
             Added {passkey.created_at_diff}
             {passkey.last_used_at_diff && (
               <>

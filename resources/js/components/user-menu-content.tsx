@@ -37,7 +37,7 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
-        <DropdownMenuLabel className="font-mono text-[11px] tracking-[0.08em] uppercase">
+        <DropdownMenuLabel className="text-2xs tracking-caps font-mono uppercase">
           Settings
         </DropdownMenuLabel>
         {settingsNavItems.map((item) => (

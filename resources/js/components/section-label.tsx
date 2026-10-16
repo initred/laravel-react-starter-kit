@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react'
 import { cn } from 'cn'
 
 export const sectionLabelVariants = cva(
-  'flex items-baseline gap-2 font-mono text-[11px] font-medium tracking-[0.08em] uppercase',
+  'text-2xs tracking-caps flex items-baseline gap-2 font-mono font-medium uppercase',
   {
     variants: {
       variant: {
@@ -32,6 +32,7 @@ export function SectionLabel({
         // Sits on the text baseline, then rises half the font's cap height so it centres on the caps.
         <span
           aria-hidden="true"
+          // oxlint-disable-next-line shadcn/no-arbitrary-values -- The cap unit has no theme equivalent.
           className="relative bottom-[0.5cap] size-1.5 shrink-0 translate-y-1/2 bg-current"
         />
       )}

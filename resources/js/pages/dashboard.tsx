@@ -6,8 +6,7 @@ import { dashboard } from '@/routes'
 import { edit as editSecurity } from '@/routes/security'
 import { edit as editTeam } from '@/routes/teams'
 
-const placeholderPattern =
-  'rounded-md border border-dashed bg-[repeating-linear-gradient(135deg,var(--border)_0_1px,transparent_1px_8px)]'
+const placeholderPattern = 'rounded-md border border-dashed bg-hatch'
 
 export default function Dashboard() {
   const { currentTeam } = usePage().props
@@ -46,11 +45,11 @@ export default function Dashboard() {
             <div className="bg-background flex flex-col gap-4 p-6">
               <SectionLabel variant="muted">Activity</SectionLabel>
               <ul className="divide-y">
-                {[70, 55, 80, 60].map((width) => (
+                {['w-7/10', 'w-11/20', 'w-4/5', 'w-3/5'].map((width) => (
                   <li key={width} className="flex items-center gap-3 py-3">
                     <span className="bg-muted size-7 shrink-0 rounded-full" />
                     <span className="flex flex-1 flex-col gap-1.5">
-                      <span className="bg-muted h-2 rounded" style={{ width: `${width}%` }} />
+                      <span className={`bg-muted h-2 rounded ${width}`} />
                       <span className="bg-muted h-2 w-1/3 rounded" />
                     </span>
                   </li>

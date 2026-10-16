@@ -150,7 +150,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
               >
                 <Avatar className="size-8 overflow-hidden rounded-full">
                   <AvatarImage src={auth.user.avatar} alt={auth.user.name} />
-                  <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+                  <AvatarFallback className="bg-muted text-foreground rounded-lg">
                     {getInitials(auth.user.name)}
                   </AvatarFallback>
                 </Avatar>
@@ -166,7 +166,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
       </div>
       {breadcrumbs.length > 1 && (
         <div className="border-sidebar-border/70 flex w-full border-b">
-          <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl">
+          <div className="text-muted-foreground mx-auto flex h-12 w-full items-center justify-start px-4 md:max-w-7xl">
             <Breadcrumbs breadcrumbs={breadcrumbs} />
           </div>
         </div>

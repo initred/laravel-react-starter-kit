@@ -86,7 +86,7 @@ export default function TeamEdit({
       <div className="border-b py-7">
         <Link
           href={index()}
-          className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-[13px] transition-colors"
+          className="text-muted-foreground hover:text-foreground text-caption inline-flex items-center gap-1.5 transition-colors"
         >
           <IconArrowLeft className="size-3.5" />
           All teams
@@ -100,7 +100,7 @@ export default function TeamEdit({
               <span className="truncate">{team.name}</span>
               {team.isPersonal ? <Badge variant="outline">Personal</Badge> : null}
             </h2>
-            <p className="text-muted-foreground text-[13px]">
+            <p className="text-muted-foreground text-caption">
               {members.length} {members.length === 1 ? 'member' : 'members'}
             </p>
           </div>
@@ -176,7 +176,7 @@ export default function TeamEdit({
                 </Avatar>
                 <div className="min-w-0 flex-1">
                   <div className="truncate text-sm font-medium">{member.name}</div>
-                  <div className="text-muted-foreground truncate text-[13px]">{member.email}</div>
+                  <div className="text-muted-foreground text-caption truncate">{member.email}</div>
                 </div>
 
                 <div className="flex shrink-0 items-center gap-1">
@@ -255,7 +255,7 @@ export default function TeamEdit({
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="truncate text-sm font-medium">{invitation.email}</div>
-                  <div className="text-muted-foreground text-[13px]">
+                  <div className="text-muted-foreground text-caption">
                     {invitation.role_label} · Invited{' '}
                     {formatDistanceToNow(new Date(invitation.created_at), { addSuffix: true })}
                   </div>

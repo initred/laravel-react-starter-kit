@@ -93,7 +93,7 @@ export default function TwoFactorChallenge() {
                 <span>or you can </span>
                 <button
                   type="button"
-                  className="text-foreground cursor-pointer underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
+                  className="text-foreground decoration-muted-foreground/50 cursor-pointer underline underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current!"
                   onClick={() => toggleRecoveryMode(clearErrors)}
                 >
                   {authConfigContent.toggleText}

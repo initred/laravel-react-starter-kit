@@ -14,6 +14,7 @@
 @import '@fontsource/monaspace-neon/500.css';
 @import '@fontsource/monaspace-neon/700.css';
 @import './typeset.css';
+@import './theme-extend.css';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
