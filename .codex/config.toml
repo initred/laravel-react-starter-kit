@@ -1,5 +1,5 @@
 [mcp_servers.laravel-boost]
-command = "vendor/bin/sail"
+command = "php"
 args = ["artisan", "boost:mcp"]
 
 [mcp_servers.shadcn]

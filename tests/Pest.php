@@ -40,7 +40,7 @@ pest()->extend(TestCase::class)
 |
 | Locally, Pest only re-runs the tests affected by your changes and replays cached results
 | for the rest. It is never enabled on a CI server, and passing the "--ci" flag runs the full
-| suite locally as well. The graph is stored inside the project so it survives Sail container
+| suite locally as well. The graph is stored inside the project so it survives container
 | rebuilds, which discard the container home directory.
 |
 */

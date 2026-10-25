@@ -5,7 +5,7 @@
 | Category   | Technology                                                                                                                                                                                 |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Database   | [PostgreSQL 18](https://www.postgresql.org/) (default), [MySQL 8.4](https://www.mysql.com/)                                                                                                |
-| Runtime    | [Docker](https://www.docker.com/) ([Laravel Sail](https://laravel.com/docs/sail))                                                                                                          |
+| Runtime    | [Podman](https://podman.io/) (managed by lerd)                                                                                                            |
 | Backend    | [PHP 8.4](https://www.php.net/), [Laravel 13](https://laravel.com/docs/13.x), [Inertia v3](https://inertiajs.com/)                                                                         |
 | Frontend   | [React 19](https://react.dev/), [TypeScript 5](https://www.typescriptlang.org/)                                                                                                            |
 | Compiler   | [React Compiler](https://react.dev/learn/react-compiler) (`babel-plugin-react-compiler`)                                                                                                   |
@@ -21,46 +21,39 @@
 
 ## Getting Started
 
-### Database Setup
+### Prerequisites
 
-This starter kit supports **PostgreSQL** (default) and **MySQL**. Run the setup script to choose your database:
+Install lerd, the Podman-based PHP development environment this project runs on.
+
+### Link and Set Up the Project
+
+From the project root:
 
 ```bash
-bash database-setup.sh
+lerd init
+lerd setup
 ```
 
-The script will:
+- `lerd init` runs the setup wizard (PHP version, HTTPS, required services) and saves the answers to `.lerd.yaml`. This starter kit defaults to **PostgreSQL**; **MySQL** is also available.
+- `lerd setup` links the site and runs the project setup: Composer and Node dependencies, `.env` configuration, `APP_KEY`, migrations, asset build, and the queue and scheduler workers.
 
-1. Prompt you to select PostgreSQL or MySQL
-2. Configure `compose.yaml` and `.env` for the selected database
-3. Clean up the setup files automatically
-
-### Install Dependencies
+Once setup finishes, open the site in your browser:
 
 ```bash
-docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd):/var/www/html" \
-    -w /var/www/html \
-    laravelsail/php84-composer:latest \
-    composer install --ignore-platform-reqs
-```
-
-### Start the Application
-
-```bash
-vendor/bin/sail up -d
-vendor/bin/sail composer setup
+lerd open
 ```
 
 ## Development
 
+Run the project's Composer and console commands through lerd, so they execute in the project's PHP container:
+
 ```bash
-vendor/bin/sail composer dev
+lerd composer install
+lerd console route:list
 ```
 
 ## Testing
 
 ```bash
-vendor/bin/sail composer test
+lerd composer test
 ```

@@ -50,8 +50,8 @@ const features: { icon: Icon; title: string; description: string }[] = [
 ]
 
 const steps: { title: string; command: string }[] = [
-  { title: 'Start the containers', command: 'vendor/bin/sail up -d' },
-  { title: 'Run the dev server', command: 'vendor/bin/sail composer run dev' },
+  { title: 'Set up the project', command: 'lerd setup' },
+  { title: 'Open the site', command: 'lerd open' },
   { title: 'Make it yours', command: 'resources/js/pages/home.tsx' },
 ]
 
