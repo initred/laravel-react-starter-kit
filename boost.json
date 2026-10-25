@@ -8,7 +8,7 @@
     "guidelines": true,
     "mcp": true,
     "nightwatch": false,
-    "sail": true,
+    "sail": false,
     "skills": [
         "infer-conventions",
         "fortify-development",

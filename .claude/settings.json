@@ -10,7 +10,6 @@
         "allow": [
             "Bash(git *)",
             "Bash(git commit:*)",
-            "Bash(vendor/bin/sail *)",
             "Bash(ls *)",
             "Bash(mkdir *)",
             "Bash(cp *)",
