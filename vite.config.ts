@@ -68,6 +68,8 @@ export default defineConfig({
     ignorePatterns: [
       '.github/**',
       'composer.json',
+      '.lerd.yaml',
+      '.vscode/mcp.json',
       'resources/js/components/ui/*',
       'resources/views/mail/*',
       '.ai/**',
