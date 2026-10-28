@@ -43,8 +43,8 @@ Write a browser test only for JavaScript behavior that an HTTP test cannot reach
 
 The plugin runs browser tests as normal Pest tests, so they need no separate suite. Put them in `tests/Browser` to separate them from faster tests and run the directory with one command.
 
-- Run a browser test with `vendor/bin/sail bin pest tests/Browser`, and add `--parallel` for the complete suite.
-- Run `vendor/bin/sail bin pest --debug` to open the window of the browser and to pause at a failure. Use `--headed` to watch a run that passes.
+- Run a browser test with `vendor/bin/pest tests/Browser`, and add `--parallel` for the complete suite.
+- Run `vendor/bin/pest --debug` to open the window of the browser and to pause at a failure. Use `--headed` to watch a run that passes.
 - Add `--browser firefox` or `--browser safari` to run the test in a different browser. The default browser is Chrome.
 - The run needs Playwright and a browser on the machine. Follow the plugin documentation for local and CI installation commands.
 - Fetch `https://pestphp.com/docs/browser-testing` for the interactions, the assertions, and the devices that the plugin gives.
